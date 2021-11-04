@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Action</title>
+</head>
+<body>
+<h1>Click after Search Configuration</h1>
+<div>
+    <label>
+        Event Name
+    </label>
+</div>
+<div>
+    <input id="eventName" required/>
+</div>
+<div>
+    <label>
+        Class Name Selector (use proper <a href="https://www.w3schools.com/cssref/css_selectors.asp">selector</a> patterns)
+    </label>
+</div>
+<div>
+    <input id="className" required/>
+</div>
+
+<script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+<script>
+  const eventNameInput = document.querySelector('#eventName');
+  const classNameInput = document.querySelector('#className');
+
+  window.extensionBridge.register({
+    init: function(info) {
+      if (info.settings) {
+        const { eventName, className } = info.settings;
+        eventNameInput.value = eventName;
+        classNameInput.value = className;
+      }
+    },
+
+    getSettings: function() {
+      return {
+        eventName: eventNameInput.value,
+        className: classNameInput.value
+      };
+    },
+
+    validate: function() {
+      return eventNameInput.checkValidity()
+        && classNameInput.checkValidity();
+    }
+  });
+</script>
+</body>
+</html>

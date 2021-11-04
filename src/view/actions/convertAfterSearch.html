@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Action</title>
+</head>
+<body>
+<h1>Convert after Search Configuration</h1>
+<div>
+  <label>
+    Event Name
+  </label>
+</div>
+<div>
+  <input id="eventName" required/>
+</div>
+
+<script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+<script>
+  const eventNameInput = document.querySelector('#eventName');
+
+  window.extensionBridge.register({
+    init: function(info) {
+      if (info.settings) {
+        const { eventName } = info.settings;
+        eventNameInput.value = eventName;
+      }
+    },
+
+    getSettings: function() {
+      return {
+        eventName: eventNameInput.value
+      };
+    },
+
+    validate: function() {
+      return eventNameInput.checkValidity();
+    }
+  });
+</script>
+</body>
+</html>

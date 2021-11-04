@@ -1,0 +1,45 @@
+{
+  "displayName": "Algolia Search Insights",
+  "name": "algolia",
+  "platform": "web",
+  "version": "1.0.2",
+  "description": "Forward events to Algolia to drive better personalization and recommendation.",
+  "iconPath": "src/algolia.svg",
+  "author": {
+    "name": "Sajid Momin",
+    "email": "sajid.momin@algolia.com"
+  },
+  "viewBasePath": "src/view/",
+  "configuration": {
+    "viewPath": "configuration/configuration.html",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "properties": {}
+    }
+  },
+  "actions": [
+    {
+      "displayName": "Clicked after Search",
+      "name": "clicked-after-search",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/actions/clickedAfterSearch.js",
+      "viewPath": "actions/clickedAfterSearch.html"
+    },
+    {
+      "displayName": "Convert after Search",
+      "name": "convert-after-search",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/actions/convertAfterSearch.js",
+      "viewPath": "actions/convertAfterSearch.html"
+    }
+  ]
+}

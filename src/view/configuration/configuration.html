@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Extension Configuration</title>
+    <style>
+      input:invalid {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Extension Configuration Template</h1>
+    <div>
+      <label>
+        Application ID
+      </label>
+    </div>
+    <div>
+      <input id="appId" required/>
+    </div>
+    <div>
+      <label>
+        API Key
+      </label>
+    </div>
+    <div>
+      <input id="apiKey" type="password" required/>
+    </div>
+    <div>
+      <label>
+        Index Name
+      </label>
+    </div>
+    <div>
+      <input id="indexName" required/>
+    </div>
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      const appIdInput = document.querySelector('#appId');
+      const apiKeyInput = document.querySelector('#apiKey');
+      const indexNameInput = document.querySelector('#indexName');
+
+      window.extensionBridge.register({
+        init: function(info) {
+          if (info.settings) {
+            const { appId, apiKey, indexName } = info.settings;
+            appIdInput.value = appId;
+            apiKeyInput.value = apiKey;
+            indexNameInput.value = indexName;
+          }
+        },
+
+        getSettings: function() {
+          return {
+            appId: appIdInput.value,
+            apiKey: apiKeyInput.value,
+            indexName: indexNameInput.value
+          };
+        },
+
+        validate: function() {
+          return appIdInput.checkValidity()
+                  && apiKeyInput.checkValidity()
+                  && indexNameInput.checkValidity()
+        }
+      });
+    </script>
+  </body>
+</html>
