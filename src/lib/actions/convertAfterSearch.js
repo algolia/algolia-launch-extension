@@ -35,7 +35,7 @@ const getUserToken = function(aa) {
 const getDataFromQuery = function() {
   const urlParams = new URLSearchParams(document.location.search);
   return {
-    objectID: urlParams.objectID,
-    queryID: urlParams.queryID
+    objectID: urlParams.get('objectID'),
+    queryID: urlParams.get('queryID')
   };
 }
