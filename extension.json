@@ -2,7 +2,7 @@
   "displayName": "Algolia Search Insights",
   "name": "algolia",
   "platform": "web",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "Forward events to Algolia to drive better personalization and recommendation.",
   "iconPath": "src/algolia.svg",
   "author": {

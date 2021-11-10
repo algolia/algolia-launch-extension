@@ -1,21 +1,36 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html class="wf-adobeclean-n4-active wf-adobeclean-n7-active wf-adobecleancondensed-n7-active wf-adobecleancondensed-i7-active wf-adobecleancondensed-i4-active wf-adobeclean-i7-active wf-adobeclean-i4-active wf-adobeclean-n3-active wf-active">
+<head lang="en">
   <meta charset="UTF-8">
-  <title>Action</title>
+  <title></title>
+  <link rel="stylesheet" href="//assets.adobedtm.com/activation/reactor/coralui/3.17.0/css/coral.css">
+  <script async="" src="https://launch.adobe.com/extensionbridge/extensionbridge-child.js"></script>
+  <script src="https://use.typekit.net/buj6cmr.js"></script>
+  <script>
+    try {
+      Typekit.load({ async: true });
+    } catch (e) {
+    }
+  </script>
+  <link rel="stylesheet" href="../launch.css">
 </head>
-<body>
-<h1>Convert after Search Configuration</h1>
-<div>
-  <label>
-    Event Name
-  </label>
+<body class="coral--light">
+<div id="content">
+  <div class="ColumnGrid">
+    <div class="ColumnGrid-row">
+      <h3 class="spectrum-Heading spectrum-Heading--subtitle2">Settings</h3>
+    </div>
+    <div class="ColumnGrid-row">
+      <label class="Label">Event Name</label>
+      <div>
+        <div class="ValidationWrapper">
+          <input type="text" class="spectrum-Textfield Field--long" id="eventName" value="">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div>
-  <input id="eventName" required/>
-</div>
-
-<script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+<script src="//assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
 <script>
   const eventNameInput = document.querySelector('#eventName');
 
