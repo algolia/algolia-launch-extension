@@ -12,11 +12,11 @@ module.exports = function(settings, event) {
     const userToken = getUserToken(aa);
     aa('clickedObjectIDsAfterSearch', {
       userToken,
-      eventName: settings.eventName,
       index: extensionSettings.indexName,
+      eventName: settings.eventName,
       queryID: insightsQueryId,
-      objectIDs: [ insightsObjectId ],
-      positions: [ insightsPosition ],
+      objectIDs: [insightsObjectId],
+      positions: [parseInt(insightsPosition)]
     });
   }
 };
