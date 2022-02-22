@@ -2,3 +2,4 @@
 .idea
 /.sandbox/container.js
 package-algolia-*.zip
+/keys
