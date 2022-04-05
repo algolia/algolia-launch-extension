@@ -1,3 +1,5 @@
+**NOTE: This is a Proof of Concept.  This is not production ready.**
+
 # Algolia Launch Extension
 The Algolia Launch Extension adds the Algolia Search Insights to the Adobe Launch Platform.  This extension has two actions, "Click after Search" or "Convert after Search".
 
