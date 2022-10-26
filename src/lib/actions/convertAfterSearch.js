@@ -10,6 +10,13 @@ module.exports = function(settings, event) {
 
   if (data) {
     const { objectID, queryID } = data;
+    console.debug('convertedObjectIDsAfterSearch: event', {
+      userToken,
+      eventName: settings.eventName,
+      index: extensionSettings.indexName,
+      queryID,
+      objectIDs: [ objectID ]
+    });
     aa('convertedObjectIDsAfterSearch', {
       userToken,
       eventName: settings.eventName,
