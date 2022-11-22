@@ -10,7 +10,7 @@ module.exports = function(settings, event) {
   if (dataSet) {
     const { insightsQueryId, insightsObjectId, insightsPosition } = dataSet;
     const userToken = getUserToken(aa);
-    if (insightsQueryId && insightsQueryId !== '' && insightsQueryId !== 'item') {
+    if (insightsPosition !== 'item') {
       console.debug('clickedObjectIDsAfterSearch: event', {
         userToken,
         index: extensionSettings.indexName,

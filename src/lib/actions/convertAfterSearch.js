@@ -10,7 +10,7 @@ module.exports = function(settings, event) {
 
   if (data) {
     const { objectID, queryID } = data;
-    if (queryID && queryID !== '' && queryID !== 'item') {
+    if (queryID) {
       console.debug('convertedObjectIDsAfterSearch: event', {
         userToken,
         eventName: settings.eventName,
