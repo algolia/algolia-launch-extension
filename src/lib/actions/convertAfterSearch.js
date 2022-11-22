@@ -10,13 +10,35 @@ module.exports = function(settings, event) {
 
   if (data) {
     const { objectID, queryID } = data;
-    aa('convertedObjectIDsAfterSearch', {
-      userToken,
-      eventName: settings.eventName,
-      index: extensionSettings.indexName,
-      queryID,
-      objectIDs: [ objectID ]
-    });
+    if (queryID && queryID !== '' && queryID !== 'item') {
+      console.debug('convertedObjectIDsAfterSearch: event', {
+        userToken,
+        eventName: settings.eventName,
+        index: extensionSettings.indexName,
+        queryID,
+        objectIDs: [objectID]
+      });
+      aa('convertedObjectIDsAfterSearch', {
+        userToken,
+        eventName: settings.eventName,
+        index: extensionSettings.indexName,
+        queryID,
+        objectIDs: [objectID]
+      });
+    } else {
+      console.debug('convertedObjectIDs: event', {
+        userToken,
+        index: extensionSettings.indexName,
+        eventName: settings.eventName,
+        objectIDs: [objectID],
+      });
+      aa('convertedObjectIDs', {
+        userToken,
+        index: extensionSettings.indexName,
+        eventName: settings.eventName,
+        objectIDs: [objectID],
+      });
+    }
   }
 };
 

@@ -11,18 +11,18 @@ The Algolia Launch Extension adds the Algolia Search Insights to the Adobe Launc
 
 1. The Algolia Insights library needs to be loaded and an insight middleware needs to be created.
 ```
-var ALGOLIA_INSIGHTS_SRC = 'https://cdn.jsdelivr.net/npm/search-insights@2.0.3';
-!function (e, a, t, n, s, i, c) {
-  e.AlgoliaAnalyticsObject = s, e[s] = e[s] || function () {
-    (e[s].queue = e[s].queue || []).push(arguments);
-  }, i = a.createElement(t), c = a.getElementsByTagName(t)[0],
-    i.async = 1, i.src = n, c.parentNode.insertBefore(i, c);
-}(window, document, 'script', ALGOLIA_INSIGHTS_SRC, 'aa');
+var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@2.2.1";
+
+!function(e,a,t,n,s,i,c){e.AlgoliaAnalyticsObject=s,e[s]=e[s]||function(){
+(e[s].queue=e[s].queue||[]).push(arguments)},i=a.createElement(t),c=a.getElementsByTagName(t)[0],
+i.async=1,i.src=n,c.parentNode.insertBefore(i,c)
+}(window,document,"script",ALGOLIA_INSIGHTS_SRC,"aa");
 
 const insightsMiddleware = instantsearch.middlewares.createInsightsMiddleware({
   insightsClient: window.aa,
 });
 ```
+https://www.algolia.com/doc/api-client/methods/insights/
 
 2. Add middleware to the Instant Search instance.
 ```

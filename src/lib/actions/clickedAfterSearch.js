@@ -10,14 +10,37 @@ module.exports = function(settings, event) {
   if (dataSet) {
     const { insightsQueryId, insightsObjectId, insightsPosition } = dataSet;
     const userToken = getUserToken(aa);
-    aa('clickedObjectIDsAfterSearch', {
-      userToken,
-      index: extensionSettings.indexName,
-      eventName: settings.eventName,
-      queryID: insightsQueryId,
-      objectIDs: [insightsObjectId],
-      positions: [parseInt(insightsPosition)]
-    });
+    if (insightsQueryId && insightsQueryId !== '' && insightsQueryId !== 'item') {
+      console.debug('clickedObjectIDsAfterSearch: event', {
+        userToken,
+        index: extensionSettings.indexName,
+        eventName: settings.eventName,
+        queryID: insightsQueryId,
+        objectIDs: [insightsObjectId],
+        positions: [parseInt(insightsPosition)]
+      });
+      aa('clickedObjectIDsAfterSearch', {
+        userToken,
+        index: extensionSettings.indexName,
+        eventName: settings.eventName,
+        queryID: insightsQueryId,
+        objectIDs: [insightsObjectId],
+        positions: [parseInt(insightsPosition)]
+      });
+    } else {
+      console.debug('clickedObjectIDs: event', {
+        userToken,
+        index: extensionSettings.indexName,
+        eventName: settings.eventName,
+        objectIDs: [insightsObjectId],
+      });
+      aa('clickedObjectIDs', {
+        userToken,
+        index: extensionSettings.indexName,
+        eventName: settings.eventName,
+        objectIDs: [insightsObjectId],
+      });
+    }
   }
 };
 
