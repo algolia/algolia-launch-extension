@@ -95,5 +95,35 @@
       "libPath": "src/lib/actions/convertAfterSearch.js",
       "viewPath": "actions/convertAfterSearch.html"
     }
+  ],
+  "dataElements": [
+    {
+      "displayName": "DataSet",
+      "name": "dataset",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "querySelector": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "querySelector"
+        ]
+      },
+      "libPath": "src/lib/dataElements/dataset.js",
+      "viewPath": "dataElements/dataset.html"
+    },
+    {
+      "displayName": "Query String",
+      "name": "query-string",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/dataElements/queryString.js"
+    }
   ]
 }

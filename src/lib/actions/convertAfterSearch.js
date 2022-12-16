@@ -5,7 +5,7 @@ const window = require('@adobe/reactor-window');
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
-    itemDataElement: { objectID, queryID },
+    itemDataElement,
     userTokenDataElement,
     eventName
   } = settings;
@@ -14,8 +14,8 @@ module.exports = function(settings, event) {
     userTokenDataElement,
     eventName: eventName,
     index: extensionSettings.indexName,
-    queryID,
-    objectIDs: [objectID]
+    queryID: itemDataElement.get('queryID'),
+    objectIDs: [itemDataElement.get('objectID')]
   };
 
   window.aa('convertedObjectIDsAfterSearch', payload);

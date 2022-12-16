@@ -1,7 +1,6 @@
 import React from 'react';
-import { useFormContext, Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import ValidationWrapper from './validationWrapper';
-import Label from '@spectrum-icons/workflow/Label';
 
 export default ({
   name: componentName,
