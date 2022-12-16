@@ -1,1 +1,1 @@
-export default ({ appId, apiKey, indexName, useUserTokenCookie }) => ({ appId, apiKey, indexName, useUserTokenCookie });
+export default ({ appId, apiKey, indexName, useUserTokenCookie, version, userHasOptedOutDataElement }) => ({ appId, apiKey, indexName, useUserTokenCookie, version, userHasOptedOutDataElement });

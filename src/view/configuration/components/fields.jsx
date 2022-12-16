@@ -37,5 +37,21 @@ export default () => (
       necessityIndicator="label"
       defaultValue={ true }
     />
+    <WrappedTextField
+      name="version"
+      component={TextField}
+      width="size-4600"
+      label="Insight Library Version"
+      necessityIndicator="label"
+      defaultValue="2.2.3"
+    />
+    <WrappedTextField
+      name="userHasOptedOutDataElement"
+      component={TextField}
+      width="size-4600"
+      label="User Opt Out Data Element"
+      necessityIndicator="label"
+      supportDataElement
+    />
   </Flex>
 );
