@@ -2,30 +2,69 @@
   "displayName": "Algolia Search Insights",
   "name": "algolia",
   "platform": "web",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Forward events to Algolia to drive better personalization and recommendation.",
-  "iconPath": "src/algolia.svg",
   "author": {
-    "name": "Sajid Momin",
-    "email": "sajid.momin@algolia.com"
+    "name": "Algolia"
   },
-  "viewBasePath": "src/view/",
+  "viewBasePath": "dist/",
+  "iconPath": "resources/icons/algolia.svg",
   "configuration": {
     "viewPath": "configuration/configuration.html",
     "schema": {
       "$schema": "http://json-schema.org/draft-04/schema#",
       "type": "object",
-      "properties": {}
+      "properties": {
+        "appId": {
+          "type": "string"
+        },
+        "apiKey": {
+          "type": "string"
+        },
+        "indexName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "appId",
+        "apiKey",
+        "indexName"
+      ]
     }
   },
   "actions": [
+    {
+      "displayName": "Load Insights",
+      "name": "load-insights",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/actions/loadInsights.js"
+    },
     {
       "displayName": "Clicked after Search",
       "name": "clicked-after-search",
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+        "properties": {
+          "itemDataElement": {
+            "type": "string"
+          },
+          "userTokenDataElement": {
+            "type": "string"
+          },
+          "eventName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "itemDataElement",
+          "userTokenDataElement",
+          "eventName"
+        ]
       },
       "libPath": "src/lib/actions/clickedAfterSearch.js",
       "viewPath": "actions/clickedAfterSearch.html"
@@ -36,7 +75,22 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+        "properties": {
+          "itemDataElement": {
+            "type": "string"
+          },
+          "userTokenDataElement": {
+            "type": "string"
+          },
+          "eventName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "itemDataElement",
+          "userTokenDataElement",
+          "eventName"
+        ]
       },
       "libPath": "src/lib/actions/convertAfterSearch.js",
       "viewPath": "actions/convertAfterSearch.html"
