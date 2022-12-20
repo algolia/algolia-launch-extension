@@ -10,15 +10,19 @@ module.exports = function(settings, event) {
   } = settings;
 
   const payload = {
-    userTokenDataElement,
+    userToken: userTokenDataElement,
     index: extensionSettings.indexName,
     eventName: eventName,
-    queryID: insightsQueryId,
-    objectIDs: [insightsObjectId],
-    positions: [parseInt(insightsPosition)]
+    objectIDs: [insightsObjectId]
   };
 
-  window.aa('clickedObjectIDsAfterSearch', payload);
+  if (insightsQueryId && insightsPosition) {
+    payload.queryID = insightsQueryId;
+    payload.positions = [parseInt(insightsPosition)];
+    window.aa('clickedObjectIDsAfterSearch', payload);
+  } else {
+    window.aa('clickedObjectIDs', payload);
+  }
 
   turbine.logger.log(
     `Insights command: aa('clickedObjectIDsAfterSearch', ${JSON.stringify(payload)});).`
