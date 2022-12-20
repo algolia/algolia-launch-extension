@@ -1,67 +1,30 @@
 'use strict';
-
-const algoliaInsights = require('./helpers/algoliaInsights');
+const window = require('@adobe/reactor-window');
 
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
-  const aa = algoliaInsights(extensionSettings);
-  const dataSet = getDataSet(settings.className, event);
+  const {
+    itemDataElement: { insightsQueryId, insightsObjectId, insightsPosition },
+    userTokenDataElement,
+    eventName
+  } = settings;
 
-  if (dataSet) {
-    const { insightsQueryId, insightsObjectId, insightsPosition } = dataSet;
-    const userToken = getUserToken(aa);
-    if (insightsPosition !== 'item') {
-      console.debug('clickedObjectIDsAfterSearch: event', {
-        userToken,
-        index: extensionSettings.indexName,
-        eventName: settings.eventName,
-        queryID: insightsQueryId,
-        objectIDs: [insightsObjectId],
-        positions: [parseInt(insightsPosition)]
-      });
-      aa('clickedObjectIDsAfterSearch', {
-        userToken,
-        index: extensionSettings.indexName,
-        eventName: settings.eventName,
-        queryID: insightsQueryId,
-        objectIDs: [insightsObjectId],
-        positions: [parseInt(insightsPosition)]
-      });
-    } else {
-      console.debug('clickedObjectIDs: event', {
-        userToken,
-        index: extensionSettings.indexName,
-        eventName: settings.eventName,
-        objectIDs: [insightsObjectId],
-      });
-      aa('clickedObjectIDs', {
-        userToken,
-        index: extensionSettings.indexName,
-        eventName: settings.eventName,
-        objectIDs: [insightsObjectId],
-      });
-    }
+  const payload = {
+    userToken: userTokenDataElement,
+    index: extensionSettings.indexName,
+    eventName: eventName,
+    objectIDs: [insightsObjectId]
+  };
+
+  if (insightsQueryId && insightsPosition) {
+    payload.queryID = insightsQueryId;
+    payload.positions = [parseInt(insightsPosition)];
+    window.aa('clickedObjectIDsAfterSearch', payload);
+  } else {
+    window.aa('clickedObjectIDs', payload);
   }
+
+  turbine.logger.log(
+    `Insights command: aa('clickedObjectIDsAfterSearch', ${JSON.stringify(payload)});).`
+  );
 };
-
-const getUserToken = function(aa) {
-  let userToken;
-  aa('getUserToken', null, (err, newUserToken) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    userToken = newUserToken;
-  });
-  return userToken;
-}
-
-const getDataSet = function(className, event) {
-  if (event.nativeEvent && event.nativeEvent.target) {
-    const ancestor = event.nativeEvent.target.closest(className);
-    if (ancestor) {
-      return ancestor.dataset;
-    }
-  }
-  return null;
-}

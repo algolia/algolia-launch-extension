@@ -1,5 +1,11 @@
-*.iml
 .idea
-/.sandbox/container.js
-package-algolia-*.zip
-/keys
+.sandbox
+.sandbox/**
+keys
+node_modules
+dist
+coverage
+test_results
+.entries
+*.zip
+*.iml

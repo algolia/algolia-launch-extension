@@ -1,0 +1,36 @@
+import React from 'react';
+import { TextField, Flex } from '@adobe/react-spectrum';
+import WrappedTextField from '../../../components/wrappedTextField';
+
+export default () => (
+  <Flex direction="column" gap="size-65">
+    <WrappedTextField
+      name="itemDataElement"
+      component={TextField}
+      width="size-4600"
+      label="QueryString Params Data Element"
+      isRequired
+      necessityIndicator="label"
+      supportDataElement
+    />
+
+    <WrappedTextField
+      name="userTokenDataElement"
+      component={TextField}
+      width="size-4600"
+      label="User Token Data Element"
+      isRequired
+      necessityIndicator="label"
+      supportDataElement
+    />
+
+    <WrappedTextField
+      name="eventName"
+      component={TextField}
+      width="size-4600"
+      label="Event Name"
+      isRequired
+      necessityIndicator="label"
+    />
+  </Flex>
+);

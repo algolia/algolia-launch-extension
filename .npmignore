@@ -1,0 +1,8 @@
+__tests__
+src/view
+createEntryFile.js
+coverage
+jest.config.js
+webpack.config.js
+*.zip
+\.*
