@@ -3,8 +3,13 @@ const window = require('@adobe/reactor-window');
 
 module.exports = function(settings) {
   const extensionSettings = turbine.getExtensionSettings();
-  const { appId, apiKey, useUserTokenCookie = false, version = '2.2.3', userHasOptedOutDataElement = false } = extensionSettings;
-
+  const {
+    appId,
+    apiKey,
+    useUserTokenCookie = false,
+    version = '2.2.3',
+    userHasOptedOutDataElement = false
+  } = extensionSettings;
   const ALGOLIA_INSIGHTS_SRC = `https://cdn.jsdelivr.net/npm/search-insights@${version}`;
 
   !function(e,a,t,n,s,i,c){e.AlgoliaAnalyticsObject=s,e[s]=e[s]||function(){

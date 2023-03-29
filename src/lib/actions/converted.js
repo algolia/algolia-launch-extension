@@ -11,18 +11,16 @@ module.exports = function(settings, event) {
     eventName
   } = settings;
 
-  const queryID = itemDataElement.get('queryID');
   const payload = {
     userToken: userTokenDataElement,
     eventName: eventName,
     index: indexDataElement || extensionSettings.indexName,
-    objectIDs: [itemDataElement.get('objectID')],
-    queryID: queryID
+    objectIDs: [itemDataElement.get('objectID')]
   };
 
-  window.aa('convertedObjectIDsAfterSearch', payload);
+  window.aa('convertedObjectIDs', payload);
 
   turbine.logger.log(
-    `Insights command: aa('convertedObjectIDsAfterSearch', ${JSON.stringify(payload)});).`
+    `Insights command: aa('convertedObjectIDs', ${JSON.stringify(payload)});).`
   );
 };

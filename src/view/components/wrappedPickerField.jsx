@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 import { Item } from '@adobe/react-spectrum'
 import ValidationWrapper from './validationWrapper';

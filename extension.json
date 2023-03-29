@@ -2,7 +2,7 @@
   "displayName": "Algolia Search Insights",
   "name": "algolia",
   "platform": "web",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Forward events to Algolia to drive better personalization and recommendation.",
   "author": {
     "name": "Algolia"
@@ -23,6 +23,15 @@
         },
         "indexName": {
           "type": "string"
+        },
+        "useUserTokenCookie": {
+          "type": "boolean"
+        },
+        "version": {
+          "type": "string"
+        },
+        "userHasOptedOutDataElement": {
+          "type": "string"
         }
       },
       "required": [
@@ -39,7 +48,8 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+        "properties": {},
+        "required": []
       },
       "libPath": "src/lib/actions/loadInsights.js"
     },
@@ -56,6 +66,9 @@
           "userTokenDataElement": {
             "type": "string"
           },
+          "indexDataElement": {
+            "type": "string"
+          },
           "eventName": {
             "type": "string"
           }
@@ -70,8 +83,8 @@
       "viewPath": "actions/clickedAfterSearch.html"
     },
     {
-      "displayName": "Convert after Search",
-      "name": "convert-after-search",
+      "displayName": "Converted after Search",
+      "name": "converted-after-search",
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
@@ -80,6 +93,9 @@
             "type": "string"
           },
           "userTokenDataElement": {
+            "type": "string"
+          },
+          "indexDataElement": {
             "type": "string"
           },
           "eventName": {
@@ -92,8 +108,95 @@
           "eventName"
         ]
       },
-      "libPath": "src/lib/actions/convertAfterSearch.js",
-      "viewPath": "actions/convertAfterSearch.html"
+      "libPath": "src/lib/actions/convertedAfterSearch.js",
+      "viewPath": "actions/convertedAfterSearch.html"
+    },
+    {
+      "displayName": "Viewed",
+      "name": "viewed",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "itemDataElement": {
+            "type": "string"
+          },
+          "userTokenDataElement": {
+            "type": "string"
+          },
+          "indexDataElement": {
+            "type": "string"
+          },
+          "eventName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "itemDataElement",
+          "userTokenDataElement",
+          "eventName"
+        ]
+      },
+      "libPath": "src/lib/actions/viewed.js",
+      "viewPath": "actions/viewed.html"
+    },
+    {
+      "displayName": "Converted",
+      "name": "converted",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "itemDataElement": {
+            "type": "string"
+          },
+          "userTokenDataElement": {
+            "type": "string"
+          },
+          "indexDataElement": {
+            "type": "string"
+          },
+          "eventName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "itemDataElement",
+          "userTokenDataElement",
+          "eventName"
+        ]
+      },
+      "libPath": "src/lib/actions/converted.js",
+      "viewPath": "actions/converted.html"
+    },
+    {
+      "displayName": "Clicked",
+      "name": "clicked",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "itemDataElement": {
+            "type": "string"
+          },
+          "userTokenDataElement": {
+            "type": "string"
+          },
+          "indexDataElement": {
+            "type": "string"
+          },
+          "eventName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "itemDataElement",
+          "userTokenDataElement",
+          "eventName"
+        ]
+      },
+      "libPath": "src/lib/actions/clicked.js",
+      "viewPath": "actions/clicked.html"
     }
   ],
   "dataElements": [
@@ -114,16 +217,6 @@
       },
       "libPath": "src/lib/dataElements/dataset.js",
       "viewPath": "dataElements/dataset.html"
-    },
-    {
-      "displayName": "Query String",
-      "name": "query-string",
-      "schema": {
-        "$schema": "http://json-schema.org/draft-04/schema#",
-        "type": "object",
-        "properties": {}
-      },
-      "libPath": "src/lib/dataElements/queryString.js"
     }
   ]
 }

@@ -1,28 +1,27 @@
 'use strict';
 
 const window = require('@adobe/reactor-window');
-
-module.exports = function(settings, event) {
+module.exports = function(settings) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
-    itemDataElement,
+    itemDataElement: {
+      insightsObjectId,
+    },
     userTokenDataElement,
     indexDataElement,
     eventName
   } = settings;
 
-  const queryID = itemDataElement.get('queryID');
   const payload = {
     userToken: userTokenDataElement,
-    eventName: eventName,
     index: indexDataElement || extensionSettings.indexName,
-    objectIDs: [itemDataElement.get('objectID')],
-    queryID: queryID
+    eventName: eventName,
+    objectIDs: [insightsObjectId]
   };
 
-  window.aa('convertedObjectIDsAfterSearch', payload);
+  window.aa('viewedObjectIDs', payload);
 
   turbine.logger.log(
-    `Insights command: aa('convertedObjectIDsAfterSearch', ${JSON.stringify(payload)});).`
+    `Insights command: aa('viewedObjectIDs', ${JSON.stringify(payload)});).`
   );
 };

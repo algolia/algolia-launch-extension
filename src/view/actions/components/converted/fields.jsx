@@ -8,7 +8,7 @@ export default () => (
       name="itemDataElement"
       component={TextField}
       width="size-4600"
-      label="DataSet Data Element"
+      label="QueryString Params Data Element"
       isRequired
       necessityIndicator="label"
       supportDataElement

@@ -1,7 +1,5 @@
 import React from 'react';
-
 import ExtensionView from '../components/extensionView';
-
 import ConfigurationFields from './components/dataset/fields';
 import getConfigurationInitValues from './components/dataset/getInitValues';
 import getConfigurationSettings from './components/dataset/getSettings';

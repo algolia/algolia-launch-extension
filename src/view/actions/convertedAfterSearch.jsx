@@ -1,11 +1,9 @@
 import React from 'react';
-
 import ExtensionView from '../components/extensionView';
-
-import ConfigurationFields from './components/convertAfterSearch/fields';
-import getConfigurationInitValues from './components/convertAfterSearch/getInitValues';
-import getConfigurationSettings from './components/convertAfterSearch/getSettings';
-import validateConfigurationFields from './components/convertAfterSearch/validate';
+import ConfigurationFields from './components/convertedAfterSearch/fields';
+import getConfigurationInitValues from './components/convertedAfterSearch/getInitValues';
+import getConfigurationSettings from './components/convertedAfterSearch/getSettings';
+import validateConfigurationFields from './components/convertedAfterSearch/validate';
 
 export default () => (
   <ExtensionView

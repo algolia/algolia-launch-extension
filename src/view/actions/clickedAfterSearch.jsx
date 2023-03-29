@@ -1,7 +1,5 @@
 import React from 'react';
-
 import ExtensionView from '../components/extensionView';
-
 import ConfigurationFields from './components/clickedAfterSearch/fields';
 import getConfigurationInitValues from './components/clickedAfterSearch/getInitValues';
 import getConfigurationSettings from './components/clickedAfterSearch/getSettings';

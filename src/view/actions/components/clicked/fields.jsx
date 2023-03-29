@@ -8,7 +8,7 @@ export default () => (
       name="itemDataElement"
       component={TextField}
       width="size-4600"
-      label="QueryString Params Data Element"
+      label="DataSet Data Element"
       isRequired
       necessityIndicator="label"
       supportDataElement
@@ -20,6 +20,15 @@ export default () => (
       width="size-4600"
       label="User Token Data Element"
       isRequired
+      necessityIndicator="label"
+      supportDataElement
+    />
+
+    <WrappedTextField
+      name="indexDataElement"
+      component={TextField}
+      width="size-4600"
+      label="Index Name Data Element"
       necessityIndicator="label"
       supportDataElement
     />
