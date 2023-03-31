@@ -54,64 +54,6 @@
       "libPath": "src/lib/actions/loadInsights.js"
     },
     {
-      "displayName": "Clicked after Search",
-      "name": "clicked-after-search",
-      "schema": {
-        "$schema": "http://json-schema.org/draft-04/schema#",
-        "type": "object",
-        "properties": {
-          "itemDataElement": {
-            "type": "string"
-          },
-          "userTokenDataElement": {
-            "type": "string"
-          },
-          "indexDataElement": {
-            "type": "string"
-          },
-          "eventName": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "itemDataElement",
-          "userTokenDataElement",
-          "eventName"
-        ]
-      },
-      "libPath": "src/lib/actions/clickedAfterSearch.js",
-      "viewPath": "actions/clickedAfterSearch.html"
-    },
-    {
-      "displayName": "Converted after Search",
-      "name": "converted-after-search",
-      "schema": {
-        "$schema": "http://json-schema.org/draft-04/schema#",
-        "type": "object",
-        "properties": {
-          "itemDataElement": {
-            "type": "string"
-          },
-          "userTokenDataElement": {
-            "type": "string"
-          },
-          "indexDataElement": {
-            "type": "string"
-          },
-          "eventName": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "itemDataElement",
-          "userTokenDataElement",
-          "eventName"
-        ]
-      },
-      "libPath": "src/lib/actions/convertedAfterSearch.js",
-      "viewPath": "actions/convertedAfterSearch.html"
-    },
-    {
       "displayName": "Viewed",
       "name": "viewed",
       "schema": {

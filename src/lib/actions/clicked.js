@@ -1,27 +1,38 @@
 'use strict';
 const window = require('@adobe/reactor-window');
 
-module.exports = function(settings) {
+module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
     itemDataElement: {
-      insightsObjectId
+      insightsQueryId,
+      insightsObjectId,
+      insightsPosition
     },
     userTokenDataElement,
-    indexDataElement,
     eventName
   } = settings;
 
   const payload = {
+    userTokenDataElement,
     userToken: userTokenDataElement,
-    index: indexDataElement || extensionSettings.indexName,
+    index: extensionSettings.indexName,
     eventName: eventName,
-    objectIDs: [insightsObjectId]
+    queryID: insightsQueryId,
+    objectIDs: [insightsObjectId],
+    positions: [parseInt(insightsPosition)]
   };
 
-  window.aa('clickedObjectIDs', payload);
+  if (insightsQueryId && insightsPosition) {
+    payload.queryID = insightsQueryId;
+    payload.positions = [parseInt(insightsPosition)];
+    window.aa('clickedObjectIDsAfterSearch', payload);
+  } else {
+    window.aa('clickedObjectIDs', payload);
+  }
 
   turbine.logger.log(
-    `Insights command: aa('clickedObjectIDs', ${JSON.stringify(payload)});).`
+    `Insights command: aa('clickedObjectIDsAfterSearch', ${JSON.stringify(payload)});).`
   );
 };
+

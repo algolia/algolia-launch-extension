@@ -14,7 +14,7 @@ module.exports = function(settings) {
 
   const payload = {
     userToken: userTokenDataElement,
-    index: indexDataElement || extensionSettings.indexName,
+    index: indexDataElement.get('index') || extensionSettings.indexName,
     eventName: eventName,
     objectIDs: [insightsObjectId]
   };
