@@ -159,6 +159,17 @@
       },
       "libPath": "src/lib/dataElements/dataset.js",
       "viewPath": "dataElements/dataset.html"
+    },
+    {
+      "displayName": "Query String",
+      "name": "query-string",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/dataElements/queryString.js",
+      "viewPath": "dataElements/queryString.html"
     }
   ]
 }

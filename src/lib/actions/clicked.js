@@ -5,34 +5,39 @@ module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
     itemDataElement: {
-      insightsQueryId,
-      insightsObjectId,
-      insightsPosition
+      queryID,
+      objectID,
+      position
     },
     userTokenDataElement,
-    eventName
+    eventName,
+    indexDataElement
   } = settings;
 
   const payload = {
-    userTokenDataElement,
     userToken: userTokenDataElement,
     index: extensionSettings.indexName,
     eventName: eventName,
-    queryID: insightsQueryId,
-    objectIDs: [insightsObjectId],
-    positions: [parseInt(insightsPosition)]
+    objectIDs: [objectID]
   };
 
-  if (insightsQueryId && insightsPosition) {
-    payload.queryID = insightsQueryId;
-    payload.positions = [parseInt(insightsPosition)];
-    window.aa('clickedObjectIDsAfterSearch', payload);
+  if (queryID && position) {
+    const updatedPayload = {
+      ...payload,
+      queryID: queryID,
+      positions: [parseInt(position)]
+    };
+    window.aa('clickedObjectIDsAfterSearch', updatedPayload);
+    turbine.logger.log(
+      `Insights command: aa('clickedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
+    );
   } else {
     window.aa('clickedObjectIDs', payload);
+    turbine.logger.log(
+      `Insights command: aa('clickedObjectIDs', ${JSON.stringify(payload)});).`
+    );
   }
 
-  turbine.logger.log(
-    `Insights command: aa('clickedObjectIDsAfterSearch', ${JSON.stringify(payload)});).`
-  );
+
 };
 

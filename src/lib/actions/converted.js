@@ -12,24 +12,26 @@ module.exports = function(settings, event) {
 
   const queryID = itemDataElement.get('queryID');
   const payload = {
-    userTokenDataElement,
     userToken: userTokenDataElement,
     eventName: eventName,
     index: extensionSettings.indexName,
-    queryID: itemDataElement.get('queryID'),
     objectIDs: [itemDataElement.get('objectID')]
   };
 
-  window.aa('convertedObjectIDsAfterSearch', payload);
   if (queryID) {
-    payload.queryID = queryID;
-    window.aa('convertedObjectIDsAfterSearch', payload);
+    const updatedPayload = {
+      ...payload,
+      queryID: queryID
+    };
+    window.aa('convertedObjectIDsAfterSearch', updatedPayload);
+    turbine.logger.log(
+      `Insights command: aa('convertedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
+    );
   } else {
     window.aa('convertedObjectIDs', payload);
+    turbine.logger.log(
+      `Insights command: aa('convertedObjectIDs', ${JSON.stringify(payload)});).`
+    );
   }
-
-  turbine.logger.log(
-    `Insights command: aa('convertedObjectIDsAfterSearch', ${JSON.stringify(payload)});).`
-  );
 };
 
