@@ -3,7 +3,7 @@
   "name": "algolia",
   "platform": "web",
   "version": "2.0.0",
-  "description": "Forward events to Algolia to drive better personalization and recommendation.",
+  "description": "Send events to Algolia for AI features, e.g. personalization and recommendation.",
   "author": {
     "name": "Algolia"
   },
@@ -166,7 +166,20 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+        "properties": {
+          "queryIDParamName": {
+            "type": "string"
+          },
+          "objectIDParamName": {
+            "type": "string"
+          },
+          "positionParamName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "objectIDParamName"
+        ]
       },
       "libPath": "src/lib/dataElements/queryString.js",
       "viewPath": "dataElements/queryString.html"

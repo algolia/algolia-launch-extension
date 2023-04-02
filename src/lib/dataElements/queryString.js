@@ -1,14 +1,14 @@
 'use strict';
 
 module.exports = function(settings) {
-  const { queryIDParam, objectIDParam, positionParam } = settings;
+  const { queryIDParamName, objectIDParamName, positionParamName } = settings;
   const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   });
   const algoliaData = {
-    queryID: params[queryIDParam],
-    objectID: params[objectIDParam],
-    position: params[positionParam]
+    queryID: params[queryIDParamName],
+    objectID: params[objectIDParamName],
+    position: params[positionParamName]
   }
   turbine.logger.log(
     `QueryString Data Element', ${JSON.stringify(algoliaData)});).`

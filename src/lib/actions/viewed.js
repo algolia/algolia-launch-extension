@@ -5,7 +5,7 @@ module.exports = function(settings) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
     itemDataElement: {
-      insightsObjectId,
+      objectID,
     },
     userTokenDataElement,
     indexDataElement,
@@ -14,9 +14,9 @@ module.exports = function(settings) {
 
   const payload = {
     userToken: userTokenDataElement,
-    index: indexDataElement.get('index') || extensionSettings.indexName,
+    index: indexDataElement ?? extensionSettings.indexName,
     eventName: eventName,
-    objectIDs: [insightsObjectId]
+    objectIDs: [objectID]
   };
 
   window.aa('viewedObjectIDs', payload);

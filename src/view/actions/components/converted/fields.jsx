@@ -85,28 +85,28 @@ export default () => (
       }
     />
 
-    <WrappedRadioGroup
-      name="strategyProcessClicks"
-      component={RadioGroup}
-      width="size-4600"
-      label="Conversion Strategy"
-      isRequired
-      necessityIndicator="label"
-      defaultValue="single"
-      contextualHelp={
-        <ContextualHelp variant="info">
-          <Heading>Conversion Strategy</Heading>
-          <Content>
-            <Text>
-              Select on the conversion to process the click
-              for the current page/product or process all the clicks as conversion.
-            </Text>
-          </Content>
-        </ContextualHelp>
-      }
-    >
-      <Radio value="single">Convert click on the current page/product.</Radio>
-      <Radio value="all">Convert all clicks</Radio>
-    </WrappedRadioGroup>
+    {/*<WrappedRadioGroup*/}
+    {/*  name="strategyProcessClicks"*/}
+    {/*  component={RadioGroup}*/}
+    {/*  width="size-4600"*/}
+    {/*  label="Conversion Strategy"*/}
+    {/*  isRequired*/}
+    {/*  necessityIndicator="label"*/}
+    {/*  defaultValue="single"*/}
+    {/*  contextualHelp={*/}
+    {/*    <ContextualHelp variant="info">*/}
+    {/*      <Heading>Conversion Strategy</Heading>*/}
+    {/*      <Content>*/}
+    {/*        <Text>*/}
+    {/*          Select on the conversion to process the click*/}
+    {/*          for the current page/product or process all the clicks as conversion.*/}
+    {/*        </Text>*/}
+    {/*      </Content>*/}
+    {/*    </ContextualHelp>*/}
+    {/*  }*/}
+    {/*>*/}
+    {/*  <Radio value="single">Convert click on the current page/product.</Radio>*/}
+    {/*  <Radio value="all">Convert all clicks</Radio>*/}
+    {/*</WrappedRadioGroup>*/}
   </Flex>
 );
