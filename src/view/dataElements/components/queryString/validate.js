@@ -3,7 +3,11 @@ export default (values) => {
 
   if (!values.objectIDParamName) {
     errors.objectIDParamName = {
-      message: 'Please specify the Object ID param name in the URL.',
+      message: 'Please specify the Object ID param name used in the URL.',
+      type: 'required'
+    };
+    errors.indexNameIDParamName = {
+      message: 'Please specify the Index Name param name used in the URL.',
       type: 'required'
     };
   }

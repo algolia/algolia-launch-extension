@@ -25,7 +25,7 @@ export default () => (
     />
 
     <WrappedTextField
-      name="eventDetailsElement"
+      name="eventDetailsDataElement"
       component={TextField}
       width="size-4600"
       label="Event Details Data Element"
@@ -59,26 +59,6 @@ export default () => (
           <Content>
             <Text>
               Set the Data Element that will return the User Token.
-            </Text>
-          </Content>
-        </ContextualHelp>
-      }
-    />
-
-    <WrappedTextField
-      name="indexDataElement"
-      component={TextField}
-      width="size-4600"
-      label="Index Name Data Element"
-      necessityIndicator="label"
-      supportDataElement
-      contextualHelp={
-        <ContextualHelp variant="info">
-          <Heading>Index Name</Heading>
-          <Content>
-            <Text>
-              Set a Data Element that will return the Index Name to be passed with this event.
-              If empty, the default Index Name configured in the Extension will be used.
             </Text>
           </Content>
         </ContextualHelp>

@@ -1,9 +1,11 @@
 export default ({
   queryIDParamName,
   objectIDParamName,
-  positionParamName
+  positionParamName,
+  indexNameParamName
 }) => ({
   queryIDParamName,
   objectIDParamName,
-  positionParamName
+  positionParamName,
+  indexNameParamName
 });

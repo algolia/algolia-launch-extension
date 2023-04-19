@@ -13,6 +13,15 @@ export default () => (
     />
 
     <WrappedTextField
+      name="indexNameParamName"
+      component={TextField}
+      width="size-4600"
+      label="Index Name Param Name"
+      isRequired
+      necessityIndicator="label"
+    />
+
+    <WrappedTextField
       name="objectIDParamName"
       component={TextField}
       width="size-4600"

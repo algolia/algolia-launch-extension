@@ -33,12 +33,7 @@
         "userHasOptedOutDataElement": {
           "type": "string"
         }
-      },
-      "required": [
-        "appId",
-        "apiKey",
-        "indexName"
-      ]
+      }
     }
   },
   "actions": [
@@ -48,8 +43,7 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {},
-        "required": []
+        "properties": {}
       },
       "libPath": "src/lib/actions/loadInsights.js"
     },
@@ -60,24 +54,16 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "itemDataElement": {
+          "eventDetailsDataElement": {
             "type": "string"
           },
           "userTokenDataElement": {
             "type": "string"
           },
-          "indexDataElement": {
-            "type": "string"
-          },
           "eventName": {
             "type": "string"
           }
-        },
-        "required": [
-          "itemDataElement",
-          "userTokenDataElement",
-          "eventName"
-        ]
+        }
       },
       "libPath": "src/lib/actions/viewed.js",
       "viewPath": "actions/viewed.html"
@@ -89,24 +75,16 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "itemDataElement": {
+          "eventDetailsDataElement": {
             "type": "string"
           },
           "userTokenDataElement": {
             "type": "string"
           },
-          "indexDataElement": {
-            "type": "string"
-          },
           "eventName": {
             "type": "string"
           }
-        },
-        "required": [
-          "itemDataElement",
-          "userTokenDataElement",
-          "eventName"
-        ]
+        }
       },
       "libPath": "src/lib/actions/converted.js",
       "viewPath": "actions/converted.html"
@@ -118,24 +96,16 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "itemDataElement": {
+          "eventDetailsDataElement": {
             "type": "string"
           },
           "userTokenDataElement": {
             "type": "string"
           },
-          "indexDataElement": {
-            "type": "string"
-          },
           "eventName": {
             "type": "string"
           }
-        },
-        "required": [
-          "itemDataElement",
-          "userTokenDataElement",
-          "eventName"
-        ]
+        }
       },
       "libPath": "src/lib/actions/clicked.js",
       "viewPath": "actions/clicked.html"
@@ -149,13 +119,13 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "querySelector": {
+          "hitQuerySelector": {
+            "type": "string"
+          },
+          "indexNameQuerySelector": {
             "type": "string"
           }
-        },
-        "required": [
-          "querySelector"
-        ]
+        }
       },
       "libPath": "src/lib/dataElements/dataset.js",
       "viewPath": "dataElements/dataset.html"
@@ -170,16 +140,16 @@
           "queryIDParamName": {
             "type": "string"
           },
+          "indexNameParamName": {
+            "type": "string"
+          },
           "objectIDParamName": {
             "type": "string"
           },
           "positionParamName": {
             "type": "string"
           }
-        },
-        "required": [
-          "objectIDParamName"
-        ]
+        }
       },
       "libPath": "src/lib/dataElements/queryString.js",
       "viewPath": "dataElements/queryString.html"

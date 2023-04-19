@@ -9,3 +9,5 @@ test_results
 .entries
 *.zip
 *.iml
+upload.sh
+release.sh

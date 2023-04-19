@@ -4,27 +4,27 @@ const window = require('@adobe/reactor-window');
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
-    itemDataElement: {
+    eventDetailsDataElement: {
       queryID,
+      indexName,
       objectID,
       position
     },
     userTokenDataElement,
-    eventName,
-    indexDataElement
+    eventName
   } = settings;
 
   const payload = {
     userToken: userTokenDataElement,
-    index: indexDataElement ?? extensionSettings.indexName,
-    eventName: eventName,
+    index: indexName || extensionSettings.indexName,
+    eventName,
     objectIDs: [objectID]
   };
 
   if (queryID && position) {
     const updatedPayload = {
       ...payload,
-      queryID: queryID,
+      queryID,
       positions: [parseInt(position)]
     };
     window.aa('clickedObjectIDsAfterSearch', updatedPayload);

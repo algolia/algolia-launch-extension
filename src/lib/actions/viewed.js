@@ -4,18 +4,18 @@ const window = require('@adobe/reactor-window');
 module.exports = function(settings) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
-    itemDataElement: {
+    eventDetailsDataElement: {
       objectID,
+      indexName
     },
     userTokenDataElement,
-    indexDataElement,
     eventName
   } = settings;
 
   const payload = {
     userToken: userTokenDataElement,
-    index: indexDataElement ?? extensionSettings.indexName,
-    eventName: eventName,
+    index: indexName || extensionSettings.indexName,
+    eventName,
     objectIDs: [objectID]
   };
 
