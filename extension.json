@@ -2,7 +2,7 @@
   "displayName": "Algolia Search Insights",
   "name": "algolia",
   "platform": "web",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "Send events to Algolia for AI features, e.g. personalization and recommendation.",
   "author": {
     "name": "Algolia"

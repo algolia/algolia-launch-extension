@@ -33,12 +33,12 @@ const getIndexNameData = (srcElement, querySelector) => {
 }
 
 module.exports = function(settings, event) {
-  const { hitDataSetQuerySelector, indexNameQuerySelector } = settings;
+  const { hitQuerySelector, indexNameQuerySelector } = settings;
 
   if (event && event.nativeEvent && event.nativeEvent.srcElement) {
     const srcElement = event.nativeEvent.srcElement;
     return {
-      ...getEventDetailsData(srcElement, hitDataSetQuerySelector),
+      ...getEventDetailsData(srcElement, hitQuerySelector),
       ...getIndexNameData(srcElement, indexNameQuerySelector)
     }
   }
