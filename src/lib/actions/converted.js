@@ -1,6 +1,7 @@
 'use strict';
 
 const window = require('@adobe/reactor-window');
+const { removeEventToStore } = require("../utils/storage");
 
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
@@ -27,6 +28,7 @@ module.exports = function(settings, event) {
       queryID
     };
     window.aa('convertedObjectIDsAfterSearch', updatedPayload);
+    removeEventToStore(window.document.location.pathname);
     turbine.logger.log(
       `Insights command: aa('convertedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
     );
