@@ -2,7 +2,7 @@
   "displayName": "Algolia Search Insights",
   "name": "algolia",
   "platform": "web",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "description": "Send events to Algolia for AI features, e.g. personalization and recommendation.",
   "author": {
     "name": "Algolia"
@@ -160,7 +160,11 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+        "properties": {
+          "storageStrategy": {
+            "type": "string"
+          }
+        }
       },
       "libPath": "src/lib/dataElements/storage.js",
       "viewPath": "dataElements/storage.html"

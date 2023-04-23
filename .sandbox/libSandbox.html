@@ -1,268 +1,150 @@
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <meta name="template_version" content="2.0">
-  <script src="https://assets.adobedtm.com/d81baa594224/cdb751c5a67a/launch-fa6204288b6d-development.min.js" async></script>
+  <meta charset="UTF-8">
+  <meta name="template_version" content="2.0">
+  <script src="https://assets.adobedtm.com/d81baa594224/cdb751c5a67a/launch-fa6204288b6d-development.min.js"
+          async></script>
 </head>
 <body>
-<div class="instantsearch aem-GridColumn aem-GridColumn--default--12">
-
-
-
-  <div class="instant-search-comp" data-cmp-is="algoliaInstantSearchComp" data-search-config="algoliasearch_20230216060208854" data-searchjson="{&quot;instantSearch&quot;:{&quot;algoliaSearchContainerId&quot;:&quot;algoliasearch_20230216060208854&quot;,&quot;enableSearchbar&quot;:&quot;true&quot;,&quot;enableAnalytics&quot;:&quot;enableAnalytics&quot;,&quot;conversionAnalyticsElement&quot;:&quot;triggerConversionEvent&quot;,&quot;clickEventName&quot;:&quot;Clicked&quot;,&quot;clickAnalyticsElement&quot;:&quot;triggerClickEvent&quot;,&quot;conversionEventName&quot;:&quot;Add To Cart&quot;,&quot;searchbar&quot;:{&quot;voiceLanguage&quot;:&quot;en-US&quot;,&quot;enableAutoFocus&quot;:&quot;true&quot;,&quot;showLoadingIndicator&quot;:&quot;true&quot;,&quot;searchAsYouSpeak&quot;:&quot;true&quot;,&quot;placeholderText&quot;:&quot;Search&quot;,&quot;enableVoice&quot;:&quot;true&quot;},&quot;indices&quot;:[{&quot;hitsPerPage&quot;:&quot;6&quot;,&quot;indexName&quot;:&quot;magento2_master_default_products&quot;,&quot;defaultTemplate&quot;:&quot;/content/dam/wknd-commerce/algolia-templates/hits/jcr:content/data/product&quot;,&quot;label&quot;:&quot;Products&quot;,&quot;paginationType&quot;:&quot;pagination&quot;,&quot;facets&quot;:[{&quot;widgetVariant&quot;:&quot;hierarchicalMenu&quot;,&quot;separator&quot;:&quot;///&quot;,&quot;facetLabel&quot;:&quot;Categories&quot;,&quot;attributeName&quot;:&quot;categories.level0,categories.level1,categories.level2&quot;,&quot;containerId&quot;:&quot;facet-1666637517434&quot;},{&quot;widgetVariant&quot;:&quot;rangeSlider&quot;,&quot;facetLabel&quot;:&quot;Price&quot;,&quot;attributeName&quot;:&quot;price.USD.default&quot;,&quot;containerId&quot;:&quot;facet-1666637663617&quot;},{&quot;widgetVariant&quot;:&quot;refinementList&quot;,&quot;facetLabel&quot;:&quot;Color&quot;,&quot;attributeName&quot;:&quot;color&quot;,&quot;containerId&quot;:&quot;facet-1666639278352&quot;}],&quot;containerId&quot;:&quot;index-1666376597838&quot;,&quot;sourceId&quot;:&quot;index-1666376597838&quot;,&quot;template&quot;:&quot;<span class=\&quot;algolia-analytics\&quot; data-insights-query-id=\&quot;{{__queryID}}\&quot; data-insights-object-id=\&quot;{{objectID}}\&quot; data-insights-position=\&quot;{{__position}}\&quot; data-cug=\&quot;{{meta.cug}}\&quot;></span><a class=\&quot;hit-card\&quot; href=\&quot;{{ productURL }}\&quot;>    <img src=\&quot;{{ image_url }}\&quot; alt=\&quot;{{ name }}\&quot; style=\&quot;width:100%;height:300px;object-fit: cover;\&quot; />    <h4 class=\&quot;hit-name\&quot;>{{ name }}</h4>    <span class=\&quot;hit-price\&quot;>{{ price.USD.default_formated }}</span></a>&quot;,&quot;templateHtmlShim&quot;:[&quot;<span class=\&quot;algolia-analytics\&quot; data-insights-query-id=\&quot;&quot;,&quot;item.__queryID&quot;,&quot;\&quot; data-insights-object-id=\&quot;&quot;,&quot;item.objectID&quot;,&quot;\&quot; data-insights-position=\&quot;&quot;,&quot;item.__position&quot;,&quot;\&quot; data-cug=\&quot;&quot;,&quot;item.meta.cug&quot;,&quot;\&quot;></span><a class=\&quot;hit-card\&quot; href=\&quot;&quot;,&quot; productURL }}\&quot;>    <img src=\&quot;&quot;,&quot; image_url }}\&quot; alt=\&quot;&quot;,&quot; name }}\&quot; style=\&quot;width:100%;height:300px;object-fit: cover;\&quot; />    <h4 class=\&quot;hit-name\&quot;>&quot;,&quot; name }}</h4>    <span class=\&quot;hit-price\&quot;>&quot;,&quot; price.USD.default_formated }}</span></a>&quot;]},{&quot;hitsPerPage&quot;:&quot;8&quot;,&quot;indexName&quot;:&quot;wknd-commerce-articles&quot;,&quot;defaultTemplate&quot;:&quot;/content/dam/wknd-commerce/algolia-templates/hits/jcr:content/data/article&quot;,&quot;label&quot;:&quot;Articles&quot;,&quot;paginationType&quot;:&quot;none&quot;,&quot;containerId&quot;:&quot;index-1666376655902&quot;,&quot;sourceId&quot;:&quot;index-1666376655902&quot;,&quot;template&quot;:&quot;<span class=\&quot;algolia-analytics\&quot; data-insights-query-id=\&quot;{{__queryID}}\&quot; data-insights-object-id=\&quot;{{objectID}}\&quot; data-insights-position=\&quot;{{__position}}\&quot; data-cug=\&quot;{{meta.cug}}\&quot;></span><a class=\&quot;hit-card\&quot; href=\&quot;{{ path }}\&quot;>    <div class=\&quot;image-wrapper\&quot;>        <img src=\&quot;{{ meta.fileReference }}\&quot; alt=\&quot;{{ title }}\&quot;  style=\&quot;width:100%;height:200px;object-fit: cover;\&quot; />    </div>    <div class=\&quot;cont-wrapper\&quot;>        <h4 class=\&quot;hit-name text-center\&quot;>{{ title }}</h4>    </div></a>&quot;,&quot;templateHtmlShim&quot;:[&quot;<span class=\&quot;algolia-analytics\&quot; data-insights-query-id=\&quot;&quot;,&quot;item.__queryID&quot;,&quot;\&quot; data-insights-object-id=\&quot;&quot;,&quot;item.objectID&quot;,&quot;\&quot; data-insights-position=\&quot;&quot;,&quot;item.__position&quot;,&quot;\&quot; data-cug=\&quot;&quot;,&quot;item.meta.cug&quot;,&quot;\&quot;></span><a class=\&quot;hit-card\&quot; href=\&quot;&quot;,&quot; path }}\&quot;>    <div class=\&quot;image-wrapper\&quot;>        <img src=\&quot;&quot;,&quot; meta.fileReference }}\&quot; alt=\&quot;&quot;,&quot; title }}\&quot;  style=\&quot;width:100%;height:200px;object-fit: cover;\&quot; />    </div>    <div class=\&quot;cont-wrapper\&quot;>        <h4 class=\&quot;hit-name text-center\&quot;>&quot;,&quot; title }}</h4>    </div></a>&quot;]},{&quot;template&quot;:&quot;<span class=\&quot;algolia-analytics\&quot; data-insights-query-id=\&quot;{{__queryID}}\&quot; data-insights-object-id=\&quot;{{objectID}}\&quot; data-insights-position=\&quot;{{__position}}\&quot; data-cug=\&quot;{{meta.cug}}\&quot;></span><a class=\&quot;hit-card\&quot; href=\&quot;{{ path }}\&quot;>    <div class=\&quot;image-wrapper\&quot;>        <img src=\&quot;{{ meta.fileReference }}\&quot; alt=\&quot;{{ title }}\&quot;  style=\&quot;width:100%;height:200px;object-fit: cover;\&quot; />    </div>    <div class=\&quot;cont-wrapper\&quot;>        <h4 class=\&quot;hit-name text-center\&quot;>{{ title }}</h4>    </div></a>&quot;,&quot;hitsPerPage&quot;:&quot;9&quot;,&quot;indexName&quot;:&quot;wknd-commerce-pages&quot;,&quot;defaultTemplate&quot;:&quot;/content/dam/wknd-commerce/algolia-templates/hits/jcr:content/data/adventure&quot;,&quot;label&quot;:&quot;Adventures&quot;,&quot;paginationType&quot;:&quot;none&quot;,&quot;containerId&quot;:&quot;index-1666640516434&quot;,&quot;sourceId&quot;:&quot;index-1666640516434&quot;,&quot;templateHtmlShim&quot;:[&quot;<span class=\&quot;algolia-analytics\&quot; data-insights-query-id=\&quot;&quot;,&quot;item.__queryID&quot;,&quot;\&quot; data-insights-object-id=\&quot;&quot;,&quot;item.objectID&quot;,&quot;\&quot; data-insights-position=\&quot;&quot;,&quot;item.__position&quot;,&quot;\&quot; data-cug=\&quot;&quot;,&quot;item.meta.cug&quot;,&quot;\&quot;></span><a class=\&quot;hit-card\&quot; href=\&quot;&quot;,&quot; path }}\&quot;>    <div class=\&quot;image-wrapper\&quot;>        <img src=\&quot;&quot;,&quot; meta.fileReference }}\&quot; alt=\&quot;&quot;,&quot; title }}\&quot;  style=\&quot;width:100%;height:200px;object-fit: cover;\&quot; />    </div>    <div class=\&quot;cont-wrapper\&quot;>        <h4 class=\&quot;hit-name text-center\&quot;>&quot;,&quot; title }}</h4>    </div></a>&quot;]}],&quot;cloudAppId&quot;:&quot;U7D471Z0WH&quot;,&quot;cloudQueryKey&quot;:&quot;ab3a7cbc7189af65308611189e6dded6&quot;,&quot;categoryPagePath&quot;:&quot;/content/wknd-commerce/language-masters/en/shop/category.html&quot;,&quot;productPagePath&quot;:&quot;/content/wknd-commerce/language-masters/en/shop/product.html&quot;}}">
-    <div>
-
-      <div class="instant-search-comp__searchbox-wrap">
-
-
-        <div class="searchbox"><div class="ais-SearchBox"><form action="" role="search" class="ais-SearchBox-form" novalidate=""><input class="ais-SearchBox-input" type="search" placeholder="Search" autofocus="true" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" maxlength="512"><button class="ais-SearchBox-submit" type="submit" title="Submit the search query."><svg class="ais-SearchBox-submitIcon" width="10" height="10" viewBox="0 0 40 40"><path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"></path></svg></button><button class="ais-SearchBox-reset" type="reset" title="Clear the search query." hidden=""><svg class="ais-SearchBox-resetIcon" viewBox="0 0 20 20" width="10" height="10"><path d="M8.114 10L.944 2.83 0 1.885 1.886 0l.943.943L10 8.113l7.17-7.17.944-.943L20 1.886l-.943.943-7.17 7.17 7.17 7.17.943.944L18.114 20l-.943-.943-7.17-7.17-7.17 7.17-.944.943L0 18.114l.943-.943L8.113 10z"></path></svg></button><span class="ais-SearchBox-loadingIndicator" hidden=""><svg class="ais-SearchBox-loadingIcon" width="16" height="16" viewBox="0 0 38 38" stroke="#444"><g fill="none" fillRule="evenodd"><g transform="translate(1 1)" strokeWidth="2"><circle strokeOpacity=".5" cx="18" cy="18" r="18"></circle><path d="M36 18c0-9.94-8.06-18-18-18"><animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"></animateTransform></path></g></g></svg></span></form></div></div>
-
-
-
-
-
-        <div class="voiceSearchBox"><div class="ais-VoiceSearch"><button class="ais-VoiceSearch-button" type="button" title="Search by voice"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" fill="none"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></button><div class="ais-VoiceSearch-status"><p></p></div></div></div>
-
-
-      </div>
-    </div>
-    <div id="queryRuleCustomData"></div>
-    <div>
-
-
-
-
-      <div class="row">
-        <div class="col-lg-12">
-          <nav class="search-results-nav">
-            <div class="search-results-nav__tabs" id="searchResultsNav" role="tablist">
-
-
-
-              <button type="button" role="tab" class="search-results-nav__link active" data-tabid="index-1666376597838">Products</button>
-
-
-
-
-              <button type="button" role="tab" class="search-results-nav__link " data-tabid="index-1666376655902">Articles</button>
-
-
-
-
-              <button type="button" role="tab" class="search-results-nav__link " data-tabid="index-1666640516434">Adventures</button>
-
-
-
-            </div>
-          </nav>
-        </div>
-        <div class="col-lg-12">
-          <div class="search-results-tabs">
-
-
-
-
-
-            <div class="search-results-tab " id="index-1666376597838" style="display: block;">
-
-              <div class="row">
-
-                <div id="index-1666376597838-rules"><div class="ais-QueryRuleCustomData"></div></div>
-
-
-                <div class="instant-search-comp__aside">
-
-
-
-                  <div id="index-1666376597838-clear-refinements" class="clear-refinements mb-3"></div>
-
-
-                  <div id="index-1666376597838-current-refinements" class="current-refinements"></div>
-
-
-                  <div class="facets_container">
-
-                    <div>
-                      <div class="facet_container active">
-                        <div class="facet_container__header">
-                          <h5>Categories</h5>
-                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 26 15" height="15px" id="Layer_1" version="1.1" viewBox="0 0 26 15" width="26px" xml:space="preserve"><polygon fill="currentColor" points="23.303,15.002 12.467,4.166 1.63,15.002 -0.454,12.918 12.467,-0.002 14.551,2.082 25.387,12.918"></polygon></svg>
-                        </div>
-                        <div id="facet-1666637517434" class="facet_container__body "><div class="ais-HierarchicalMenu"><ul class="ais-HierarchicalMenu-list"><li class="ais-HierarchicalMenu-item"><div><a class="ais-HierarchicalMenu-link" href="#"><span class="ais-HierarchicalMenu-label">Gear</span><span class="ais-HierarchicalMenu-count">37</span></a></div></li><li class="ais-HierarchicalMenu-item"><div><a class="ais-HierarchicalMenu-link" href="#"><span class="ais-HierarchicalMenu-label">Men</span><span class="ais-HierarchicalMenu-count">73</span></a></div></li><li class="ais-HierarchicalMenu-item"><div><a class="ais-HierarchicalMenu-link" href="#"><span class="ais-HierarchicalMenu-label">Training</span><span class="ais-HierarchicalMenu-count">6</span></a></div></li><li class="ais-HierarchicalMenu-item"><div><a class="ais-HierarchicalMenu-link" href="#"><span class="ais-HierarchicalMenu-label">Women</span><span class="ais-HierarchicalMenu-count">75</span></a></div></li></ul></div></div>
-                      </div>
-                      <style>
-                        .hide_refinement_list_count .ais-RefinementList-count {
-                          display: none;
-                        }
-                      </style></div>
-
-                    <div>
-                      <div class="facet_container active">
-                        <div class="facet_container__header">
-                          <h5>Price</h5>
-                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 26 15" height="15px" id="Layer_1" version="1.1" viewBox="0 0 26 15" width="26px" xml:space="preserve"><polygon fill="currentColor" points="23.303,15.002 12.467,4.166 1.63,15.002 -0.454,12.918 12.467,-0.002 14.551,2.082 25.387,12.918"></polygon></svg>
-                        </div>
-                        <div id="facet-1666637663617" class="facet_container__body "><div class="ais-RangeSlider"><div class="rheostat rheostat-horizontal " style="position: relative;"><div class="rheostat-background"></div><div aria-valuemax="292" aria-valuemin="0" aria-valuenow="0" aria-disabled="false" data-handle-key="0" class="rheostat-handle rheostat-handle-lower" role="slider" tabindex="0" style="left: 0%; position: absolute;"><div class="rheostat-tooltip">0</div></div><div aria-valuemax="292" aria-valuemin="0" aria-valuenow="292" aria-disabled="false" data-handle-key="1" class="rheostat-handle rheostat-handle-upper" role="slider" tabindex="0" style="left: 100%; position: absolute;"><div class="rheostat-tooltip">292</div></div><div class="rheostat-progress" style="left: 0%; width: 100%;"></div><div class="rheostat-marker rheostat-marker-horizontal rheostat-marker-large" style="left: 0%; position: absolute; margin-left: 0px;"><div class="rheostat-value">0</div></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 2.94118%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 5.88235%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 8.82353%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 11.7647%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 14.7059%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 17.6471%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 20.5882%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 23.5294%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 26.4706%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 29.4118%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 32.3529%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 35.2941%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 38.2353%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 41.1765%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 44.1176%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 47.0588%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal rheostat-marker-large" style="left: 50%; position: absolute; margin-left: 0px;"><div class="rheostat-value">146</div></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 52.9412%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 55.8824%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 58.8235%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 61.7647%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 64.7059%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 67.6471%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 70.5882%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 73.5294%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 76.4706%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 79.4118%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 82.3529%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 85.2941%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 88.2353%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 91.1765%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 94.1176%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal" style="left: 97.0588%; position: absolute; margin-left: 0px;"></div><div class="rheostat-marker rheostat-marker-horizontal rheostat-marker-large" style="left: 100%; position: absolute; margin-left: -2px;"><div class="rheostat-value">292</div></div></div></div></div>
-                      </div>
-                      <style>
-                        .hide_refinement_list_count .ais-RefinementList-count {
-                          display: none;
-                        }
-                      </style></div>
-
-                    <div>
-                      <div class="facet_container active">
-                        <div class="facet_container__header">
-                          <h5>Color</h5>
-                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 26 15" height="15px" id="Layer_1" version="1.1" viewBox="0 0 26 15" width="26px" xml:space="preserve"><polygon fill="currentColor" points="23.303,15.002 12.467,4.166 1.63,15.002 -0.454,12.918 12.467,-0.002 14.551,2.082 25.387,12.918"></polygon></svg>
-                        </div>
-                        <div id="facet-1666639278352" class="facet_container__body "><div class="ais-RefinementList"><ul class="ais-RefinementList-list"><li class="ais-RefinementList-item"><div><label class="ais-RefinementList-label"><input type="checkbox" class="ais-RefinementList-checkbox" value="Blue"><span class="ais-RefinementList-labelText">Blue</span><span class="ais-RefinementList-count">80</span></label></div></li><li class="ais-RefinementList-item"><div><label class="ais-RefinementList-label"><input type="checkbox" class="ais-RefinementList-checkbox" value="Black"><span class="ais-RefinementList-labelText">Black</span><span class="ais-RefinementList-count">67</span></label></div></li><li class="ais-RefinementList-item"><div><label class="ais-RefinementList-label"><input type="checkbox" class="ais-RefinementList-checkbox" value="Red"><span class="ais-RefinementList-labelText">Red</span><span class="ais-RefinementList-count">55</span></label></div></li><li class="ais-RefinementList-item"><div><label class="ais-RefinementList-label"><input type="checkbox" class="ais-RefinementList-checkbox" value="Green"><span class="ais-RefinementList-labelText">Green</span><span class="ais-RefinementList-count">54</span></label></div></li><li class="ais-RefinementList-item"><div><label class="ais-RefinementList-label"><input type="checkbox" class="ais-RefinementList-checkbox" value="Purple"><span class="ais-RefinementList-labelText">Purple</span><span class="ais-RefinementList-count">42</span></label></div></li><li class="ais-RefinementList-item"><div><label class="ais-RefinementList-label"><input type="checkbox" class="ais-RefinementList-checkbox" value="Orange"><span class="ais-RefinementList-labelText">Orange</span><span class="ais-RefinementList-count">41</span></label></div></li><li class="ais-RefinementList-item"><div><label class="ais-RefinementList-label"><input type="checkbox" class="ais-RefinementList-checkbox" value="Gray"><span class="ais-RefinementList-labelText">Gray</span><span class="ais-RefinementList-count">33</span></label></div></li><li class="ais-RefinementList-item"><div><label class="ais-RefinementList-label"><input type="checkbox" class="ais-RefinementList-checkbox" value="Yellow"><span class="ais-RefinementList-labelText">Yellow</span><span class="ais-RefinementList-count">28</span></label></div></li><li class="ais-RefinementList-item"><div><label class="ais-RefinementList-label"><input type="checkbox" class="ais-RefinementList-checkbox" value="White"><span class="ais-RefinementList-labelText">White</span><span class="ais-RefinementList-count">20</span></label></div></li><li class="ais-RefinementList-item"><div><label class="ais-RefinementList-label"><input type="checkbox" class="ais-RefinementList-checkbox" value="Brown"><span class="ais-RefinementList-labelText">Brown</span><span class="ais-RefinementList-count">5</span></label></div></li></ul></div></div>
-                      </div>
-                      <style>
-                        .hide_refinement_list_count .ais-RefinementList-count {
-                          display: none;
-                        }
-                      </style></div>
-
-                  </div>
-                </div>
-
-
-                <div class="instant-search-comp__main">
-                  <div class="row ">
-                    <div class="col-md-6">
-
-                      <div id="index-1666376597838-stats" class="mb-3"></div>
-
-                    </div>
-                    <div class="col-md-6 sort-by-container">
-
-                      <div id="index-1666376597838-sort-by" class="sort-by-widget"></div>
-
-                      <button type="button" class="toggleListGridView">
-                        <img src="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-list.png" data-list-icon="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-list.png" data-grid-icon="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-grid.png">
-                      </button>
-                    </div>
-                  </div>
-
-                  <div id="index-1666376597838-hits" data-indexname="magento2_master_default_products" class="instant-search-comp__hits gridView"><div><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="0826c430cf5205cfa34d28ef96933544" data-insights-object-id="1902" data-insights-position="1" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/shop/product.html/deirdre-relaxed-fit-capri.html"> <img src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/p/wp12-gray_main_1.jpg" alt="Deirdre Relaxed-Fit Capri" style="width:100%;height:300px;object-fit: cover;"> <h4 class="hit-name">Deirdre Relaxed-Fit Capri</h4> <span class="hit-price">$50.40</span></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="0826c430cf5205cfa34d28ef96933544" data-insights-object-id="1498" data-insights-position="2" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/shop/product.html/minerva-lumatech-trade-v-tee.html"> <img src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/s/ws08-blue_main_1.jpg" alt="Minerva LumaTech&amp;trade; V-Tee" style="width:100%;height:300px;object-fit: cover;"> <h4 class="hit-name">Minerva LumaTech&amp;trade; V-Tee</h4> <span class="hit-price">$32.00</span></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="0826c430cf5205cfa34d28ef96933544" data-insights-object-id="1434" data-insights-position="3" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/shop/product.html/iris-workout-top.html"> <img src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/s/ws03-red_main_1.jpg" alt="Iris Workout Top" style="width:100%;height:300px;object-fit: cover;"> <h4 class="hit-name">Iris Workout Top</h4> <span class="hit-price">$29.00</span></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="0826c430cf5205cfa34d28ef96933544" data-insights-object-id="1402" data-insights-position="4" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/shop/product.html/olivia-1-4-zip-light-jacket.html"> <img src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/j/wj12-blue_main_1.jpg" alt="Olivia 1/4 Zip Light Jacket" style="width:100%;height:300px;object-fit: cover;"> <h4 class="hit-name">Olivia 1/4 Zip Light Jacket</h4> <span class="hit-price">$77.00</span></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="0826c430cf5205cfa34d28ef96933544" data-insights-object-id="1386" data-insights-position="5" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/shop/product.html/juno-jacket.html"> <img src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/j/wj06-purple_main_1.jpg" alt="Juno Jacket" style="width:100%;height:300px;object-fit: cover;"> <h4 class="hit-name">Juno Jacket</h4> <span class="hit-price">$77.00</span></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="0826c430cf5205cfa34d28ef96933544" data-insights-object-id="1050" data-insights-position="6" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/shop/product.html/mona-pullover-hoodlie.html"> <img src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/h/wh01-green_main_1.jpg" alt="Mona Pullover Hoodlie" style="width:100%;height:300px;object-fit: cover;"> <h4 class="hit-name">Mona Pullover Hoodlie</h4> <span class="hit-price">$57.00</span></a></li></ol></div></div>
-                  </div>
-
-
-
-                  <div id="index-1666376597838-pagination"><div class="ais-Pagination"><ul class="ais-Pagination-list"><li class="ais-Pagination-item ais-Pagination-item--firstPage ais-Pagination-item--disabled"><span class="ais-Pagination-link">«</span></li><li class="ais-Pagination-item ais-Pagination-item--previousPage ais-Pagination-item--disabled"><span class="ais-Pagination-link">‹</span></li><li class="ais-Pagination-item ais-Pagination-item--page ais-Pagination-item--selected"><a class="ais-Pagination-link" aria-label="1" href="#">1</a></li><li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="2" href="#">2</a></li><li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="3" href="#">3</a></li><li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="4" href="#">4</a></li><li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="5" href="#">5</a></li><li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="6" href="#">6</a></li><li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="7" href="#">7</a></li><li class="ais-Pagination-item ais-Pagination-item--nextPage"><a class="ais-Pagination-link" aria-label="Next" href="#">›</a></li><li class="ais-Pagination-item ais-Pagination-item--lastPage"><a class="ais-Pagination-link" aria-label="Last" href="#">»</a></li></ul></div></div>
-
-                </div>
-
-              </div>
-
-
-            </div>
-
-
-
-
-
-
-            <div class="search-results-tab " id="index-1666376655902" style="display: none;">
-
-              <div class="row">
-
-                <div id="index-1666376655902-rules"><div class="ais-QueryRuleCustomData"></div></div>
-
-
-
-
-
-                <div class="instant-search-comp__main w-100">
-                  <div class="row ">
-                    <div class="col-md-6">
-
-                      <div id="index-1666376655902-stats" class="mb-3"></div>
-
-                    </div>
-                    <div class="col-md-6 sort-by-container">
-
-                      <div id="index-1666376655902-sort-by" class="sort-by-widget"></div>
-
-                      <button type="button" class="toggleListGridView">
-                        <img src="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-list.png" data-list-icon="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-list.png" data-grid-icon="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-grid.png">
-                      </button>
-                    </div>
-                  </div>
-
-                  <div id="index-1666376655902-hits" data-indexname="wknd-commerce-articles" class="instant-search-comp__hits gridView"><div><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="955873db12a1e75a74da4595588b2f6c" data-insights-object-id="/content/wknd-commerce/language-masters/en/magazine/arctic-surfing" data-insights-position="1" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/magazine/arctic-surfing.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/activities/climbing/climber-gear-rope.jpg" alt="Arctic Surfing" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Arctic Surfing</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="955873db12a1e75a74da4595588b2f6c" data-insights-object-id="/content/wknd-commerce/us/en/magazine/ski-touring-new" data-insights-position="2" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/us/en/magazine/ski-touring-new.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/magazine/skitouring/Skitouring1Sjoeberg.JPG" alt="Ski Touring in Tahoe Heavenly" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Ski Touring in Tahoe Heavenly</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="955873db12a1e75a74da4595588b2f6c" data-insights-object-id="/content/wknd-commerce/language-masters/en/magazine/members-only/alaskan-adventure" data-insights-position="3" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/magazine/members-only/alaskan-adventure.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/magazine/alaska-adventure/camp-alaska.JPG" alt="Alaskan Adventure" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Alaskan Adventure</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="955873db12a1e75a74da4595588b2f6c" data-insights-object-id="/content/wknd-commerce/language-masters/en/magazine/yoga-benefits" data-insights-position="4" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/magazine/yoga-benefits.html"> <div class="image-wrapper"> <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&amp;w=1000&amp;q=80" alt="Yoga Benefits" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Yoga Benefits</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="955873db12a1e75a74da4595588b2f6c" data-insights-object-id="/content/wknd-commerce/language-masters/en/magazine/western-australia" data-insights-position="5" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/magazine/western-australia.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/activities/hiking/hiker-anapurna.jpg" alt="Western Australia Backpacking" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Western Australia Backpacking</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="955873db12a1e75a74da4595588b2f6c" data-insights-object-id="/content/wknd-commerce/language-masters/en/magazine/ski-touring-new" data-insights-position="6" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/magazine/ski-touring-new.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/activities/skiing/skitouring.jpg" alt="Ski Touring in Switzerland" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Ski Touring in Switzerland</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="955873db12a1e75a74da4595588b2f6c" data-insights-object-id="/content/wknd-commerce/language-masters/en/magazine/ski-touring" data-insights-position="7" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/magazine/ski-touring.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/activities/skiing/alpinists-rochefort-ridge.jpg" alt="Ski Touring in Mont Blanc" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Ski Touring in Mont Blanc</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="955873db12a1e75a74da4595588b2f6c" data-insights-object-id="/content/wknd-commerce/language-masters/en/magazine/san-diego-surf" data-insights-position="8" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/magazine/san-diego-surf.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/magazine/san-diego-surf-spots/AdobeStock_164735399.jpeg" alt="San Diego Surf Spots" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">San Diego Surf Spots</h4> </div></a></li></ol></div></div>
-                  </div>
-
-
-
-                  <div id="index-1666376655902-pagination"></div>
-
-                </div>
-
-              </div>
-
-
-            </div>
-
-
-
-
-
-
-            <div class="search-results-tab " id="index-1666640516434" style="display: none;">
-
-              <div class="row">
-
-                <div id="index-1666640516434-rules"><div class="ais-QueryRuleCustomData"></div></div>
-
-
-
-
-
-                <div class="instant-search-comp__main w-100">
-                  <div class="row ">
-                    <div class="col-md-6">
-
-                      <div id="index-1666640516434-stats" class="mb-3"></div>
-
-                    </div>
-                    <div class="col-md-6 sort-by-container">
-
-                      <div id="index-1666640516434-sort-by" class="sort-by-widget"></div>
-
-                      <button type="button" class="toggleListGridView">
-                        <img src="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-list.png" data-list-icon="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-list.png" data-grid-icon="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-grid.png">
-                      </button>
-                    </div>
-                  </div>
-
-                  <div id="index-1666640516434-hits" data-indexname="wknd-commerce-pages" class="instant-search-comp__hits gridView"><div><div class="ais-Hits"><ol class="ais-Hits-list"><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="5a11e6edc08d4ab8bf1ffc7816c328f1" data-insights-object-id="/content/wknd-commerce/language-masters/en/adventures/whistler-mountain-biking" data-insights-position="1" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/adventures/whistler-mountain-biking.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/adventures/whistler-mountain-biking/AdobeStock_122578479.jpeg" alt="Whistler Mountain Biking" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Whistler Mountain Biking</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="5a11e6edc08d4ab8bf1ffc7816c328f1" data-insights-object-id="/content/wknd-commerce/language-masters/en/adventures/west-coast-cycling" data-insights-position="2" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/adventures/west-coast-cycling.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/adventures/west-coast-cycling/AdobeStock_151584995.jpg" alt="West Coast Cycling" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">West Coast Cycling</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="5a11e6edc08d4ab8bf1ffc7816c328f1" data-insights-object-id="/content/wknd-commerce/language-masters/en/adventures/surf-camp-costa-rica" data-insights-position="3" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/adventures/surf-camp-costa-rica.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/adventures/surf-camp-in-costa-rica/AdobeStock_266406767.jpeg" alt="Surf Camp in Costa Rica" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Surf Camp in Costa Rica</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="5a11e6edc08d4ab8bf1ffc7816c328f1" data-insights-object-id="/content/wknd-commerce/language-masters/en/adventures/riverside-camping-australia" data-insights-position="4" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/adventures/riverside-camping-australia.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/adventures/riverside-camping-australia/AdobeStock_216674449.jpeg" alt="Riverside Camping" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Riverside Camping</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="5a11e6edc08d4ab8bf1ffc7816c328f1" data-insights-object-id="/content/wknd-commerce/language-masters/en/adventures/napa-wine-tasting" data-insights-position="5" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/adventures/napa-wine-tasting.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/adventures/napa-wine-tasting/AdobeStock_239751461.jpg" alt="Napa Wine Tasting" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Napa Wine Tasting</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="5a11e6edc08d4ab8bf1ffc7816c328f1" data-insights-object-id="/content/wknd-commerce/language-masters/en/adventures/gastronomic-marais-tour" data-insights-position="6" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/adventures/gastronomic-marais-tour.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/adventures/gastronomic-marais-tour/AdobeStock_270835979.jpg" alt="Gastronomic Marais Tour" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Gastronomic Marais Tour</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="5a11e6edc08d4ab8bf1ffc7816c328f1" data-insights-object-id="/content/wknd-commerce/language-masters/en/adventures/east-coast-cycling" data-insights-position="7" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/adventures/east-coast-cycling.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/activities/cycling/forest-trail.jpg" alt="East Coast Cycling" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">East Coast Cycling</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="5a11e6edc08d4ab8bf1ffc7816c328f1" data-insights-object-id="/content/wknd-commerce/language-masters/en/adventures/downhill-skiing-wyoming" data-insights-position="8" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/adventures/downhill-skiing-wyoming.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/adventures/downhill-skiing-wyoming/AdobeStock_166718157.jpeg" alt="Downhill Skiing Wyoming" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Downhill Skiing Wyoming</h4> </div></a></li><li class="ais-Hits-item"><span class="algolia-analytics" data-insights-query-id="5a11e6edc08d4ab8bf1ffc7816c328f1" data-insights-object-id="/content/wknd-commerce/language-masters/en/adventures/cycling-tuscany" data-insights-position="9" data-cug=""></span><a class="hit-card" href="/content/wknd-commerce/language-masters/en/adventures/cycling-tuscany.html"> <div class="image-wrapper"> <img src="/content/dam/aem-demo-assets/en/adventures/cycling-tuscany/AdobeStock_141786166.jpeg" alt="Cycling Tuscany" style="width:100%;height:200px;object-fit: cover;"> </div> <div class="cont-wrapper"> <h4 class="hit-name text-center">Cycling Tuscany</h4> </div></a></li></ol></div></div>
-                  </div>
-
-
-
-                  <div id="index-1666640516434-pagination"></div>
-
-                </div>
-
-              </div>
-
-
-            </div>
-
-
-
-          </div>
-        </div>
-      </div>
-
-
+<div class="instant-search-comp__main">
+  <div class="row ">
+    <div class="col-md-6">
+
+      <div id="index-1666376597838-stats" class="mb-3"></div>
 
     </div>
+    <div class="col-md-6 sort-by-container">
 
+      <div id="index-1666376597838-sort-by" class="sort-by-widget"></div>
+
+      <button type="button" class="toggleListGridView">
+        <img src="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-list.png"
+             data-list-icon="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-list.png"
+             data-grid-icon="/etc.clientlibs/algolia/clientlibs/clientlib-site/resources/images/icon-grid.png">
+      </button>
+    </div>
   </div>
 
+  <div id="index-1666376597838-hits" data-indexname="magento2_master_default_products"
+       class="instant-search-comp__hits gridView">
+    <div>
+      <div class="ais-Hits">
+        <ol class="ais-Hits-list">
+          <li class="ais-Hits-item">
+            <div class="algolia-analytics" data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                 data-insights-object-id="1902" data-insights-position="1" data-cug=""><a class="hit-card"
+                                                                                          data-name="Deirdre Relaxed-Fit Capri"
+                                                                                          data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                                                                                          data-insights-object-id="1902"
+                                                                                          data-insights-position="1"
+                                                                                          href="/content/wknd-commerce/language-masters/en/shop/product.html/deirdre-relaxed-fit-capri.html?queryID=fef04102c49af0af37b3002819df823b&amp;objectID=1902">
+              <img
+                src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/p/wp12-gray_main_1.jpg"
+                data-position="alt=&quot;Deirdre" relaxed-fit="" capri"="" style="width:100%;height:300px;object-fit:
+              cover;"> <h4 class="hit-name">Deirdre Relaxed-Fit Capri</h4> <span class="hit-price">$50.40</span></a>
+            </div>
+          </li>
+          <li class="ais-Hits-item">
+            <div class="algolia-analytics" data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                 data-insights-object-id="1498" data-insights-position="2" data-cug=""><a class="hit-card"
+                                                                                          data-name="Minerva LumaTech&amp;trade; V-Tee"
+                                                                                          data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                                                                                          data-insights-object-id="1498"
+                                                                                          data-insights-position="2"
+                                                                                          href="/content/wknd-commerce/language-masters/en/shop/product.html/minerva-lumatech-trade-v-tee.html?queryID=fef04102c49af0af37b3002819df823b&amp;objectID=1498">
+              <img
+                src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/s/ws08-blue_main_1.jpg"
+                data-position="alt=&quot;Minerva" lumatech&amp;trade;="" v-tee"=""
+              style="width:100%;height:300px;object-fit: cover;"> <h4 class="hit-name">Minerva LumaTech&amp;trade;
+              V-Tee</h4> <span class="hit-price">$32.00</span></a></div>
+          </li>
+          <li class="ais-Hits-item">
+            <div class="algolia-analytics" data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                 data-insights-object-id="1434" data-insights-position="3" data-cug=""><a class="hit-card"
+                                                                                          data-name="Iris Workout Top"
+                                                                                          data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                                                                                          data-insights-object-id="1434"
+                                                                                          data-insights-position="3"
+                                                                                          href="/content/wknd-commerce/language-masters/en/shop/product.html/iris-workout-top.html?queryID=fef04102c49af0af37b3002819df823b&amp;objectID=1434">
+              <img
+                src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/s/ws03-red_main_1.jpg"
+                data-position="alt=&quot;Iris" workout="" top"="" style="width:100%;height:300px;object-fit: cover;">
+              <h4 class="hit-name">Iris Workout Top</h4> <span class="hit-price">$29.00</span></a></div>
+          </li>
+          <li class="ais-Hits-item">
+            <div class="algolia-analytics" data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                 data-insights-object-id="1402" data-insights-position="4" data-cug=""><a class="hit-card"
+                                                                                          data-name="Olivia 1/4 Zip Light Jacket"
+                                                                                          data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                                                                                          data-insights-object-id="1402"
+                                                                                          data-insights-position="4"
+                                                                                          href="/content/wknd-commerce/language-masters/en/shop/product.html/olivia-1-4-zip-light-jacket.html?queryID=fef04102c49af0af37b3002819df823b&amp;objectID=1402">
+              <img
+                src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/j/wj12-blue_main_1.jpg"
+                data-position="alt=&quot;Olivia" 1="" 4="" zip="" light="" jacket"=""
+              style="width:100%;height:300px;object-fit: cover;"> <h4 class="hit-name">Olivia 1/4 Zip Light Jacket</h4>
+              <span class="hit-price">$77.00</span></a></div>
+          </li>
+          <li class="ais-Hits-item">
+            <div class="algolia-analytics" data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                 data-insights-object-id="1386" data-insights-position="5" data-cug=""><a class="hit-card"
+                                                                                          data-name="Juno Jacket"
+                                                                                          data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                                                                                          data-insights-object-id="1386"
+                                                                                          data-insights-position="5"
+                                                                                          href="/content/wknd-commerce/language-masters/en/shop/product.html/juno-jacket.html?queryID=fef04102c49af0af37b3002819df823b&amp;objectID=1386">
+              <img
+                src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/j/wj06-purple_main_1.jpg"
+                data-position="alt=&quot;Juno" jacket"="" style="width:100%;height:300px;object-fit: cover;"> <h4
+              class="hit-name">Juno Jacket</h4> <span class="hit-price">$77.00</span></a></div>
+          </li>
+          <li class="ais-Hits-item">
+            <div class="algolia-analytics" data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                 data-insights-object-id="1050" data-insights-position="6" data-cug=""><a class="hit-card"
+                                                                                          data-name="Mona Pullover Hoodlie"
+                                                                                          data-insights-query-id="fef04102c49af0af37b3002819df823b"
+                                                                                          data-insights-object-id="1050"
+                                                                                          data-insights-position="6"
+                                                                                          href="/content/wknd-commerce/language-masters/en/shop/product.html/mona-pullover-hoodlie.html?queryID=fef04102c49af0af37b3002819df823b&amp;objectID=1050">
+              <img
+                src="http://master-7rqtwti-aukegwr2pxtno.us-4.magentosite.cloud/media/catalog/product/cache/de28c1f26cdf544e713cac3aa5052046/w/h/wh01-green_main_1.jpg"
+                data-position="alt=&quot;Mona" pullover="" hoodlie"="" style="width:100%;height:300px;object-fit:
+              cover;"> <h4 class="hit-name">Mona Pullover Hoodlie</h4> <span class="hit-price">$57.00</span></a></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="index-1666376597838-pagination">
+    <div class="ais-Pagination">
+      <ul class="ais-Pagination-list">
+        <li class="ais-Pagination-item ais-Pagination-item--firstPage ais-Pagination-item--disabled"><span
+          class="ais-Pagination-link">«</span></li>
+        <li class="ais-Pagination-item ais-Pagination-item--previousPage ais-Pagination-item--disabled"><span
+          class="ais-Pagination-link">‹</span></li>
+        <li class="ais-Pagination-item ais-Pagination-item--page ais-Pagination-item--selected"><a
+          class="ais-Pagination-link" aria-label="1" href="#">1</a></li>
+        <li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="2"
+                                                                     href="#">2</a></li>
+        <li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="3"
+                                                                     href="#">3</a></li>
+        <li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="4"
+                                                                     href="#">4</a></li>
+        <li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="5"
+                                                                     href="#">5</a></li>
+        <li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="6"
+                                                                     href="#">6</a></li>
+        <li class="ais-Pagination-item ais-Pagination-item--page"><a class="ais-Pagination-link" aria-label="7"
+                                                                     href="#">7</a></li>
+        <li class="ais-Pagination-item ais-Pagination-item--nextPage"><a class="ais-Pagination-link" aria-label="Next"
+                                                                         href="#">›</a></li>
+        <li class="ais-Pagination-item ais-Pagination-item--lastPage"><a class="ais-Pagination-link" aria-label="Last"
+                                                                         href="#">»</a></li>
+      </ul>
+    </div>
+  </div>
 
 </div>
 

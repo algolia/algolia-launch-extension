@@ -5,9 +5,9 @@ const getEventDetailsData = (srcElement, querySelector) => {
   if (ancestor && ancestor.dataset) {
     const dataset = ancestor.dataset;
     const algoliaData = {
-      queryID: dataset.get('insightsQueryId'),
-      objectID: dataset.get('insightsObjectId'),
-      position: dataset.get('insightsPosition')
+      queryID: dataset['insightsQueryId'],
+      objectID: dataset['insightsObjectId'],
+      position: dataset['insightsPosition']
     }
     turbine.logger.log(
       `Dataset Data Element', ${JSON.stringify(algoliaData)});).`
@@ -22,7 +22,7 @@ const getIndexNameData = (srcElement, querySelector) => {
   if (ancestor && ancestor.dataset) {
     const dataset = ancestor.dataset;
     const algoliaData = {
-      indexName: dataset.get('data-indexname')
+      indexName: dataset['indexname']
     }
     turbine.logger.log(
       `Dataset Data Element', ${JSON.stringify(algoliaData)});).`

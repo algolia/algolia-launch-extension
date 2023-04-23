@@ -1,9 +1,8 @@
 export default (initInfo) => {
   const { settings } = initInfo;
-  const { hitQuerySelector = '', indexNameQuerySelector = '' } = settings || {};
+  const { storageStrategy = '' } = settings || {};
 
   return {
-    hitQuerySelector,
-    indexNameQuerySelector
+    storageStrategy
   };
 };

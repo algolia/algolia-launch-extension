@@ -1,7 +1,6 @@
-import React from 'react';
-import { TextField, Flex, RadioGroup, Radio, ContextualHelp, Heading, Content, Text } from "@adobe/react-spectrum";
-import WrappedRadioGroup from "../../../components/WrappedRadioGroup";
-import WrappedTextField from '../../../components/wrappedTextField';
+import { Content, ContextualHelp, Flex, Heading, Text, TextField } from "@adobe/react-spectrum";
+import React from "react";
+import WrappedTextField from "../../../components/wrappedTextField";
 
 export default () => (
   <Flex direction="column" gap="size-65">
@@ -64,29 +63,5 @@ export default () => (
         </ContextualHelp>
       }
     />
-
-    {/*<WrappedRadioGroup*/}
-    {/*  name="strategyProcessClicks"*/}
-    {/*  component={RadioGroup}*/}
-    {/*  width="size-4600"*/}
-    {/*  label="Conversion Strategy"*/}
-    {/*  isRequired*/}
-    {/*  necessityIndicator="label"*/}
-    {/*  defaultValue="single"*/}
-    {/*  contextualHelp={*/}
-    {/*    <ContextualHelp variant="info">*/}
-    {/*      <Heading>Conversion Strategy</Heading>*/}
-    {/*      <Content>*/}
-    {/*        <Text>*/}
-    {/*          Select on the conversion to process the click*/}
-    {/*          for the current page/product or process all the clicks as conversion.*/}
-    {/*        </Text>*/}
-    {/*      </Content>*/}
-    {/*    </ContextualHelp>*/}
-    {/*  }*/}
-    {/*>*/}
-    {/*  <Radio value="single">Convert click on the current page/product.</Radio>*/}
-    {/*  <Radio value="all">Convert all clicks</Radio>*/}
-    {/*</WrappedRadioGroup>*/}
   </Flex>
 );
