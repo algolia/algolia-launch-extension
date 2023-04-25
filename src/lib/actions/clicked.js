@@ -29,7 +29,10 @@ module.exports = function(settings, event) {
       positions: [parseInt(position)]
     };
     window.aa('clickedObjectIDsAfterSearch', updatedPayload);
-    addEventToStore(window.document.location.pathname, updatedPayload);
+
+    const path = event.nativeEvent.srcElement.closest('a').href;
+    const url = new URL(path);
+    addEventToStore(url.pathname, updatedPayload);
     turbine.logger.log(
       `Insights command: aa('clickedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
     );
