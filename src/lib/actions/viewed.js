@@ -13,11 +13,11 @@ module.exports = function(settings) {
   } = settings;
 
   const payload = {
-    index: indexName || extensionSettings.indexName,
+    eventName,
+    indexName: indexName || extensionSettings.indexName,
     objectIDs: [objectID],
     positions: [position],
-    userToken: userTokenDataElement,
-    eventName
+    userToken: userTokenDataElement
   };
 
   window.aa('viewedObjectIDs', payload);

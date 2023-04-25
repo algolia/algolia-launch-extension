@@ -16,9 +16,9 @@ module.exports = function(settings, event) {
   } = settings;
 
   const payload = {
-    userToken: userTokenDataElement,
-    index: indexName || extensionSettings.indexName,
     eventName,
+    indexName: indexName || extensionSettings.indexName,
+    userToken: userTokenDataElement,
     objectIDs: [objectID]
   };
 
@@ -26,7 +26,7 @@ module.exports = function(settings, event) {
     const updatedPayload = {
       ...payload,
       queryID,
-      positions: [parseInt(position)]
+      positions: [position]
     };
     window.aa('clickedObjectIDsAfterSearch', updatedPayload);
 
