@@ -1,7 +1,11 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { getEventToStore } = require("../utils/storage");
+const { getEventToStore } = require("../utils/storageManager");
 
 module.exports = function(settings) {
-  return getEventToStore(window.document.location.pathname);
+  const algoliaData = getEventToStore(window.document.location.pathname);
+  turbine.logger.log(
+    `Storage Data Element', ${JSON.stringify(algoliaData)});).`
+  );
+  return algoliaData;
 };

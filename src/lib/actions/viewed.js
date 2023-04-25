@@ -1,5 +1,4 @@
 'use strict';
-
 const window = require('@adobe/reactor-window');
 module.exports = function(settings) {
   const extensionSettings = turbine.getExtensionSettings();

@@ -1,7 +1,6 @@
 'use strict';
-
 const window = require('@adobe/reactor-window');
-const { removeEventToStore } = require("../utils/storage");
+const { removeEventToStore } = require("../utils/storageManager");
 
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
