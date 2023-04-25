@@ -32,7 +32,12 @@ module.exports = function(settings, event) {
 
     const path = event.nativeEvent.srcElement.closest('a').href;
     const url = new URL(path);
-    addEventToStore(url.pathname, updatedPayload);
+    addEventToStore(url.pathname, {
+      queryID,
+      indexName,
+      objectID,
+      position
+    });
     turbine.logger.log(
       `Insights command: aa('clickedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
     );
