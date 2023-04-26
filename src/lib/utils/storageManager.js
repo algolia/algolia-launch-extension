@@ -11,8 +11,14 @@ const getAlgoliaData = () => {
 }
 const addEventToStore = (path, payload) => {
   const algolia = getAlgoliaData();
-  algolia[path] = payload;
-  window.sessionStorage.setItem('algolia', JSON.stringify(algolia));
+
+  // if payload has queryId, this means a new search was executed and we want
+  // tie conversion to new search.
+  // if algolia object does not have path, then we want to capture this record
+  if (payload.queryID || algolia[path] == null) {
+    algolia[path] = payload;
+    window.sessionStorage.setItem('algolia', JSON.stringify(algolia));
+  }
 }
 
 const removeEventToStore = (path) => {

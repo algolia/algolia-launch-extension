@@ -16,26 +16,27 @@ module.exports = function(settings, event) {
 
   const payload = {
     eventName,
-    indexName: indexName || extensionSettings.indexName,
+    index: indexName || extensionSettings.indexName,
     userToken: userTokenDataElement,
     objectIDs: [objectID]
   };
 
-  if (queryID) {
+  if (queryID && objectID) {
     const updatedPayload = {
       ...payload,
       queryID
     };
     window.aa('convertedObjectIDsAfterSearch', updatedPayload);
-    removeEventToStore(window.document.location.pathname);
+
     turbine.logger.log(
       `Insights command: aa('convertedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
     );
-  } else {
+  } else if (objectID) {
     window.aa('convertedObjectIDs', payload);
     turbine.logger.log(
       `Insights command: aa('convertedObjectIDs', ${JSON.stringify(payload)});).`
     );
   }
+  removeEventToStore(window.document.location.pathname);
 };
 

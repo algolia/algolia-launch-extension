@@ -6,6 +6,7 @@ module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
     eventDetailsDataElement: {
+      timestamp,
       queryID,
       indexName,
       objectID,
@@ -16,38 +17,47 @@ module.exports = function(settings, event) {
   } = settings;
 
   const payload = {
+    timestamp,
     eventName,
-    indexName: indexName || extensionSettings.indexName,
+    index: indexName || extensionSettings.indexName,
     userToken: userTokenDataElement,
     objectIDs: [objectID]
   };
 
-  if (queryID && position) {
+  const path = event.nativeEvent.srcElement.closest('a').href;
+  const url = new URL(path);
+
+  if (queryID && objectID && position) {
     const updatedPayload = {
       ...payload,
       queryID,
-      positions: [position]
+      positions: [parseInt(position)]
     };
     window.aa('clickedObjectIDsAfterSearch', updatedPayload);
 
-    const path = event.nativeEvent.srcElement.closest('a').href;
-    const url = new URL(path);
     addEventToStore(url.pathname, {
+      timestamp,
       queryID,
       indexName,
       objectID,
       position
     });
+
     turbine.logger.log(
       `Insights command: aa('clickedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
     );
-  } else {
+  } else if (objectID) {
     window.aa('clickedObjectIDs', payload);
+
+    addEventToStore(url.pathname, {
+      timestamp,
+      indexName,
+      objectID
+    });
+
     turbine.logger.log(
       `Insights command: aa('clickedObjectIDs', ${JSON.stringify(payload)});).`
     );
   }
-
-
 };
 

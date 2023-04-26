@@ -9,9 +9,11 @@ const getEventDetailsData = (srcElement, querySelector) => {
       objectID: dataset['insightsObjectId'],
       position: dataset['insightsPosition']
     }
+
     turbine.logger.log(
       `Dataset Data Element', ${JSON.stringify(algoliaData)});).`
     );
+
     return algoliaData;
   }
   return {};
@@ -24,9 +26,11 @@ const getIndexNameData = (srcElement, querySelector) => {
     const algoliaData = {
       indexName: dataset['indexname']
     }
+
     turbine.logger.log(
       `Dataset Data Element', ${JSON.stringify(algoliaData)});).`
     );
+
     return algoliaData;
   }
   return {};
@@ -38,6 +42,7 @@ module.exports = function(settings, event) {
   if (event && event.nativeEvent && event.nativeEvent.srcElement) {
     const srcElement = event.nativeEvent.srcElement;
     return {
+      timestamp: new Date().getTime(),
       ...getEventDetailsData(srcElement, hitQuerySelector),
       ...getIndexNameData(srcElement, indexNameQuerySelector)
     }

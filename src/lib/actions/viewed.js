@@ -4,23 +4,25 @@ module.exports = function(settings) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
     eventDetailsDataElement: {
+      timestamp,
       indexName,
-      objectID,
-      position
+      objectID
     },
     userTokenDataElement,
     eventName
   } = settings;
 
   const payload = {
+    timestamp,
     eventName,
-    indexName: indexName || extensionSettings.indexName,
+    index: indexName || extensionSettings.indexName,
     objectIDs: [objectID],
-    positions: [position],
     userToken: userTokenDataElement
   };
 
-  window.aa('viewedObjectIDs', payload);
+  if (objectID) {
+    window.aa('viewedObjectIDs', payload);
+  }
 
   turbine.logger.log(
     `Insights command: aa('viewedObjectIDs', ${JSON.stringify(payload)});).`
