@@ -3,8 +3,8 @@ The Algolia Launch Extension adds the Algolia Search Insights to the Adobe Launc
 If queryId is set on a event type "Clicked" and "Converted", the event type will be changed to "Clicked after Search" or "Converted after Search".
 
 ## Resources
-- [Send Insights Events](https://www.algolia.com/doc/guides/building-search-ui/going-further/send-insights-events/js/)
-- [Sending Insights Events](https://www.algolia.com/doc/guides/sending-events/implementing/how-to/sending-events-backend/)
+- [Send click and conversion events with InstantSearch.js](https://www.algolia.com/doc/guides/building-search-ui/going-further/send-insights-events/js/)
+- [Get started with click and conversion events](https://www.algolia.com/doc/guides/sending-events/implementing/how-to/sending-events-backend/)
 
 ## Prerequisites
 
