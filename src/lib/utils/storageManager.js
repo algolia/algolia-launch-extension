@@ -1,11 +1,13 @@
 const window = require('@adobe/reactor-window');
 
+const STORAGE_KEY = 'algolia';
+
 const getAlgoliaData = () => {
   const sessionStorage = window.sessionStorage;
-  let algolia = sessionStorage.getItem('algolia');
+  let algolia = sessionStorage.getItem(STORAGE_KEY);
   if (!algolia) {
-    sessionStorage.setItem('algolia', JSON.stringify({}));
-    algolia = sessionStorage.getItem('algolia');
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify({}));
+    algolia = sessionStorage.getItem(STORAGE_KEY);
   }
   return JSON.parse(algolia);
 }
@@ -17,14 +19,14 @@ const addEventToStore = (path, payload) => {
   // if algolia object does not have path, then we want to capture this record
   if (payload.queryID || algolia[path] == null) {
     algolia[path] = payload;
-    window.sessionStorage.setItem('algolia', JSON.stringify(algolia));
+    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(algolia));
   }
 }
 
 const removeEventToStore = (path) => {
   const algolia = getAlgoliaData();
   delete algolia[path];
-  window.sessionStorage.setItem('algolia', JSON.stringify(algolia));
+  window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(algolia));
 }
 
 const getEventToStore = (path) => {
