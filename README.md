@@ -1,30 +1,14 @@
-**NOTE: This is a Proof of Concept.  This is not production ready.**
-
 # Algolia Launch Extension
-The Algolia Launch Extension adds the Algolia Search Insights to the Adobe Launch Platform.  This extension has two actions, "Click after Search" or "Convert after Search".
+The Algolia Launch Extension adds the Algolia Search Insights to the Adobe Launch Platform.  This extension has three actions "Viewed", "Clicked", or "Converted".
+If queryId is set on a event type "Clicked" and "Converted", the event type will be changed to "Clicked after Search" or "Converted after Search".
 
 ## Resources
-- [Send Insights Events](https://www.algolia.com/doc/guides/building-search-ui/going-further/send-insights-events/js/)
-- [Sending Insights Events](https://www.algolia.com/doc/guides/sending-events/implementing/how-to/sending-events-backend/)
+- [Send click and conversion events with InstantSearch.js](https://www.algolia.com/doc/guides/building-search-ui/going-further/send-insights-events/js/)
+- [Get started with click and conversion events](https://www.algolia.com/doc/guides/sending-events/implementing/how-to/sending-events-backend/)
 
 ## Prerequisites
 
-1. The Algolia Insights library needs to be loaded and an insight middleware needs to be created.
-```
-var ALGOLIA_INSIGHTS_SRC = "https://cdn.jsdelivr.net/npm/search-insights@2.2.1";
-
-!function(e,a,t,n,s,i,c){e.AlgoliaAnalyticsObject=s,e[s]=e[s]||function(){
-(e[s].queue=e[s].queue||[]).push(arguments)},i=a.createElement(t),c=a.getElementsByTagName(t)[0],
-i.async=1,i.src=n,c.parentNode.insertBefore(i,c)
-}(window,document,"script",ALGOLIA_INSIGHTS_SRC,"aa");
-
-const insightsMiddleware = instantsearch.middlewares.createInsightsMiddleware({
-  insightsClient: window.aa,
-});
-```
-https://www.algolia.com/doc/api-client/methods/insights/
-
-2. Add middleware to the Instant Search instance.
+1. Add middleware to the Instant Search instance.
 ```
 const search = instantsearch({
   indexName: 'ADXCFDSS',
@@ -68,7 +52,7 @@ The two actions for this extension requires changes on the search and product de
 - Event Name: Any name to identifies the event.
 - CSS Class Name of the HTML DOM element that contains the dataset.
 
-*This is a POC and it is not intended to be supported or maintained by Algolia*.
+*This extension is not supported or maintained by Algolia*.
 
 ## Development & Release
 For development and release process, you can refer to the [Adobe Launch Extension development page](https://experienceleague.adobe.com/docs/experience-platform/tags/extension-dev/submit/develop.html).

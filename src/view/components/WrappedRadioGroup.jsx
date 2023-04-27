@@ -1,17 +1,16 @@
 import React from 'react';
-import { useFormContext, Controller } from 'react-hook-form';
-import { Item } from '@adobe/react-spectrum'
+import { Controller } from 'react-hook-form';
 import ValidationWrapper from './validationWrapper';
 
 export default ({
-                  name: componentName,
-                  component: Component,
-                  onChange: componentOnChange,
-                  onBlur: componentOnBlur,
-                  defaultValue = '',
-                  ...rest
-                }) => {
-  const methods = useFormContext();
+  name: componentName,
+  component: Component,
+  onChange: componentOnChange,
+  onBlur: componentOnBlur,
+  defaultValue,
+  label,
+  ...rest
+}) => {
   return (
     <Controller
       name={ componentName }
@@ -23,26 +22,27 @@ export default ({
                }) => (
         <ValidationWrapper>
           <Component
-            selectedKey={ value }
+            name={ name }
+            value={ value }
+            isSelected={ value }
             onBlur={ (e) => {
               onBlur(e);
               if (componentOnBlur) {
                 componentOnBlur(e);
               }
             } }
-            onSelectionChange={
-              (e) => {
-                onChange(e);
-                if (componentOnChange) {
-                  componentOnChange(e);
-                }
+            onChange={ (e) => {
+              onChange(e);
+              if (componentOnChange) {
+                componentOnChange(e);
               }
-            }
-            name={ name }
+            } }
             inputRef={ ref }
+            label={ label }
+            defaultValue={ defaultValue }
             { ...rest }
           >
-            { (item) => <Item key={ item.id }>{item.name}</Item> }
+            { rest.children }
           </Component>
           <></>
         </ValidationWrapper>

@@ -2,8 +2,8 @@
   "displayName": "Algolia Search Insights",
   "name": "algolia",
   "platform": "web",
-  "version": "1.2.0",
-  "description": "Forward events to Algolia to drive better personalization and recommendation.",
+  "version": "2.1.5",
+  "description": "Send events to Algolia for AI features, e.g. personalization and recommendation.",
   "author": {
     "name": "Algolia"
   },
@@ -23,13 +23,17 @@
         },
         "indexName": {
           "type": "string"
+        },
+        "useUserTokenCookie": {
+          "type": "boolean"
+        },
+        "version": {
+          "type": "string"
+        },
+        "userHasOptedOutDataElement": {
+          "type": "string"
         }
-      },
-      "required": [
-        "appId",
-        "apiKey",
-        "indexName"
-      ]
+      }
     }
   },
   "actions": [
@@ -44,13 +48,13 @@
       "libPath": "src/lib/actions/loadInsights.js"
     },
     {
-      "displayName": "Clicked after Search",
-      "name": "clicked-after-search",
+      "displayName": "Viewed",
+      "name": "viewed",
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "itemDataElement": {
+          "eventDetailsDataElement": {
             "type": "string"
           },
           "userTokenDataElement": {
@@ -59,24 +63,19 @@
           "eventName": {
             "type": "string"
           }
-        },
-        "required": [
-          "itemDataElement",
-          "userTokenDataElement",
-          "eventName"
-        ]
+        }
       },
-      "libPath": "src/lib/actions/clickedAfterSearch.js",
-      "viewPath": "actions/clickedAfterSearch.html"
+      "libPath": "src/lib/actions/viewed.js",
+      "viewPath": "actions/viewed.html"
     },
     {
-      "displayName": "Convert after Search",
-      "name": "convert-after-search",
+      "displayName": "Converted",
+      "name": "converted",
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "itemDataElement": {
+          "eventDetailsDataElement": {
             "type": "string"
           },
           "userTokenDataElement": {
@@ -85,15 +84,31 @@
           "eventName": {
             "type": "string"
           }
-        },
-        "required": [
-          "itemDataElement",
-          "userTokenDataElement",
-          "eventName"
-        ]
+        }
       },
-      "libPath": "src/lib/actions/convertAfterSearch.js",
-      "viewPath": "actions/convertAfterSearch.html"
+      "libPath": "src/lib/actions/converted.js",
+      "viewPath": "actions/converted.html"
+    },
+    {
+      "displayName": "Clicked",
+      "name": "clicked",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "eventDetailsDataElement": {
+            "type": "string"
+          },
+          "userTokenDataElement": {
+            "type": "string"
+          },
+          "eventName": {
+            "type": "string"
+          }
+        }
+      },
+      "libPath": "src/lib/actions/clicked.js",
+      "viewPath": "actions/clicked.html"
     }
   ],
   "dataElements": [
@@ -104,13 +119,13 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "querySelector": {
+          "hitQuerySelector": {
+            "type": "string"
+          },
+          "indexNameQuerySelector": {
             "type": "string"
           }
-        },
-        "required": [
-          "querySelector"
-        ]
+        }
       },
       "libPath": "src/lib/dataElements/dataset.js",
       "viewPath": "dataElements/dataset.html"
@@ -121,9 +136,37 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+        "properties": {
+          "queryIDParamName": {
+            "type": "string"
+          },
+          "indexNameParamName": {
+            "type": "string"
+          },
+          "objectIDParamName": {
+            "type": "string"
+          },
+          "positionParamName": {
+            "type": "string"
+          }
+        }
       },
-      "libPath": "src/lib/dataElements/queryString.js"
+      "libPath": "src/lib/dataElements/queryString.js",
+      "viewPath": "dataElements/queryString.html"
+    },
+    {
+      "displayName": "Storage",
+      "name": "storage",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "storageStrategy": {
+            "type": "string"
+          }
+        }
+      },
+      "libPath": "src/lib/dataElements/storage.js"
     }
   ]
 }

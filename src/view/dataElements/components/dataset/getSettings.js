@@ -1,1 +1,1 @@
-export default ({ querySelector }) => ({ querySelector });
+export default ({ hitQuerySelector, indexNameQuerySelector }) => ({ hitQuerySelector, indexNameQuerySelector });

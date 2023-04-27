@@ -1,11 +1,9 @@
 import React from 'react';
-
 import ExtensionView from '../components/extensionView';
-
-import ConfigurationFields from './components/convertAfterSearch/fields';
-import getConfigurationInitValues from './components/convertAfterSearch/getInitValues';
-import getConfigurationSettings from './components/convertAfterSearch/getSettings';
-import validateConfigurationFields from './components/convertAfterSearch/validate';
+import ConfigurationFields from './components/storage/fields';
+import getConfigurationInitValues from './components/storage/getInitValues';
+import getConfigurationSettings from './components/storage/getSettings';
+import validateConfigurationFields from './components/storage/validate';
 
 export default () => (
   <ExtensionView
@@ -19,9 +17,7 @@ export default () => (
       ...validateConfigurationFields(values)
     })}
     render={() => (
-      <>
-        <ConfigurationFields />
-      </>
+      <ConfigurationFields />
     )}
   />
 );

@@ -1,9 +1,9 @@
 export default (values) => {
   const errors = {};
 
-  if (!values.itemDataElement) {
-    errors.itemDataElement = {
-      message: 'Please specify your Item Data Element',
+  if (!values.eventDetailsDataElement) {
+    errors.eventDetailsDataElement = {
+      message: 'Please specify your Event Details Data Element',
       type: 'required'
     };
   }
