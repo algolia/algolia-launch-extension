@@ -17,7 +17,7 @@ export default () => (
           <Heading>Storage Strategy</Heading>
           <Content>
             <Text>
-              Select the storage.
+              Select the storage type.
             </Text>
           </Content>
         </ContextualHelp>

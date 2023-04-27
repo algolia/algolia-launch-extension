@@ -7,12 +7,6 @@ export default (values) => {
       type: 'required'
     };
   }
-  if (!values.indexNameIDParamName) {
-    errors.indexNameIDParamName = {
-      message: 'Please specify the Index Name param name used in the URL.',
-      type: 'required'
-    };
-  }
 
   return errors;
 };
