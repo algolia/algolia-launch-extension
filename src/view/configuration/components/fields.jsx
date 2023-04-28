@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Flex, Checkbox } from '@adobe/react-spectrum';
+import { TextField, Flex, Checkbox, ContextualHelp, Heading, Content, Text } from "@adobe/react-spectrum";
 import WrappedTextField from '../../components/wrappedTextField';
 import WrappedCheckboxField from '../../components/wrappedCheckboxField';
 
@@ -12,6 +12,16 @@ export default () => (
       label="Application ID"
       isRequired
       necessityIndicator="label"
+      contextualHelp={
+        <ContextualHelp variant="info">
+          <Heading>Application ID</Heading>
+          <Content>
+            <Text>
+              Enter the Application Id which can be found in the on the Algolia Dashboard in the <a href="https://www.algolia.com/account/api-keys/all" target="_child">API Keys</a> section.
+            </Text>
+          </Content>
+        </ContextualHelp>
+      }
     />
     <WrappedTextField
       name="apiKey"
@@ -20,6 +30,16 @@ export default () => (
       label="Search API Key"
       isRequired
       necessityIndicator="label"
+      contextualHelp={
+        <ContextualHelp variant="info">
+          <Heading>Search API Key</Heading>
+          <Content>
+            <Text>
+              Enter Search API Key which can be found in the on the Algolia Dashboard in the <a href="https://www.algolia.com/account/api-keys/all" target="_child">API Keys</a> section.
+            </Text>
+          </Content>
+        </ContextualHelp>
+      }
     />
     <WrappedTextField
       name="indexName"
@@ -28,6 +48,16 @@ export default () => (
       label="Index Name"
       isRequired
       necessityIndicator="label"
+      contextualHelp={
+        <ContextualHelp variant="info">
+          <Heading>Index Name</Heading>
+          <Content>
+            <Text>
+              Enter the Index Name that contain the Products or Content.  This Index will be used as a default.
+            </Text>
+          </Content>
+        </ContextualHelp>
+      }
     />
     <WrappedCheckboxField
       name="useUserTokenCookie"
@@ -36,6 +66,16 @@ export default () => (
       label="Use User Token Cookie"
       necessityIndicator="label"
       defaultValue={ true }
+      contextualHelp={
+        <ContextualHelp variant="info">
+          <Heading>Use User Token Cookie</Heading>
+          <Content>
+            <Text>
+              Check this box if you want Algolia to generate a User Token cookie.  The default value is <b>false</b>.
+            </Text>
+          </Content>
+        </ContextualHelp>
+      }
     />
     <WrappedTextField
       name="version"
@@ -44,6 +84,16 @@ export default () => (
       label="Insight Library Version"
       necessityIndicator="label"
       defaultValue="2.2.3"
+      contextualHelp={
+        <ContextualHelp variant="info">
+          <Heading>Insight Library Version</Heading>
+          <Content>
+            <Text>
+              Enter the Algolia Insight version.  The default value is <b>2.2.3</b>.
+            </Text>
+          </Content>
+        </ContextualHelp>
+      }
     />
     <WrappedTextField
       name="userHasOptedOutDataElement"
@@ -52,6 +102,16 @@ export default () => (
       label="User Opt Out Data Element"
       necessityIndicator="label"
       supportDataElement
+      contextualHelp={
+        <ContextualHelp variant="info">
+          <Heading>User Opt Out Data Element</Heading>
+          <Content>
+            <Text>
+              Select a Data Element that will retrieve the user's decision on tracking.
+            </Text>
+          </Content>
+        </ContextualHelp>
+      }
     />
   </Flex>
 );

@@ -6,6 +6,7 @@ module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
     eventDetailsDataElement: {
+      timestamp,
       queryID,
       indexName,
       objectID,
@@ -15,6 +16,7 @@ module.exports = function(settings, event) {
   } = settings;
 
   const payload = {
+    timestamp,
     eventName,
     index: indexName || extensionSettings.indexName,
     userToken: userTokenDataElement,

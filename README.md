@@ -1,58 +1,130 @@
 # Algolia Launch Extension
-The Algolia Launch Extension adds the Algolia Search Insights to the Adobe Launch Platform.  This extension has three actions "Viewed", "Clicked", or "Converted".
-If queryId is set on a event type "Clicked" and "Converted", the event type will be changed to "Clicked after Search" or "Converted after Search".
+The Algolia Launch Extension wraps the Algolia Search Insights to send user interaction events to Algolia to enable AI feature.
 
-## Resources
-- [Send click and conversion events with InstantSearch.js](https://www.algolia.com/doc/guides/building-search-ui/going-further/send-insights-events/js/)
-- [Get started with click and conversion events](https://www.algolia.com/doc/guides/sending-events/implementing/how-to/sending-events-backend/)
+*This extension is supported by the open source community therefore it's not officially supported or maintained by Algolia*.
 
-## Prerequisites
+## What is inside?
+The extension includes a Configuration, four Actions, and three Data Elements to help configure the Algolia Insights based on business requirements.
 
-1. Add middleware to the Instant Search instance.
+### Configuration
+| Property                  | Description                                                                                                                                          |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Application ID            | Enter the Application Id which can be found in the on the Algolia Dashboard in the [API Keys](https://www.algolia.com/account/api-keys/all) section. |
+| Search API Key            | Enter Search API Key which can be found in the on the Algolia Dashboard in the [API Keys](https://www.algolia.com/account/api-keys/all) section.     |
+| Index Name                | Enter the Index Name that contain the Products or Content.  This Index will be used as a default.                                                    |
+| Use User Token Cookie     | Check this box if you want Algolia to generate a User Token cookie.  The default value is `false`.                                                   |
+| Insight Library Version   | Enter the Algolia Insight version.  The default value is `2.2.3`.                                                                                    |
+| User Opt Out Data Element | Select a Data Element that will retrieve the user's decision on tracking.                                                                            |
+
+### Actions
+#### Load Insights
+This action includes the Algolia Insights library to be utilized for sending events to Algolia.
+
+#### Clicked
+| Property                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                |
+|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event Name                 | Enter the Event Name that can be used to further refine this `click` event                                                                                                                                                                                                                                                                                                                                                 |
+| Event Type                 | Automatically set as `click`                                                                                                                                                                                                                                                                                                                                                                                               |
+| Event Details Data Element | Select a Data Element that will retrieve the event details (`indexName`, `objectId`, `queryId` (optional), `position` (optional)). If the Data Element contains `queryId` and `position`, the event will be classed as *Clicked after Search* otherwise it will be considered a *Clicked* event class. If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
+| User Token Data Element    | Select a Data Element that will retrieve the User Token.                                                                                                                                                                                                                                                                                                                                                                   |
+
+#### Converted
+| Property                   | Description                                                                                                                                                                                                                                                                                                                                                                               |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event Name                 | Enter the Event Name that can be used to further refine this `convert` event                                                                                                                                                                                                                                                                                                              |
+| Event Type                 | Automatically set as `convert`                                                                                                                                                                                                                                                                                                                                                            |
+| Event Details Data Element | Select a Data Element that will retrieve the event details (`indexName`, `objectId`, `queryId` (optional)). If the Data Element contains `queryId`, the event will be classed as *Converted after Search* otherwise it will be considered a *Converted* event class.  If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
+| User Token Data Element    | Select a Data Element that will retrieve the User Token.                                                                                                                                                                                                                                                                                                                                  |
+
+#### Viewed
+| Property                   | Description                                                                                                                                                                                               |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event Name                 | Enter the Event Name that can be used to further refine this `view` event                                                                                                                                 |
+| Event Type                 | Automatically set as `view`                                                                                                                                                                               |
+| Event Details Data Element | Select a Data Element that will retrieve the event details (`indexName`, `objectId`). If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
+| User Token Data Element    | Select a Data Element that will retrieve the User Token.                                                                                                                                                  |
+
+
+### Data Elements
+The Data Elements are used to retrieve event details to be used by the Algolia Insight library for sending events.
+
+#### Data Set
+The Data Set Data Element returns the `dataset` associated to the HTML element.
+
+| Property                          | Description                                                                                                                                                                                                  |
+|-----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Hit Element Div/Class Name        | Enter the HTML Element Name and/or CSS Class Name that has the dataset attributes (`data-insights-object-id`, `data-insights-query-id` (optional), `data-insights-position` (optional)) on the HTML Element. |
+| Index Name Element Div/Class Name | Enter the HTML Element Name and/or CSS Class Name that has the dataset attributes (`data-indexname`) on the HTML Element.                                                                                    |
+
+This Data Element returns:
+```javascript
+{
+  timestamp, 
+  queryID,
+  indexName,
+  objectID,
+  position
+}
 ```
-const search = instantsearch({
-  indexName: 'ADXCFDSS',
-  searchClient,
-});
 
-search.use(insightsMiddleware);
+##### Example of HTML that contains dataset.
+
 ```
-
-## Actions
-The two actions for this extension requires changes on the search and product detail experience.
-
-### Click after Search
-
-1. "Click after Search" action requires dataset to be added to each search hit.  Below is an example:
-```
+<div data-indexname="magento2_master_default_products" class="instant-search-comp__hits">
+...
 <div class="hit-card"
     data-insights-object-id="${hit.objectID}"
     data-insights-position="${hit.__position}"
     data-insights-query-id="${hit.__queryID}">
     <h4 class="hit-name">...</h4>
-    <div class="hit-card-foot">
-        <div class="hit-card-foot-link">
-            <a href="product.html?objectID=${hit.objectID}&amp;queryID=${hit.__queryID}">Read More</a></div>
-    </div>
+      
+</div>
+...
 </div>
 ```
 
-2. In the configuration in the Adobe Launch Console, add the following:
-- Event Name: Any name to identifies the event.
-- CSS Class Name of the HTML DOM element that contains the dataset.
+#### Query String
+| Property                         | Description                                              |
+|----------------------------------|----------------------------------------------------------|
+| Object ID Param Name             | Enter the query param name that contains the Object Id.  |
+| Index Name Param Name (Optional) | Enter the query param name that contains the Index Name. |
+| Query ID Param Name (Optional)   | Enter the query param name that contains the Query Id.   |
+| Position Param Name (Optional)   | Enter the query param name that contains the Position.   |
 
-### Convert after Search
-1. "Convert after Search" action requires two query params added to the url. Below is an example:
+This Data Element returns:
+```javascript
+{
+  timestamp, 
+  queryID,
+  indexName,
+  objectID
+}
+```
+
+##### Example of HTML that contains query parameters.
 
 ```
-<a href="product.html?objectID=${hit.objectID}&amp;queryID=${hit.__queryID}">Read More</a></div>
+<a href="product.html?objectID=${hit.objectID}&queryID=${hit.__queryID}&indexName=${indexName}&position=${hit.position}">Read More</a></div>
 ```
 
-2. In the configuration in the Adobe Launch Console, add the following:
-- Event Name: Any name to identifies the event.
-- CSS Class Name of the HTML DOM element that contains the dataset.
+#### Storage
+This Data Element uses the Session Storage to get the event details.  There is no configuration needed for this Data Element.  
+The data is added in the *click* event action automatically.  On *convert* event action, the data is removed.
 
-*This extension is not supported or maintained by Algolia*.
+This Data Element returns what is stored in the Session Storage.
+
+## Clicked or Converted after Search
+### InstantSearch & Autocomplete
+The Clicked or Converted after Search requires a `queryId` and `position`.  These two properties are available when insights are enabled on InstantSearch and/or Autocomplete.
+Please review below resources to set up Insights.
+
+#### Resources
+- [Setting up Insights on Autocomplete](https://www.algolia.com/doc/ui-libraries/autocomplete/api-reference/autocomplete-js/autocomplete/#param-insights)
+- [Setting up Insights on InstantSearch.js](https://www.algolia.com/doc/guides/building-search-ui/events/js/#set-the-insights-option-to-true)
+
+## Algolia Insights Resources
+- [Get started with click and conversion events](https://www.algolia.com/doc/guides/sending-events/implementing/how-to/sending-events-backend/)
+- [Sending Algolia Insights events](https://www.algolia.com/doc/ui-libraries/autocomplete/guides/sending-algolia-insights-events/)
 
 ## Development & Release
 For development and release process, you can refer to the [Adobe Launch Extension development page](https://experienceleague.adobe.com/docs/experience-platform/tags/extension-dev/submit/develop.html).

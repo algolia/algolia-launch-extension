@@ -16,7 +16,7 @@ export default () => (
           <Heading>Hit Element Query Selector</Heading>
           <Content>
             <Text>
-              Set the query selector that contains the query id, object id, and/or position.
+              Enter the HTML Element Name and/or CSS Class Name that has the dataset attributes (<code>data-insights-object-id</code>, <code>data-insights-query-id</code> (optional), <code>data-insights-position</code> (optional)) on the HTML Element.
             </Text>
           </Content>
         </ContextualHelp>
@@ -35,7 +35,7 @@ export default () => (
           <Heading>Index Element Query Selector</Heading>
           <Content>
             <Text>
-              Set the query selector that contains the index name.
+              Enter the HTML Element Name and/or CSS Class Name that has the dataset attributes (<code>data-indexname</code>) on the HTML Element.
             </Text>
           </Content>
         </ContextualHelp>
