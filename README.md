@@ -56,6 +56,17 @@ The Data Set Data Element returns the `dataset` associated to the HTML element.
 | Hit Element Div/Class Name        | Enter the HTML Element Name and/or CSS Class Name that has the dataset attributes (`data-insights-object-id`, `data-insights-query-id` (optional), `data-insights-position` (optional)) on the HTML Element. |
 | Index Name Element Div/Class Name | Enter the HTML Element Name and/or CSS Class Name that has the dataset attributes (`data-indexname`) on the HTML Element.                                                                                    |
 
+This Data Element returns:
+```javascript
+{
+  timestamp, 
+  queryID,
+  indexName,
+  objectID,
+  position
+}
+```
+
 ##### Example of HTML that contains dataset.
 
 ```
@@ -80,6 +91,16 @@ The Data Set Data Element returns the `dataset` associated to the HTML element.
 | Query ID Param Name (Optional)   | Enter the query param name that contains the Query Id.   |
 | Position Param Name (Optional)   | Enter the query param name that contains the Position.   |
 
+This Data Element returns:
+```javascript
+{
+  timestamp, 
+  queryID,
+  indexName,
+  objectID
+}
+```
+
 ##### Example of HTML that contains query parameters.
 
 ```
@@ -89,6 +110,8 @@ The Data Set Data Element returns the `dataset` associated to the HTML element.
 #### Storage
 This Data Element uses the Session Storage to get the event details.  There is no configuration needed for this Data Element.  
 The data is added in the *click* event action automatically.  On *convert* event action, the data is removed.
+
+This Data Element returns what is stored in the Session Storage.
 
 ## Clicked or Converted after Search
 ### InstantSearch & Autocomplete
