@@ -80,31 +80,28 @@ The Data Set Data Element returns the `dataset` associated to the HTML element.
 | Query ID Param Name (Optional)   | Enter the query param name that contains the Query Id.   |
 | Position Param Name (Optional)   | Enter the query param name that contains the Position.   |
 
-##### Example of HTML that contains dataset.
+##### Example of HTML that contains query parameters.
 
 ```
-<a href="product.html?objectID=${hit.objectID}&amp;queryID=${hit.__queryID}&amp;indexName=${indexName}&amp;position=${hit.position}">Read More</a></div>
+<a href="product.html?objectID=${hit.objectID}&queryID=${hit.__queryID}&indexName=${indexName}&position=${hit.position}">Read More</a></div>
 ```
 
 #### Storage
 This Data Element uses the Session Storage to get the event details.  There is no configuration needed for this Data Element.  
 The data is added in the *click* event action automatically.  On *convert* event action, the data is removed.
 
-## Resources
-- [Send click and conversion events with InstantSearch.js](https://www.algolia.com/doc/guides/building-search-ui/going-further/send-insights-events/js/)
+## Clicked or Converted after Search
+### InstantSearch & Autocomplete
+The Clicked or Converted after Search requires a `queryId` and `position`.  These two properties are available when insights are enabled on InstantSearch and/or Autocomplete.
+Please review below resources to set up Insights.
+
+#### Resources
+- [Setting up Insights on Autocomplete](https://www.algolia.com/doc/ui-libraries/autocomplete/api-reference/autocomplete-js/autocomplete/#param-insights)
+- [Setting up Insights on InstantSearch.js](https://www.algolia.com/doc/guides/building-search-ui/events/js/#set-the-insights-option-to-true)
+
+## Algolia Insights Resources
 - [Get started with click and conversion events](https://www.algolia.com/doc/guides/sending-events/implementing/how-to/sending-events-backend/)
-
-## InstantSearch & Autocomplete
-
-1. Add middleware to the Instant Search instance.
-```
-const search = instantsearch({
-  indexName: 'ADXCFDSS',
-  searchClient,
-});
-
-search.use(insightsMiddleware);
-```
+- [Sending Algolia Insights events](https://www.algolia.com/doc/ui-libraries/autocomplete/guides/sending-algolia-insights-events/)
 
 ## Development & Release
 For development and release process, you can refer to the [Adobe Launch Extension development page](https://experienceleague.adobe.com/docs/experience-platform/tags/extension-dev/submit/develop.html).
