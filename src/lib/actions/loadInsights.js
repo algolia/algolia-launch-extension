@@ -8,7 +8,8 @@ module.exports = function(settings) {
     apiKey,
     useUserTokenCookie = false,
     version = '2.2.3',
-    userHasOptedOutDataElement = false
+    userHasOptedOutDataElement = false,
+    cookieDuration = 15552000000
   } = extensionSettings;
   const ALGOLIA_INSIGHTS_SRC = `https://cdn.jsdelivr.net/npm/search-insights@${version}`;
 
@@ -21,7 +22,8 @@ module.exports = function(settings) {
     appId: appId,
     apiKey: apiKey,
     useCookie: useUserTokenCookie,
-    userHasOptedOutDataElement
+    userHasOptedOut: userHasOptedOutDataElement,
+    cookieDuration: cookieDuration
   });
 
   turbine.logger.log(
