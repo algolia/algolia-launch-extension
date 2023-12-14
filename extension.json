@@ -24,6 +24,12 @@
         "indexName": {
           "type": "string"
         },
+        "userTokenDataElement": {
+          "type": "string"
+        },
+        "authenticatedUserTokenDataElement": {
+          "type": "string"
+        },
         "useUserTokenCookie": {
           "type": "boolean"
         },
@@ -109,6 +115,28 @@
       },
       "libPath": "src/lib/actions/clicked.js",
       "viewPath": "actions/clicked.html"
+    },
+    {
+      "displayName": "Purchase",
+      "name": "purchase",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/actions/purchase.js",
+      "viewPath": "actions/purchase.html"
+    },
+    {
+      "displayName": "Add to Cart",
+      "name": "add-to-cart",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/actions/addToCart.js",
+      "viewPath": "actions/addToCart.html"
     }
   ],
   "dataElements": [
@@ -160,8 +188,7 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {
-        }
+        "properties": {}
       },
       "libPath": "src/lib/dataElements/storage.js"
     }

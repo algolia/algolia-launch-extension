@@ -50,6 +50,7 @@ export default ({
         <ValidationWrapper>
           <Component
             name={ name }
+            value={ value }
             onBlur={ (e) => {
               onBlur(e);
               if (componentOnBlur) {
@@ -62,7 +63,6 @@ export default ({
                 componentOnChange(e);
               }
             } }
-            value={ value }
             inputRef={ ref }
             autoComplete="off"
             { ...rest }

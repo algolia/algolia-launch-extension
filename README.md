@@ -1,20 +1,29 @@
 # Algolia Launch Extension
 The Algolia Launch Extension wraps the Algolia Search Insights to send user interaction events to Algolia to enable AI feature.
 
-*This extension is supported by the open source community therefore it's not officially supported or maintained by Algolia*.
+**NOTE**
+>This extension and related documentation are provided "AS IS" and without any warranty of any kind and Algolia Professional Services EXPRESSLY DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+>
+>Algolia Customer Care does not provide support for this extension, including installation or troubleshooting. If you require help with this extension, please contact Algolia Professional Services.
+
+
+
 
 ## What is inside?
 The extension includes a Configuration, four Actions, and three Data Elements to help configure the Algolia Insights based on business requirements.
 
 ### Configuration
-| Property                  | Description                                                                                                                                          |
-|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Application ID            | Enter the Application Id which can be found in the on the Algolia Dashboard in the [API Keys](https://www.algolia.com/account/api-keys/all) section. |
-| Search API Key            | Enter Search API Key which can be found in the on the Algolia Dashboard in the [API Keys](https://www.algolia.com/account/api-keys/all) section.     |
-| Index Name                | Enter the Index Name that contain the Products or Content.  This Index will be used as a default.                                                    |
-| Use User Token Cookie     | Check this box if you want Algolia to generate a User Token cookie.  The default value is `false`.                                                   |
-| Insight Library Version   | Enter the Algolia Insight version.  The default value is `2.2.3`.                                                                                    |
-| User Opt Out Data Element | Select a Data Element that will retrieve the user's decision on tracking.                                                                            |
+| Property                              | Description                                                                                                                                          |
+|---------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Application ID                        | Enter the Application Id which can be found in the on the Algolia Dashboard in the [API Keys](https://www.algolia.com/account/api-keys/all) section. |
+| Search API Key                        | Enter Search API Key which can be found in the on the Algolia Dashboard in the [API Keys](https://www.algolia.com/account/api-keys/all) section.     |
+| Index Name                            | Enter the Index Name that contain the Products or Content.  This Index will be used as a default.                                                    |
+| User Token Data Element               | Set the Data Element that will return the User Token.                                                                                                |
+| Authenticated User Token Data Element | Set the Data Element that will return the Authenticated User Token.                                                                                  |
+| Use User Token Cookie                 | Check this box if you want Algolia to generate a User Token cookie.  The default value is `false`.                                                   |
+| Insight Library Version               | Enter the Algolia Insight version.  The default value is `2.2.3`.                                                                                    |
+| User Opt Out Data Element             | Select a Data Element that will retrieve the user's decision on tracking.                                                                            |
+| Currency                              | Select a currency type.                                                                                                                              |
 
 ### Actions
 #### Load Insights

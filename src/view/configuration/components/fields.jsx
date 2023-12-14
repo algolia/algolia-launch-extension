@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextField, Flex, Checkbox, ContextualHelp, Heading, Content, Text } from "@adobe/react-spectrum";
+import WrappedPickerField from "../../components/wrappedPickerField";
 import WrappedTextField from '../../components/wrappedTextField';
 import WrappedCheckboxField from '../../components/wrappedCheckboxField';
 
@@ -7,7 +8,7 @@ export default () => (
   <Flex direction="column" gap="size-65">
     <WrappedTextField
       name="appId"
-      component={TextField}
+      component={ TextField }
       width="size-4600"
       label="Application ID"
       isRequired
@@ -25,7 +26,7 @@ export default () => (
     />
     <WrappedTextField
       name="apiKey"
-      component={TextField}
+      component={ TextField }
       width="size-4600"
       label="Search API Key"
       isRequired
@@ -43,7 +44,7 @@ export default () => (
     />
     <WrappedTextField
       name="indexName"
-      component={TextField}
+      component={ TextField }
       width="size-4600"
       label="Index Name"
       isRequired
@@ -59,9 +60,45 @@ export default () => (
         </ContextualHelp>
       }
     />
+    <WrappedTextField
+      name="userTokenDataElement"
+      component={ TextField }
+      width="size-4600"
+      label="User Token Data Element"
+      necessityIndicator="label"
+      supportDataElement
+      contextualHelp={
+        <ContextualHelp variant="info">
+          <Heading>User Token</Heading>
+          <Content>
+            <Text>
+              Set the Data Element that will return the User Token.
+            </Text>
+          </Content>
+        </ContextualHelp>
+      }
+    />
+    <WrappedTextField
+      name="authenticatedUserTokenDataElement"
+      component={ TextField }
+      width="size-4600"
+      label="Authenticated User Token Data Element"
+      necessityIndicator="label"
+      supportDataElement
+      contextualHelp={
+        <ContextualHelp variant="info">
+          <Heading>Authenticated User Token</Heading>
+          <Content>
+            <Text>
+              Set the Data Element that will return the Authenticated User Token.
+            </Text>
+          </Content>
+        </ContextualHelp>
+      }
+    />
     <WrappedCheckboxField
       name="useUserTokenCookie"
-      component={Checkbox}
+      component={ Checkbox }
       width="size-4600"
       label="Use User Token Cookie"
       necessityIndicator="label"
@@ -79,17 +116,17 @@ export default () => (
     />
     <WrappedTextField
       name="version"
-      component={TextField}
+      component={ TextField }
       width="size-4600"
       label="Insight Library Version"
       necessityIndicator="label"
-      defaultValue="2.2.3"
+      defaultValue="2.13.0"
       contextualHelp={
         <ContextualHelp variant="info">
           <Heading>Insight Library Version</Heading>
           <Content>
             <Text>
-              Enter the Algolia Insight version.  The default value is <b>2.2.3</b>.
+              Enter the Algolia Insight version.  The default value is <b>2.13.0</b>.
             </Text>
           </Content>
         </ContextualHelp>
@@ -97,7 +134,7 @@ export default () => (
     />
     <WrappedTextField
       name="userHasOptedOutDataElement"
-      component={TextField}
+      component={ TextField }
       width="size-4600"
       label="User Opt Out Data Element"
       necessityIndicator="label"
@@ -112,6 +149,26 @@ export default () => (
           </Content>
         </ContextualHelp>
       }
+    />
+    <WrappedPickerField
+      name="currency"
+      width="size-4600"
+      label="Currency"
+      necessityIndicator="label"
+      contextualHelp={
+        <ContextualHelp variant="info">
+          <Heading>Currency</Heading>
+          <Content>
+            <Text>
+              Select the currency
+            </Text>
+          </Content>
+        </ContextualHelp>
+      }
+      items={[
+        { id: 'USD', name: 'USD' },
+        { id: 'EUR', name: 'EUR' }
+      ]}
     />
   </Flex>
 );
