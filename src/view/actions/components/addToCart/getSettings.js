@@ -1,1 +1,1 @@
-export default ({ eventDetailsDataElement, userTokenDataElement, eventName }) => ({ eventDetailsDataElement, userTokenDataElement, eventName });
+export default ({ eventDetailsDataElement, eventName }) => ({ eventDetailsDataElement, eventName });

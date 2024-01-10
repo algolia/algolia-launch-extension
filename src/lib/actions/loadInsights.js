@@ -7,13 +7,14 @@ module.exports = function(settings) {
     appId,
     apiKey,
     userTokenDataElement,
-    authenticatedUserTokenDataElement,
+    authenticatedUserTokenDataElement
+  } = extensionSettings;
+  const {
     useUserTokenCookie = false,
-    currency = 'USD',
-    version = '2.2.3',
+    version = '2.13.0',
     userHasOptedOutDataElement = false,
     cookieDuration = 15552000000
-  } = extensionSettings;
+  } = settings;
   const ALGOLIA_INSIGHTS_SRC = `https://cdn.jsdelivr.net/npm/search-insights@${version}/dist/search-insights.min.js`;
 
   !function(e,a,t,n,s,i,c){e.AlgoliaAnalyticsObject=s,e[s]=e[s]||function(){

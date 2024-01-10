@@ -8,13 +8,6 @@ export default (values) => {
     };
   }
 
-  if (!values.userTokenDataElement) {
-    errors.userTokenDataElement = {
-      message: 'Please specify your User Token Data Element',
-      type: 'required'
-    };
-  }
-
   if (!values.eventName) {
     errors.eventName = {
       message: 'Please specify your Event Name',

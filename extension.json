@@ -51,7 +51,8 @@
         "type": "object",
         "properties": {}
       },
-      "libPath": "src/lib/actions/loadInsights.js"
+      "libPath": "src/lib/actions/loadInsights.js",
+      "viewPath": "actions/loadInsights.html"
     },
     {
       "displayName": "Viewed",

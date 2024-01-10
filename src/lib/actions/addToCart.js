@@ -10,11 +10,8 @@ module.exports = function(settings, event) {
       queryID,
       indexName,
       objectIDs,
-      objectData,
-      currency
+      objectData
     },
-    userTokenDataElement,
-    authenticatedUserTokenDataElement,
     eventName
   } = settings;
 
@@ -22,13 +19,13 @@ module.exports = function(settings, event) {
     timestamp,
     eventName,
     index: indexName || extensionSettings.indexName,
-    userToken: userTokenDataElement || extensionSettings.userTokenDataElement,
+    userToken: extensionSettings.userTokenDataElement,
     objectIDs: objectIDs,
-    currency: currency || extensionSettings.currency
+    currency: extensionSettings.currency
   };
 
-  if (authenticatedUserTokenDataElement || extensionSettings.authenticatedUserTokenDataElement) {
-    payload.authenticatedUserToken = authenticatedUserTokenDataElement || extensionSettings.authenticatedUserTokenDataElement;
+  if (extensionSettings.authenticatedUserTokenDataElement) {
+    payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
   }
 
   let value;

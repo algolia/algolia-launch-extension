@@ -22,5 +22,19 @@ export default (values) => {
     };
   }
 
+  if (!values.userTokenDataElement) {
+    errors.userTokenDataElement = {
+      message: 'Please specify the User Token Data Element',
+      type: 'required'
+    };
+  }
+
+  if (!values.currency) {
+    errors.currency = {
+      message: 'Please specify the Currency for the property',
+      type: 'required'
+    };
+  }
+
   return errors;
 };

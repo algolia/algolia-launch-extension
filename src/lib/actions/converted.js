@@ -11,21 +11,19 @@ module.exports = function(settings, event) {
       indexName,
       objectID,
     },
-    userTokenDataElement,
-    authenticatedUserTokenDataElement,
     eventName
   } = settings;
 
   const payload = {
     timestamp,
-    userToken: userTokenDataElement || extensionSettings.userTokenDataElement,
+    userToken: extensionSettings.userTokenDataElement,
     index: indexName || extensionSettings.indexName,
     eventName,
     objectIDs: [objectID]
   };
 
-  if (authenticatedUserTokenDataElement || extensionSettings.authenticatedUserTokenDataElement) {
-    payload.authenticatedUserToken = authenticatedUserTokenDataElement || extensionSettings.authenticatedUserTokenDataElement;
+  if (extensionSettings.authenticatedUserTokenDataElement) {
+    payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
   }
 
   if (queryID && objectID) {

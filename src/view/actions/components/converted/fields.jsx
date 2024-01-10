@@ -22,7 +22,6 @@ export default () => (
         </ContextualHelp>
       }
     />
-
     <WrappedTextField
       name="eventDetailsDataElement"
       component={TextField}
@@ -40,26 +39,6 @@ export default () => (
               If the Data Element contains <code>queryId</code>, the event will be classed as <b>Converted after Search</b> otherwise
               it will be considered a <b>Converted</b>event class.  If Index Name is not available from the Data Element,
               then the default Index Name will be used when sending events.
-            </Text>
-          </Content>
-        </ContextualHelp>
-      }
-    />
-
-    <WrappedTextField
-      name="userTokenDataElement"
-      component={TextField}
-      width="size-4600"
-      label="User Token Data Element"
-      isRequired
-      necessityIndicator="label"
-      supportDataElement
-      contextualHelp={
-        <ContextualHelp variant="info">
-          <Heading>User Token</Heading>
-          <Content>
-            <Text>
-              Set the Data Element that will return the User Token.
             </Text>
           </Content>
         </ContextualHelp>

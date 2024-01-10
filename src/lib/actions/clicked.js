@@ -12,21 +12,19 @@ module.exports = function(settings, event) {
       objectID,
       position
     },
-    userTokenDataElement,
-    authenticatedUserTokenDataElement,
     eventName
   } = settings;
 
   const payload = {
     timestamp,
-    userToken: userTokenDataElement || extensionSettings.userTokenDataElement,
-    index: indexName || extensionSettings.indexName,
+    userToken: extensionSettings.userTokenDataElement,
+    index: extensionSettings.indexName,
     eventName,
     objectIDs: [objectID]
   };
 
-  if (authenticatedUserTokenDataElement || extensionSettings.authenticatedUserTokenDataElement) {
-    payload.authenticatedUserToken = authenticatedUserTokenDataElement || extensionSettings.authenticatedUserTokenDataElement;
+  if (extensionSettings.authenticatedUserTokenDataElement) {
+    payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
   }
 
   const path = event.nativeEvent.srcElement.closest('a').href;
