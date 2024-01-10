@@ -1,6 +1,6 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { addEventToStore, getEventToStore, removeEventToStore } = require("../utils/storageManager");
+const { addEventToStore, getEventToStore, removeEventToStore } = require('../utils/storageManager');
 
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
@@ -13,16 +13,21 @@ module.exports = function(settings, event) {
       position
     },
     userTokenDataElement,
+    authenticatedUserTokenDataElement,
     eventName
   } = settings;
 
   const payload = {
     timestamp,
-    eventName,
+    userToken: userTokenDataElement || extensionSettings.userTokenDataElement,
     index: indexName || extensionSettings.indexName,
-    userToken: userTokenDataElement,
+    eventName,
     objectIDs: [objectID]
   };
+
+  if (authenticatedUserTokenDataElement || extensionSettings.authenticatedUserTokenDataElement) {
+    payload.authenticatedUserToken = authenticatedUserTokenDataElement || extensionSettings.authenticatedUserTokenDataElement;
+  }
 
   const path = event.nativeEvent.srcElement.closest('a').href;
   const url = new URL(path);

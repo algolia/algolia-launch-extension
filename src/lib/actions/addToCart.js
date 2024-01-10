@@ -1,6 +1,6 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { removeEventToStore } = require("../utils/storageManager");
+const { removeEventToStore } = require('../utils/storageManager');
 
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
@@ -22,13 +22,13 @@ module.exports = function(settings, event) {
     timestamp,
     eventName,
     index: indexName || extensionSettings.indexName,
-    userToken: userTokenDataElement || extensionSettings.userToken,
+    userToken: userTokenDataElement || extensionSettings.userTokenDataElement,
     objectIDs: objectIDs,
     currency: currency || extensionSettings.currency
   };
 
-  if (authenticatedUserTokenDataElement || extensionSettings.authenticatedUserToken) {
-    payload.authenticatedUserToken = authenticatedUserTokenDataElement || extensionSettings.authenticatedUserToken;
+  if (authenticatedUserTokenDataElement || extensionSettings.authenticatedUserTokenDataElement) {
+    payload.authenticatedUserToken = authenticatedUserTokenDataElement || extensionSettings.authenticatedUserTokenDataElement;
   }
 
   let value;

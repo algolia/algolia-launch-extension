@@ -15,9 +15,9 @@ module.exports = function(settings) {
   const payload = {
     timestamp,
     eventName,
+    userToken: userTokenDataElement || extensionSettings.userTokenDataElement,
     index: indexName || extensionSettings.indexName,
-    objectIDs: [objectID],
-    userToken: userTokenDataElement
+    objectIDs: [objectID]
   };
 
   if (objectID) {

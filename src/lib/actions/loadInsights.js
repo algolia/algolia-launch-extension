@@ -9,7 +9,7 @@ module.exports = function(settings) {
     userTokenDataElement,
     authenticatedUserTokenDataElement,
     useUserTokenCookie = false,
-    currency,
+    currency = 'USD',
     version = '2.2.3',
     userHasOptedOutDataElement = false,
     cookieDuration = 15552000000
@@ -28,6 +28,7 @@ module.exports = function(settings) {
     userHasOptedOut: userHasOptedOutDataElement,
     cookieDuration: cookieDuration
   });
+  window.aa('addAlgoliaAgent', 'algolia-launch-extension (2.2.0)');
 
   if (userTokenDataElement) {
     window.aa('setUserToken', userTokenDataElement);
