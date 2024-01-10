@@ -1,9 +1,9 @@
 import React from 'react';
 import ExtensionView from '../components/extensionView';
-import ConfigurationFields from './components/addToCart/fields';
-import getConfigurationInitValues from './components/addToCart/getInitValues';
-import getConfigurationSettings from './components/addToCart/getSettings';
-import validateConfigurationFields from './components/addToCart/validate';
+import ConfigurationFields from './components/purchased/fields';
+import getConfigurationInitValues from './components/purchased/getInitValues';
+import getConfigurationSettings from './components/purchased/getSettings';
+import validateConfigurationFields from './components/purchased/validate';
 
 export default () => (
   <ExtensionView

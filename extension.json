@@ -118,26 +118,26 @@
       "viewPath": "actions/clicked.html"
     },
     {
-      "displayName": "Purchase",
-      "name": "purchase",
+      "displayName": "Purchased",
+      "name": "purchased",
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {}
       },
-      "libPath": "src/lib/actions/purchase.js",
-      "viewPath": "actions/purchase.html"
+      "libPath": "src/lib/actions/purchased.js",
+      "viewPath": "actions/purchased.html"
     },
     {
-      "displayName": "Add to Cart",
-      "name": "add-to-cart",
+      "displayName": "Added to Cart",
+      "name": "added-to-cart",
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {}
       },
-      "libPath": "src/lib/actions/addToCart.js",
-      "viewPath": "actions/addToCart.html"
+      "libPath": "src/lib/actions/addedToCart.js",
+      "viewPath": "actions/addedToCart.html"
     }
   ],
   "dataElements": [
