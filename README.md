@@ -4,10 +4,16 @@ The Algolia Launch Extension wraps the Algolia Search Insights to send user inte
 feature.
 
 **NOTE**
-> The connector is provided « as is » and Algolia (a) makes no representation or warranties of any kind, whether express, implied, statutory or otherwise regarding the connector, and (b) disclaims all warranties, including any implied or express warranties (i) of merchantability, satisfactory quality, fitness for a particular purpose, non-infringement, or quiet enjoyment, (ii) arising out of any course of dealing or usage of trade, and (iii) that the connector will be uninterrupted, error free or free of harmful components.
-> Algolia does not provide support for the connector, including installation or troubleshooting. If you require help with this connector, please contact Algolia Sales.
-> The connector, and Subscriber’s use of such connector is subject to and governed by the applicable open source license accompanying, linked to or embedded in such connector repository (“Open Source License”). Algolia grants Subscriber a license to use the connector to the full extent permitted by the applicable Open Source License.
-
+> The connector is provided « as is » and Algolia (a) makes no representation or warranties of any kind, whether
+> express, implied, statutory or otherwise regarding the connector, and (b) disclaims all warranties, including any
+> implied or express warranties (i) of merchantability, satisfactory quality, fitness for a particular purpose,
+> non-infringement, or quiet enjoyment, (ii) arising out of any course of dealing or usage of trade, and (iii) that the
+> connector will be uninterrupted, error free or free of harmful components.
+> Algolia does not provide support for the connector, including installation or troubleshooting. If you require help
+> with this connector, please contact Algolia Sales.
+> The connector, and Subscriber’s use of such connector is subject to and governed by the applicable open source license
+> accompanying, linked to or embedded in such connector repository (“Open Source License”). Algolia grants Subscriber a
+> license to use the connector to the full extent permitted by the applicable Open Source License.
 
 ## What is inside?
 
@@ -22,17 +28,18 @@ based on business requirements.
 | Search API Key                        | Enter Search API Key which can be found in the on the Algolia Dashboard in the [API Keys](https://www.algolia.com/account/api-keys/all) section.     |
 | Index Name                            | Enter the Index Name that contain the Products or Content.  This Index will be used as a default.                                                    |
 | User Token Data Element               | Set the Data Element that will return the User Token.                                                                                                |
-| Authenticated User Token Data Element | Set the Data Element that will return the Authenticated User Token.                                                                                  |
-| Use User Token Cookie                 | Check this box if you want Algolia to generate a User Token cookie.  The default value is `false`.                                                   |
-| Insight Library Version               | Enter the Algolia Insight version.  The default value is `2.2.3`.                                                                                    |
-| User Opt Out Data Element             | Select a Data Element that will retrieve the user's decision on tracking.                                                                            |
+| Authenticated User Token Data Element | Set the Data Element that will return the Authenticated User Token.                                                                                  | |
 | Currency                              | Select a currency type.  The default value is `USD`.                                                                                                 |
 
 ### Actions
 
 #### Load Insights
 
-This action includes the Algolia Insights library to be utilized for sending events to Algolia.
+| Property                  | Description                                                                                        |
+|---------------------------|----------------------------------------------------------------------------------------------------|
+| Use User Token Cookie     | Check this box if you want Algolia to generate a User Token cookie.  The default value is `false`. |
+| Insight Library Version   | Enter the Algolia Insight version.  The default value is `2.13.0`.                                 |
+| User Opt Out Data Element | Select a Data Element that will retrieve the user's decision on tracking.                          |
 
 #### Clicked
 
@@ -46,37 +53,37 @@ This action includes the Algolia Insights library to be utilized for sending eve
 
 #### Converted
 
-| Property                              | Description                                                                                                                                                                                                                                                                                                                                                                               |
-|---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Event Name                            | Enter the Event Name that can be used to further refine this `convert` event                                                                                                                                                                                                                                                                                                              |
-| Event Type                            | Automatically set as `convert`                                                                                                                                                                                                                                                                                                                                                            |
-| Event Details Data Element            | Select a Data Element that will retrieve the event details (`indexName`, `objectId`, `queryId` (optional)). If the Data Element contains `queryId`, the event will be classed as *Converted after Search* otherwise it will be considered a *Converted* event class.  If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
+| Property                   | Description                                                                                                                                                                                                                                                                                                                                                                               |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event Name                 | Enter the Event Name that can be used to further refine this `convert` event                                                                                                                                                                                                                                                                                                              |
+| Event Type                 | Automatically set as `convert`                                                                                                                                                                                                                                                                                                                                                            |
+| Event Details Data Element | Select a Data Element that will retrieve the event details (`indexName`, `objectId`, `queryId` (optional)). If the Data Element contains `queryId`, the event will be classed as *Converted after Search* otherwise it will be considered a *Converted* event class.  If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
 
 #### Converted - Add to Cart
 
-| Property                              | Description                                                                                                                                                                                                                                                                                                                                                                                                          |
-|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Event Name                            | Enter the Event Name that can be used to further refine this `convert` event                                                                                                                                                                                                                                                                                                                                         |
-| Event Type                            | Automatically set as `convert`                                                                                                                                                                                                                                                                                                                                                                                       |
-| Sub Event Type                        | Automatically set as `addToCart`                                                                                                                                                                                                                                                                                                                                                                                     |
-| Event Details Data Element            | Select a Data Element that will retrieve the event details (`indexName`, `objectId`, `queryId` (optional), `objectData` (optional)). If the Data Element contains `queryId`, the event will be classed as *Add to Cart after Search* otherwise it will be considered a *Add to Cart* event class.  If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
+| Property                   | Description                                                                                                                                                                                                                                                                                                                                                                                                            |
+|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event Name                 | Enter the Event Name that can be used to further refine this `convert` event                                                                                                                                                                                                                                                                                                                                           |
+| Event Type                 | Automatically set as `convert`                                                                                                                                                                                                                                                                                                                                                                                         |
+| Sub Event Type             | Automatically set as `addedToCart`                                                                                                                                                                                                                                                                                                                                                                                     |
+| Event Details Data Element | Select a Data Element that will retrieve the event details (`indexName`, `objectId`, `queryId` (optional), `objectData` (optional)). If the Data Element contains `queryId`, the event will be classed as *Add to Cart after Search* otherwise it will be considered a *Add to Cart* event class.  If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
 
 #### Converted - Purchase
 
-| Property                              | Description                                                                                                                                                                                                                                                                                                                                                                                                        |
-|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Event Name                            | Enter the Event Name that can be used to further refine this `convert` event                                                                                                                                                                                                                                                                                                                                       |
-| Event Type                            | Automatically set as `convert`                                                                                                                                                                                                                                                                                                                                                                                     |
-| Sub Event Type                        | Automatically set as `purchase`                                                                                                                                                                                                                                                                                                                                                                                    |
-| Event Details Data Element            | Select a Data Element that will retrieve the event details (`indexName`, `objectId`, `queryId` (optional), `objectData` (optional)). If the Data Element contains `queryId`, the event will be classed as *Purchased after Search* otherwise it will be considered a *Purchased* event class.  If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
+| Property                   | Description                                                                                                                                                                                                                                                                                                                                                                                                        |
+|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event Name                 | Enter the Event Name that can be used to further refine this `convert` event                                                                                                                                                                                                                                                                                                                                       |
+| Event Type                 | Automatically set as `convert`                                                                                                                                                                                                                                                                                                                                                                                     |
+| Sub Event Type             | Automatically set as `purchased`                                                                                                                                                                                                                                                                                                                                                                                   |
+| Event Details Data Element | Select a Data Element that will retrieve the event details (`indexName`, `objectId`, `queryId` (optional), `objectData` (optional)). If the Data Element contains `queryId`, the event will be classed as *Purchased after Search* otherwise it will be considered a *Purchased* event class.  If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
 
 #### Viewed
 
-| Property                              | Description                                                                                                                                                                                               |
-|---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Event Name                            | Enter the Event Name that can be used to further refine this `view` event                                                                                                                                 |
-| Event Type                            | Automatically set as `view`                                                                                                                                                                               |
-| Event Details Data Element            | Select a Data Element that will retrieve the event details (`indexName`, `objectId`). If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
+| Property                   | Description                                                                                                                                                                                               |
+|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event Name                 | Enter the Event Name that can be used to further refine this `view` event                                                                                                                                 |
+| Event Type                 | Automatically set as `view`                                                                                                                                                                               |
+| Event Details Data Element | Select a Data Element that will retrieve the event details (`indexName`, `objectId`). If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
 
 ### Data Elements
 
@@ -96,10 +103,10 @@ This Data Element returns:
 ```javascript
 {
   timestamp,
-  queryID,
-  indexName,
-  objectID,
-  position
+    queryID,
+    indexName,
+    objectID,
+    position
 }
 ```
 
@@ -133,9 +140,9 @@ This Data Element returns:
 ```javascript
 {
   timestamp,
-  queryID,
-  indexName,
-  objectID
+    queryID,
+    indexName,
+    objectID
 }
 ```
 
