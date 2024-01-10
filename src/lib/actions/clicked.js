@@ -9,8 +9,8 @@ module.exports = function(settings, event) {
       timestamp,
       queryID,
       indexName,
-      objectID,
-      position
+      objectIDs,
+      positions
     },
     eventName
   } = settings;
@@ -20,7 +20,7 @@ module.exports = function(settings, event) {
     userToken: extensionSettings.userTokenDataElement,
     index: extensionSettings.indexName,
     eventName,
-    objectIDs: [objectID]
+    objectIDs
   };
 
   if (extensionSettings.authenticatedUserTokenDataElement) {
@@ -30,11 +30,11 @@ module.exports = function(settings, event) {
   const path = event.nativeEvent.srcElement.closest('a').href;
   const url = new URL(path);
 
-  if (queryID && objectID && position) {
+  if (queryID && objectIDs && positions && objectIDs.length > 0 && positions.length > 0) {
     const updatedPayload = {
       ...payload,
       queryID,
-      positions: [parseInt(position)]
+      positions
     };
     window.aa('clickedObjectIDsAfterSearch', updatedPayload);
 
@@ -42,20 +42,20 @@ module.exports = function(settings, event) {
       timestamp,
       queryID,
       indexName,
-      objectID,
-      position
+      objectIDs,
+      positions
     });
 
     turbine.logger.log(
       `Insights command: aa('clickedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
     );
-  } else if (objectID) {
+  } else if (objectIDs) {
     window.aa('clickedObjectIDs', payload);
 
     addEventToStore(url.pathname, {
       timestamp,
       indexName,
-      objectID
+      objectIDs
     });
 
     turbine.logger.log(

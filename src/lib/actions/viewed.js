@@ -6,7 +6,7 @@ module.exports = function(settings) {
     eventDetailsDataElement: {
       timestamp,
       indexName,
-      objectID
+      objectIDs
     },
     userTokenDataElement,
     eventName
@@ -17,10 +17,10 @@ module.exports = function(settings) {
     eventName,
     userToken: userTokenDataElement || extensionSettings.userTokenDataElement,
     index: indexName || extensionSettings.indexName,
-    objectIDs: [objectID]
+    objectIDs
   };
 
-  if (objectID) {
+  if (objectIDs && objectIDs.length > 0) {
     window.aa('viewedObjectIDs', payload);
   }
 

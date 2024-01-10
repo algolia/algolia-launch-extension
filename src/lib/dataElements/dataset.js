@@ -6,9 +6,9 @@ const getEventDetailsData = (srcElement, querySelector) => {
     const dataset = ancestor.dataset;
     const algoliaData = {
       queryID: dataset['insightsQueryId'],
-      objectID: dataset['insightsObjectId'],
-      position: dataset['insightsPosition']
-    }
+      objectIDs: [dataset['insightsObjectId']],
+      positions: [parseInt(dataset['insightsPosition'])]
+    };
 
     turbine.logger.log(
       `Dataset Data Element', ${JSON.stringify(algoliaData)});).`
@@ -45,7 +45,7 @@ module.exports = function(settings, event) {
       timestamp: new Date().getTime(),
       ...getEventDetailsData(srcElement, hitQuerySelector),
       ...getIndexNameData(srcElement, indexNameQuerySelector)
-    }
+    };
   }
   return {};
 };

@@ -9,7 +9,7 @@ module.exports = function(settings, event) {
       timestamp,
       queryID,
       indexName,
-      objectID,
+      objectIDs,
     },
     eventName
   } = settings;
@@ -19,14 +19,14 @@ module.exports = function(settings, event) {
     userToken: extensionSettings.userTokenDataElement,
     index: indexName || extensionSettings.indexName,
     eventName,
-    objectIDs: [objectID]
+    objectIDs
   };
 
   if (extensionSettings.authenticatedUserTokenDataElement) {
     payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
   }
 
-  if (queryID && objectID) {
+  if (queryID && objectIDs && objectIDs.length > 0) {
     const updatedPayload = {
       ...payload,
       queryID
@@ -36,7 +36,7 @@ module.exports = function(settings, event) {
     turbine.logger.log(
       `Insights command: aa('convertedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
     );
-  } else if (objectID) {
+  } else if (objectIDs && objectIDs.length > 0) {
     window.aa('convertedObjectIDs', payload);
     turbine.logger.log(
       `Insights command: aa('convertedObjectIDs', ${JSON.stringify(payload)});).`
