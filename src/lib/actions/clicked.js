@@ -17,9 +17,9 @@ module.exports = function(settings, event) {
 
   const payload = {
     timestamp,
-    userToken: extensionSettings.userTokenDataElement,
-    index: extensionSettings.indexName,
     eventName,
+    index: indexName || extensionSettings.indexName,
+    userToken: extensionSettings.userTokenDataElement,
     objectIDs
   };
 

@@ -8,17 +8,20 @@ module.exports = function(settings) {
       indexName,
       objectIDs
     },
-    userTokenDataElement,
     eventName
   } = settings;
 
   const payload = {
     timestamp,
     eventName,
-    userToken: userTokenDataElement || extensionSettings.userTokenDataElement,
+    userToken: extensionSettings.userTokenDataElement,
     index: indexName || extensionSettings.indexName,
     objectIDs
   };
+
+  if (extensionSettings.authenticatedUserTokenDataElement) {
+    payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
+  }
 
   if (objectIDs && objectIDs.length > 0) {
     window.aa('viewedObjectIDs', payload);
