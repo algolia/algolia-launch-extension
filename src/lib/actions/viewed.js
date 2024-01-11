@@ -30,4 +30,5 @@ module.exports = function(settings) {
   turbine.logger.log(
     `Insights command: aa('viewedObjectIDs', ${JSON.stringify(payload)});).`
   );
+  return true;
 };

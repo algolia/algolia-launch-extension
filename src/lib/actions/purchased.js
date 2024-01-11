@@ -2,18 +2,31 @@
 const window = require('@adobe/reactor-window');
 const { removeEventToStore } = require('../utils/storageManager');
 
+function updatePayload(payload, objectData) {
+  const updatedPayload = {
+    ...payload,
+    objectData
+  };
+  const value = objectData.reduce(function(accum, data) {
+    return accum + Number(data.price) * Number(data.quantity);
+  }, 0);
+  if (value) {
+    updatedPayload.value = value;
+  }
+  return updatedPayload;
+}
+
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
     eventDetailsDataElement: {
       timestamp,
-      queryID,
       indexName,
       objectIDs,
-      objectData,
-      currency
+      objectData
     },
-    eventName
+    eventName,
+    currency
   } = settings;
 
   const payload = {
@@ -29,35 +42,24 @@ module.exports = function(settings, event) {
     payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
   }
 
-  let value;
+  let isPurchasedWithQueryID = false;
   if (objectData && objectData.length > 0) {
-    payload.objectData = objectData;
-    value = objectData.reduce(function(accum, data) {
-        return accum + Number(data.price);
-      }, 0);
+    isPurchasedWithQueryID = objectData.find(data => data.queryID !== null);
   }
 
-  if (value) {
-    payload.value = value;
+  if (isPurchasedWithQueryID) {
+    const updatedPayload = updatePayload(payload, objectData);
+    window.aa('purchasedObjectIDsAfterSearch', updatedPayload);
+    turbine.logger.log(
+      `Insights command: aa('purchasedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
+    );
+  } else {
+    const updatedPayload = updatePayload(payload, objectData);
+    window.aa('purchasedObjectIDs', updatedPayload);
+    turbine.logger.log(
+      `Insights command: aa('purchasedObjectIDs', ${JSON.stringify(updatedPayload)});).`
+    );
   }
-
-  if (objectIDs && objectIDs.length > 0) {
-    if (queryID) {
-      const updatedPayload = {
-        ...payload,
-        queryID
-      };
-      window.aa('purchasedObjectIDsAfterSearch', updatedPayload);
-      turbine.logger.log(
-        `Insights command: aa('purchasedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
-      );
-    } else {
-      window.aa('purchasedObjectIDs', payload);
-      turbine.logger.log(
-        `Insights command: aa('purchasedObjectIDs', ${JSON.stringify(payload)});).`
-      );
-    }
-  }
-  removeEventToStore(window.document.location.pathname);
+  return true;
 };
 

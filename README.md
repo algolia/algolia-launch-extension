@@ -66,7 +66,7 @@ based on business requirements.
 |----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Event Name                 | Enter the Event Name that can be used to further refine this `convert` event                                                                                                                                                                                                                                                                                                                                                               |
 | Event Type                 | Automatically set as `convert`                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Sub Event Type             | Automatically set as `addedToCart`                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Sub Event Type             | Automatically set as `addToCart`                                                                                                                                                                                                                                                                                                                                                                                                           |
 | Event Details Data Element | Select a Data Element that will retrieve the event details (`indexName`, `objectId`, `queryId` (optional), `objectData` (optional)). If the Data Element contains `queryId`, the event will be classed as *Added to Cart object IDs after Search* otherwise it will be considered a *Added to Cart object IDs* event.  If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
 
 #### Converted - Purchase
@@ -75,7 +75,7 @@ based on business requirements.
 |----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Event Name                 | Enter the Event Name that can be used to further refine this `convert` event                                                                                                                                                                                                                                                                                                                                                       |
 | Event Type                 | Automatically set as `convert`                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Sub Event Type             | Automatically set as `purchased`                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Sub Event Type             | Automatically set as `purchase`                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Event Details Data Element | Select a Data Element that will retrieve the event details (`indexName`, `objectId`, `queryId` (optional), `objectData` (optional)). If the Data Element contains `queryId`, the event will be classed as *Purchased object IDs after Search* otherwise it will be considered a *Purchased object IDs* event.  If Index Name is not available from the Data Element, then the default Index Name will be used when sending events. |
 
 #### Viewed
@@ -103,7 +103,7 @@ This Data Element returns:
 
 ```javascript
 {
-    timestamp,
+  timestamp,
     queryID,
     indexName,
     objectIDs,
@@ -140,7 +140,7 @@ This Data Element returns:
 
 ```javascript
 {
-    timestamp, 
+  timestamp,
     queryID,
     indexName,
     objectIDs
@@ -165,7 +165,8 @@ This Data Element returns what is stored in the Session Storage.
 
 ### InstantSearch & Autocomplete
 
-The Clicked or Converted after Search requires a `queryId`. `position` is required on Clicked after Search. These two properties are available when
+The Clicked or Converted after Search requires a `queryId`. `position` is required on Clicked after Search. These two
+properties are available when
 insights flag is enabled on InstantSearch and/or Autocomplete configuration.
 Please review below resources to learn and configure Insights for you site.
 

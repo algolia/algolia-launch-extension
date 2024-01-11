@@ -12,7 +12,8 @@ module.exports = function(settings, event) {
       objectIDs,
       objectData
     },
-    eventName
+    eventName,
+    currency
   } = settings;
 
   const payload = {
@@ -21,23 +22,11 @@ module.exports = function(settings, event) {
     index: indexName || extensionSettings.indexName,
     userToken: extensionSettings.userTokenDataElement,
     objectIDs: objectIDs,
-    currency: extensionSettings.currency
+    currency: currency || extensionSettings.currency
   };
 
   if (extensionSettings.authenticatedUserTokenDataElement) {
     payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
-  }
-
-  let value;
-  if (objectData && objectData.length > 0) {
-    payload.objectData = objectData;
-    value = objectData.reduce(function(accum, data) {
-      return accum + Number(data.price);
-    }, 0);
-  }
-
-  if (value) {
-    payload.value = value;
   }
 
   if (objectIDs && objectIDs.length > 0) {
@@ -58,5 +47,6 @@ module.exports = function(settings, event) {
     }
   }
   removeEventToStore(window.document.location.pathname);
+  return true;
 };
 

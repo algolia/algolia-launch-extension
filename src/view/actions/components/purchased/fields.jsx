@@ -45,5 +45,26 @@ export default () => (
         </ContextualHelp>
       }
     />
+    <WrappedPickerField
+      name="currency"
+      width="size-4600"
+      label="Currency"
+      isRequired
+      necessityIndicator="label"
+      contextualHelp={
+        <ContextualHelp variant="info">
+          <Heading>Currency</Heading>
+          <Content>
+            <Text>
+              Select the currency
+            </Text>
+          </Content>
+        </ContextualHelp>
+      }
+      items={[
+        { id: 'USD', name: 'USD' },
+        { id: 'EUR', name: 'EUR' }
+      ]}
+    />
   </Flex>
 );

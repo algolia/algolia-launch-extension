@@ -62,5 +62,6 @@ module.exports = function(settings, event) {
       `Insights command: aa('clickedObjectIDs', ${JSON.stringify(payload)});).`
     );
   }
+  return true;
 };
 
