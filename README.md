@@ -1,6 +1,6 @@
 # Algolia Launch Extension
 
-The Algolia Launch Extension wraps the Algolia Search Insights to send user interaction events to Algolia to enable AI
+The Algolia Launch Extension wraps the Algolia Insights to send user interaction events to Algolia to enable AI
 feature.
 
 **NOTE**
