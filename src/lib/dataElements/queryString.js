@@ -10,7 +10,8 @@ module.exports = function(settings) {
     queryID: params[queryIDParamName],
     indexName: params[indexNameParamName],
     objectIDs: [params[objectIDParamName]],
-    positions: [parseInt(params[positionParamName])]
+    positions: [parseInt(params[positionParamName])],
+    raw: params
   };
 
   turbine.logger.log(

@@ -1,6 +1,6 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { removeEventToStore } = require('../utils/storageManager');
+const { clearEventToStore } = require('../utils/storageManager');
 
 function updatePayload(payload, objectData) {
   const updatedPayload = {
@@ -60,6 +60,8 @@ module.exports = function(settings, event) {
       `Insights command: aa('purchasedObjectIDs', ${JSON.stringify(updatedPayload)});).`
     );
   }
+
+  clearEventToStore(window.document.location.pathname);
   return true;
 };
 

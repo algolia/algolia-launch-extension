@@ -21,7 +21,8 @@ module.exports = function(settings, event) {
     eventName,
     index: indexName || extensionSettings.indexName,
     userToken: extensionSettings.userTokenDataElement,
-    objectIDs: objectIDs,
+    objectIDs,
+    objectData,
     currency: currency || extensionSettings.currency
   };
 
@@ -46,7 +47,7 @@ module.exports = function(settings, event) {
       );
     }
   }
-  removeEventToStore(window.document.location.pathname);
+
   return true;
 };
 

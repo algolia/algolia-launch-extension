@@ -7,7 +7,8 @@ const getEventDetailsData = (srcElement, querySelector) => {
     const algoliaData = {
       queryID: dataset['insightsQueryId'],
       objectIDs: [dataset['insightsObjectId']],
-      positions: [parseInt(dataset['insightsPosition'])]
+      positions: [parseInt(dataset['insightsPosition'])],
+      raw: dataset
     };
 
     turbine.logger.log(
