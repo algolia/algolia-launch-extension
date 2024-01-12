@@ -1,6 +1,6 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { getEventToStore } = require("../utils/storageManager");
+const { getEventToStore } = require('../utils/storageManager');
 
 module.exports = function(settings) {
   const algoliaData = getEventToStore(window.document.location.pathname);

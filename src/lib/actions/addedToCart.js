@@ -10,8 +10,10 @@ module.exports = function(settings, event) {
       queryID,
       indexName,
       objectIDs,
+      objectData
     },
-    eventName
+    eventName,
+    currency
   } = settings;
 
   const payload = {
@@ -19,30 +21,33 @@ module.exports = function(settings, event) {
     eventName,
     index: indexName || extensionSettings.indexName,
     userToken: extensionSettings.userTokenDataElement,
-    objectIDs
+    objectIDs,
+    objectData,
+    currency: currency || extensionSettings.currency
   };
 
   if (extensionSettings.authenticatedUserTokenDataElement) {
     payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
   }
 
-  if (queryID && objectIDs && objectIDs.length > 0) {
-    const updatedPayload = {
-      ...payload,
-      queryID
-    };
-    window.aa('convertedObjectIDsAfterSearch', updatedPayload);
-
-    turbine.logger.log(
-      `Insights command: aa('convertedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
-    );
-  } else if (objectIDs && objectIDs.length > 0) {
-    window.aa('convertedObjectIDs', payload);
-    turbine.logger.log(
-      `Insights command: aa('convertedObjectIDs', ${JSON.stringify(payload)});).`
-    );
+  if (objectIDs && objectIDs.length > 0) {
+    if (queryID) {
+      const updatedPayload = {
+        ...payload,
+        queryID
+      };
+      window.aa('addedToCartObjectIDsAfterSearch', updatedPayload);
+      turbine.logger.log(
+        `Insights command: aa('addedToCartObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
+      );
+    } else {
+      window.aa('addedToCartObjectIDs', payload);
+      turbine.logger.log(
+        `Insights command: aa('addedToCartObjectIDs', ${JSON.stringify(payload)});).`
+      );
+    }
   }
-  removeEventToStore(window.document.location.pathname);
+
   return true;
 };
 

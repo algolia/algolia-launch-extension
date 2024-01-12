@@ -6,25 +6,29 @@ module.exports = function(settings) {
     eventDetailsDataElement: {
       timestamp,
       indexName,
-      objectID
+      objectIDs
     },
-    userTokenDataElement,
     eventName
   } = settings;
 
   const payload = {
     timestamp,
     eventName,
+    userToken: extensionSettings.userTokenDataElement,
     index: indexName || extensionSettings.indexName,
-    objectIDs: [objectID],
-    userToken: userTokenDataElement
+    objectIDs
   };
 
-  if (objectID) {
+  if (extensionSettings.authenticatedUserTokenDataElement) {
+    payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
+  }
+
+  if (objectIDs && objectIDs.length > 0) {
     window.aa('viewedObjectIDs', payload);
   }
 
   turbine.logger.log(
     `Insights command: aa('viewedObjectIDs', ${JSON.stringify(payload)});).`
   );
+  return true;
 };

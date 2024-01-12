@@ -1,12 +1,14 @@
 {
-  "displayName": "Algolia Search Insights",
+  "displayName": "Algolia Insights",
   "name": "algolia",
   "platform": "web",
-  "version": "2.1.8",
-  "description": "Send events to Algolia for AI features, e.g. personalization and recommendation.",
+  "version": "2.2.7",
+  "description": "Send events to Algolia to power AI features (Neural Search, Dynamic Reranking, Personalization, etc). \n\nThe connector is provided « as is » and Algolia (a) makes no representation or warranties of any kind, whether express, implied, statutory or otherwise regarding the connector, and (b) disclaims all warranties, including any implied or express warranties (i) of merchantability, satisfactory quality, fitness for a particular purpose, non-infringement, or quiet enjoyment, (ii) arising out of any course of dealing or usage of trade, and (iii) that the connector will be uninterrupted, error free or free of harmful components.\n\nAlgolia does not provide support for the connector, including installation or troubleshooting. If you require help with this connector, please contact Algolia Sales. \nThe connector, and Subscriber’s use of such connector is subject to and governed by the applicable open source license accompanying, linked to or embedded in such connector repository (\"Open Source License\"). Algolia grants Subscriber a license to use the connector to the full extent permitted by the applicable Open Source License.",
   "author": {
-    "name": "Algolia"
+    "name": "Algolia",
+    "email": "sales@algolia.com"
   },
+  "exchangeUrl": "https://www.adobeexchange.com/experiencecloud.details.algolia.html.",
   "viewBasePath": "dist/",
   "iconPath": "resources/icons/algolia.svg",
   "configuration": {
@@ -24,13 +26,13 @@
         "indexName": {
           "type": "string"
         },
-        "useUserTokenCookie": {
-          "type": "boolean"
-        },
-        "version": {
+        "userTokenDataElement": {
           "type": "string"
         },
-        "userHasOptedOutDataElement": {
+        "authenticatedUserTokenDataElement": {
+          "type": "string"
+        },
+        "currency": {
           "type": "string"
         }
       }
@@ -43,9 +45,20 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+        "properties": {
+          "useUserTokenCookie": {
+            "type": "boolean"
+          },
+          "version": {
+            "type": "string"
+          },
+          "userHasOptedOutDataElement": {
+            "type": "string"
+          }
+        }
       },
-      "libPath": "src/lib/actions/loadInsights.js"
+      "libPath": "src/lib/actions/loadInsights.js",
+      "viewPath": "actions/loadInsights.html"
     },
     {
       "displayName": "Viewed",
@@ -78,9 +91,6 @@
           "eventDetailsDataElement": {
             "type": "string"
           },
-          "userTokenDataElement": {
-            "type": "string"
-          },
           "eventName": {
             "type": "string"
           }
@@ -99,9 +109,6 @@
           "eventDetailsDataElement": {
             "type": "string"
           },
-          "userTokenDataElement": {
-            "type": "string"
-          },
           "eventName": {
             "type": "string"
           }
@@ -109,6 +116,45 @@
       },
       "libPath": "src/lib/actions/clicked.js",
       "viewPath": "actions/clicked.html"
+    },
+    {
+      "displayName": "Purchased",
+      "name": "purchased",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "eventDetailsDataElement": {
+            "type": "string"
+          },
+          "eventName": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
+      },
+      "libPath": "src/lib/actions/purchased.js",
+      "viewPath": "actions/purchased.html"
+    },
+    {
+      "displayName": "Added to Cart",
+      "name": "added-to-cart",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "eventDetailsDataElement": {
+            "type": "string"
+          },
+          "eventName": {
+            "type": "string"
+          }
+        }
+      },
+      "libPath": "src/lib/actions/addedToCart.js",
+      "viewPath": "actions/addedToCart.html"
     }
   ],
   "dataElements": [
@@ -160,8 +206,7 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {
-        }
+        "properties": {}
       },
       "libPath": "src/lib/dataElements/storage.js"
     }

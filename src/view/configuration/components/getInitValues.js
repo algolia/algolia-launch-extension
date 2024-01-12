@@ -1,13 +1,13 @@
 export default (initInfo) => {
   const { settings } = initInfo;
-  const { appId = '', apiKey = '', indexName = '', useUserTokenCookie = true, version = '2.2.3', userHasOptedOutDataElement = '' } = settings || {};
+  const { appId = '', apiKey = '', indexName = '', userTokenDataElement = '', authenticatedUserTokenDataElement = '', currency = '' } = settings || {};
 
   return {
     appId,
     apiKey,
     indexName,
-    useUserTokenCookie,
-    version,
-    userHasOptedOutDataElement
+    userTokenDataElement,
+    authenticatedUserTokenDataElement,
+    currency
   };
 };

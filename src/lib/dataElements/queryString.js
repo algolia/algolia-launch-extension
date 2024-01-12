@@ -9,9 +9,10 @@ module.exports = function(settings) {
     timestamp: new Date().getTime(),
     queryID: params[queryIDParamName],
     indexName: params[indexNameParamName],
-    objectID: params[objectIDParamName],
-    position: params[positionParamName]
-  }
+    objectIDs: [params[objectIDParamName]],
+    positions: [parseInt(params[positionParamName])],
+    raw: params
+  };
 
   turbine.logger.log(
     `QueryString Data Element', ${JSON.stringify(algoliaData)});).`
