@@ -29,7 +29,7 @@ module.exports = function(settings) {
     userHasOptedOut: userHasOptedOutDataElement,
     cookieDuration: cookieDuration
   });
-  window.aa('addAlgoliaAgent', 'algolia-launch-extension (2.2.7)');
+  window.aa('addAlgoliaAgent', 'algolia-launch-extension (2.2.8)');
 
   if (userTokenDataElement) {
     window.aa('setUserToken', userTokenDataElement);
