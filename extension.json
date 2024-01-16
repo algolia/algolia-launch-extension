@@ -2,11 +2,11 @@
   "displayName": "Algolia Insights",
   "name": "algolia",
   "platform": "web",
-  "version": "2.2.8",
+  "version": "2.2.9",
   "description": "Send events to Algolia to power AI features (Neural Search, Dynamic Reranking, Personalization, etc). \n\nThe connector is provided « as is » and Algolia (a) makes no representation or warranties of any kind, whether express, implied, statutory or otherwise regarding the connector, and (b) disclaims all warranties, including any implied or express warranties (i) of merchantability, satisfactory quality, fitness for a particular purpose, non-infringement, or quiet enjoyment, (ii) arising out of any course of dealing or usage of trade, and (iii) that the connector will be uninterrupted, error free or free of harmful components.\n\nAlgolia does not provide support for the connector, including installation or troubleshooting. If you require help with this connector, please contact Algolia Sales. \nThe connector, and Subscriber’s use of such connector is subject to and governed by the applicable open source license accompanying, linked to or embedded in such connector repository (\"Open Source License\"). Algolia grants Subscriber a license to use the connector to the full extent permitted by the applicable Open Source License.",
   "author": {
-    "name": "Algolia",
-    "email": "sales@algolia.com"
+    "name": "Algolia Professional Services",
+    "email": "adobe-algolia-solutions@algolia.com"
   },
   "exchangeUrl": "https://exchange.adobe.com/apps/ec/600023/algolia-insights",
   "viewBasePath": "dist/",
