@@ -61,7 +61,7 @@ module.exports = function(settings, event) {
     );
   }
 
-  clearEventToStore(window.document.location.pathname);
+  clearEventToStore();
   return true;
 };
 

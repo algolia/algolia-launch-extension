@@ -1,5 +1,14 @@
 import React from 'react';
-import { TextField, Flex, ContextualHelp, Heading, Content, Text } from "@adobe/react-spectrum";
+import {
+  TextField,
+  Flex,
+  ContextualHelp,
+  Heading,
+  Content,
+  Text,
+  Disclosure,
+  DisclosureTitle, DisclosurePanel, Accordion
+} from '@adobe/react-spectrum';
 import WrappedTextField from '../../../components/wrappedTextField';
 
 export default () => (
@@ -47,5 +56,28 @@ export default () => (
         </ContextualHelp>
       }
     />
+    <Accordion>
+      <Disclosure id="overrides">
+        <DisclosureTitle>Overrides</DisclosureTitle>
+        <DisclosurePanel>
+          <WrappedTextField
+            name="recordIdDataElement"
+            component={ TextField }
+            width="size-4600"
+            label="Record ID Data Element"
+            necessityIndicator="label"
+            supportDataElement
+            contextualHelp={
+              <ContextualHelp>
+                <Heading>Record ID</Heading>
+                <Content>
+                  Override default approach to create an id for payload look up in local storage.
+                </Content>
+              </ContextualHelp>
+            }
+          />
+        </DisclosurePanel>
+      </Disclosure>
+    </Accordion>
   </Flex>
 );

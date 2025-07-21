@@ -12,6 +12,7 @@ module.exports = function(settings, event) {
       objectIDs,
       positions
     },
+    recordIdDataElement,
     eventName
   } = settings;
 
@@ -27,8 +28,15 @@ module.exports = function(settings, event) {
     payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
   }
 
-  const path = event.nativeEvent.srcElement.closest('a').href;
-  const url = new URL(path);
+  const recordId = (() => {
+    if (recordIdDataElement) {
+      return recordIdDataElement
+    } else {
+      const path = event.nativeEvent.target.closest('a').href;
+      const url = new URL(path);
+      return url.pathname;
+    }
+  })();
 
   if (queryID && objectIDs && positions && objectIDs.length > 0 && positions.length > 0) {
     const updatedPayload = {
@@ -38,7 +46,7 @@ module.exports = function(settings, event) {
     };
     window.aa('clickedObjectIDsAfterSearch', updatedPayload);
 
-    addEventToStore(url.pathname, {
+    addEventToStore(recordId, {
       timestamp,
       queryID,
       indexName,
@@ -52,7 +60,7 @@ module.exports = function(settings, event) {
   } else if (objectIDs) {
     window.aa('clickedObjectIDs', payload);
 
-    addEventToStore(url.pathname, {
+    addEventToStore(recordId, {
       timestamp,
       indexName,
       objectIDs

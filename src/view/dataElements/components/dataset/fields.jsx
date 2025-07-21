@@ -1,5 +1,14 @@
 import React from 'react';
-import { TextField, Flex, Checkbox, ContextualHelp, Heading, Content, Text } from "@adobe/react-spectrum";
+import {
+  TextField,
+  Flex,
+  ContextualHelp,
+  Heading,
+  Content,
+  Text,
+  Accordion,
+  Disclosure, DisclosureTitle, DisclosurePanel,
+} from '@adobe/react-spectrum';
 import WrappedTextField from '../../../components/wrappedTextField';
 
 export default () => (
@@ -41,5 +50,79 @@ export default () => (
         </ContextualHelp>
       }
     />
+
+    <Accordion>
+      <Disclosure id="overrides">
+        <DisclosureTitle>Overrides</DisclosureTitle>
+        <DisclosurePanel>
+          <WrappedTextField
+            name="queryIDDataElement"
+            component={ TextField }
+            width="size-4600"
+            label="Query ID Data Element"
+            necessityIndicator="label"
+            supportDataElement
+            contextualHelp={
+              <ContextualHelp>
+                <Heading>Query ID</Heading>
+                <Content>
+                  Override default approach to return Query ID.
+                </Content>
+              </ContextualHelp>
+            }
+          />
+          <WrappedTextField
+            name="objectIDsDataElement"
+            component={ TextField }
+            width="size-4600"
+            label="ObjectIDs Data Element"
+            necessityIndicator="label"
+            supportDataElement
+            contextualHelp={
+              <ContextualHelp>
+                <Heading>ObjectIDs</Heading>
+                <Content>
+                  Override default approach to return ObjectIDs.
+                </Content>
+              </ContextualHelp>
+            }
+          />
+
+          <WrappedTextField
+            name="positionsDataElement"
+            component={ TextField }
+            width="size-4600"
+            label="Positions Data Element"
+            necessityIndicator="label"
+            supportDataElement
+            contextualHelp={
+              <ContextualHelp>
+                <Heading>Positions</Heading>
+                <Content>
+                  Override default approach to return Positions.
+                </Content>
+              </ContextualHelp>
+            }
+          />
+
+          <WrappedTextField
+            name="indexNameDataElement"
+            component={ TextField }
+            width="size-4600"
+            label="Index Name Data Element"
+            necessityIndicator="label"
+            supportDataElement
+            contextualHelp={
+              <ContextualHelp>
+                <Heading>Index Name</Heading>
+                <Content>
+                  Override default approach to return Index Name.
+                </Content>
+              </ContextualHelp>
+            }
+          />
+        </DisclosurePanel>
+      </Disclosure>
+    </Accordion>
   </Flex>
 );
