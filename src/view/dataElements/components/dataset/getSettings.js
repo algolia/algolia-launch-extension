@@ -1,1 +1,15 @@
-export default ({ hitQuerySelector, indexNameQuerySelector }) => ({ hitQuerySelector, indexNameQuerySelector });
+export default ({
+                  hitQuerySelector,
+                  indexNameQuerySelector,
+                  queryIDDataElement,
+                  objectIDsDataElement,
+                  positionsDataElement,
+                  indexNameDataElement
+}) => ({
+  hitQuerySelector,
+  indexNameQuerySelector,
+  queryIDDataElement,
+  objectIDsDataElement,
+  positionsDataElement,
+  indexNameDataElement
+});

@@ -1,1 +1,8 @@
-export default ({ eventDetailsDataElement, eventName }) => ({ eventDetailsDataElement, eventName });
+export default ({
+                  eventDetailsDataElement,
+                  recordIdDataElement,
+                  eventName }) => ({
+  eventDetailsDataElement,
+  recordIdDataElement,
+  eventName
+                  });
