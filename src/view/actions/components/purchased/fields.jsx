@@ -1,7 +1,7 @@
-import { Content, ContextualHelp, Flex, Heading, Text, TextField } from '@adobe/react-spectrum';
-import React from 'react';
-import WrappedPickerField from '../../../components/wrappedPickerField';
-import WrappedTextField from '../../../components/wrappedTextField';
+import { Content, ContextualHelp, Flex, Heading, Text, TextField } from "@adobe/react-spectrum";
+import React from "react";
+import WrappedPickerField from "../../../components/wrappedPickerField";
+import WrappedTextField from "../../../components/wrappedTextField";
 
 export default () => (
   <Flex direction="column" gap="size-65">

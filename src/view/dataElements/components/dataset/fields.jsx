@@ -1,6 +1,16 @@
-import { Content, ContextualHelp, Flex, Heading, Text, TextField } from '@adobe/react-spectrum';
-import React from 'react';
-import WrappedTextField from '../../../components/wrappedTextField';
+import {
+  Content,
+  ContextualHelp,
+  Disclosure,
+  DisclosurePanel,
+  DisclosureTitle,
+  Flex,
+  Heading,
+  Text,
+  TextField
+} from "@adobe/react-spectrum";
+import React from "react";
+import WrappedTextField from "../../../components/wrappedTextField";
 
 export default () => (
   <Flex direction="column" gap="size-65">
@@ -41,72 +51,77 @@ export default () => (
         </ContextualHelp>
       }
     />
+    <Disclosure>
+      <DisclosureTitle>Overrides</DisclosureTitle>
+      <DisclosurePanel>
 
-    <WrappedTextField
-      name="queryIDDataElement"
-      component={ TextField }
-      width="size-4600"
-      label="Query ID Data Element"
-      necessityIndicator="label"
-      supportDataElement
-      contextualHelp={
-        <ContextualHelp>
-          <Heading>Query ID</Heading>
-          <Content>
-            Override default approach to return Query ID.
-          </Content>
-        </ContextualHelp>
-      }
-    />
-    <WrappedTextField
-      name="objectIDsDataElement"
-      component={ TextField }
-      width="size-4600"
-      label="ObjectIDs Data Element"
-      necessityIndicator="label"
-      supportDataElement
-      contextualHelp={
-        <ContextualHelp>
-          <Heading>ObjectIDs</Heading>
-          <Content>
-            Override default approach to return ObjectIDs.
-          </Content>
-        </ContextualHelp>
-      }
-    />
+        <WrappedTextField
+          name="queryIDDataElement"
+          component={ TextField }
+          width="size-4600"
+          label="Query ID Data Element"
+          necessityIndicator="label"
+          supportDataElement
+          contextualHelp={
+            <ContextualHelp>
+              <Heading>Query ID</Heading>
+              <Content>
+                Override default approach to return Query ID.
+              </Content>
+            </ContextualHelp>
+          }
+        />
+        <WrappedTextField
+          name="objectIDsDataElement"
+          component={ TextField }
+          width="size-4600"
+          label="ObjectIDs Data Element"
+          necessityIndicator="label"
+          supportDataElement
+          contextualHelp={
+            <ContextualHelp>
+              <Heading>ObjectIDs</Heading>
+              <Content>
+                Override default approach to return ObjectIDs.
+              </Content>
+            </ContextualHelp>
+          }
+        />
 
-    <WrappedTextField
-      name="positionsDataElement"
-      component={ TextField }
-      width="size-4600"
-      label="Positions Data Element"
-      necessityIndicator="label"
-      supportDataElement
-      contextualHelp={
-        <ContextualHelp>
-          <Heading>Positions</Heading>
-          <Content>
-            Override default approach to return Positions.
-          </Content>
-        </ContextualHelp>
-      }
-    />
+        <WrappedTextField
+          name="positionsDataElement"
+          component={ TextField }
+          width="size-4600"
+          label="Positions Data Element"
+          necessityIndicator="label"
+          supportDataElement
+          contextualHelp={
+            <ContextualHelp>
+              <Heading>Positions</Heading>
+              <Content>
+                Override default approach to return Positions.
+              </Content>
+            </ContextualHelp>
+          }
+        />
 
-    <WrappedTextField
-      name="indexNameDataElement"
-      component={ TextField }
-      width="size-4600"
-      label="Index Name Data Element"
-      necessityIndicator="label"
-      supportDataElement
-      contextualHelp={
-        <ContextualHelp>
-          <Heading>Index Name</Heading>
-          <Content>
-            Override default approach to return Index Name.
-          </Content>
-        </ContextualHelp>
-      }
-    />
+        <WrappedTextField
+          name="indexNameDataElement"
+          component={ TextField }
+          width="size-4600"
+          label="Index Name Data Element"
+          necessityIndicator="label"
+          supportDataElement
+          contextualHelp={
+            <ContextualHelp>
+              <Heading>Index Name</Heading>
+              <Content>
+                Override default approach to return Index Name.
+              </Content>
+            </ContextualHelp>
+          }
+        />
+      </DisclosurePanel>
+    </Disclosure>
   </Flex>
 );

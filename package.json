@@ -36,20 +36,11 @@
       "npm run lint -- --fix"
     ]
   },
-  "dependencies": {
-    "@adobe/react-spectrum": "^3.28.0",
+  "devDependencies": {
+    "@adobe/react-spectrum": "^3.42.2",
     "@adobe/reactor-document": "^1.0.0",
     "@adobe/reactor-sandbox": "^13.3.0",
     "@adobe/reactor-window": "^1.0.0",
-    "@algolia/advanced-personalization": "^0.0.1-alpha.4",
-    "@spectrum-icons/illustrations": "^3.6.23",
-    "@spectrum-icons/workflow": "^4.2.22",
-    "prop-types": "^15.8.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-hook-form": "^7.60.0"
-  },
-  "devDependencies": {
     "@babel/core": "^7.28.0",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-transform-runtime": "^7.28.0",
