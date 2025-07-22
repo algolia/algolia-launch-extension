@@ -1,8 +1,7 @@
+import { Checkbox, Content, ContextualHelp, Flex, Heading, Text, TextField } from '@adobe/react-spectrum';
 import React from 'react';
-import { TextField, Flex, Checkbox, ContextualHelp, Heading, Content, Text } from "@adobe/react-spectrum";
-import WrappedPickerField from "../../../components/wrappedPickerField";
-import WrappedTextField from '../../../components/wrappedTextField';
 import WrappedCheckboxField from '../../../components/wrappedCheckboxField';
+import WrappedTextField from '../../../components/wrappedTextField';
 
 export default () => (
   <Flex direction="column" gap="size-65">

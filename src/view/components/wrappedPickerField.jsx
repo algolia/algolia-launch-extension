@@ -1,6 +1,6 @@
+import { ComboBox, Item } from '@adobe/react-spectrum';
 import React from 'react';
-import { useFormContext, Controller } from 'react-hook-form';
-import { ComboBox, Item } from "@adobe/react-spectrum";
+import { Controller, useFormContext } from 'react-hook-form';
 import ValidationWrapper from './validationWrapper';
 
 export default ({

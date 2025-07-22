@@ -1,5 +1,5 @@
+import { Content, ContextualHelp, Flex, Heading, Text, TextField } from '@adobe/react-spectrum';
 import React from 'react';
-import { TextField, Flex, Checkbox, ContextualHelp, Heading, Content, Text } from "@adobe/react-spectrum";
 import WrappedTextField from '../../../components/wrappedTextField';
 
 export default () => (

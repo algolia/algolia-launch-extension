@@ -1,6 +1,6 @@
+import { Flex, Text } from '@adobe/react-spectrum';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { Text, Flex } from '@adobe/react-spectrum';
 
 const showError = (obj, path) => {
   if (!obj) {

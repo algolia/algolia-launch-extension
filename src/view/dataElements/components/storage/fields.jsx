@@ -1,6 +1,6 @@
-import { Content, ContextualHelp, Flex, Heading, Radio, RadioGroup } from "@adobe/react-spectrum";
-import React from "react";
-import WrappedRadioGroup from "../../../components/WrappedRadioGroup";
+import { Content, ContextualHelp, Flex, Heading, Radio, RadioGroup } from '@adobe/react-spectrum';
+import React from 'react';
+import WrappedRadioGroup from '../../../components/WrappedRadioGroup';
 
 export default () => (
   <Flex direction="column" gap="size-65">

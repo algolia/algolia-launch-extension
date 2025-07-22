@@ -1,7 +1,7 @@
-import React from 'react';
-import { useFormContext, Controller } from 'react-hook-form';
 import { ActionButton } from '@adobe/react-spectrum';
 import Data from '@spectrum-icons/workflow/Data';
+import React from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
 import ValidationWrapper from './validationWrapper';
 
 const addDataElementToken = (value, dataElementToken) =>
