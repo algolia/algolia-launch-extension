@@ -25,13 +25,13 @@ export default () => (
           width="size-4600"
           label="Insight Library Version"
           necessityIndicator="label"
-          defaultValue="2.13.0"
+          defaultValue="2.17.3"
           contextualHelp={
             <ContextualHelp variant="info">
               <Heading>Insight Library Version</Heading>
               <Content>
                 <Text>
-                  Enter the Algolia Insight version. The default value is <b>2.13.0</b>.
+                  Enter the Algolia Insight version. The default value is <b>2.17.3</b>.
                 </Text>
               </Content>
             </ContextualHelp>

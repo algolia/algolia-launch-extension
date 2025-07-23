@@ -11,7 +11,7 @@ module.exports = function(settings) {
   } = extensionSettings;
   const {
     useUserTokenCookie = false,
-    version = '2.13.0',
+    version = '2.17.3',
     userHasOptedOutDataElement = false,
     cookieDuration = 15552000000
   } = settings;
@@ -31,7 +31,7 @@ module.exports = function(settings) {
     userHasOptedOut: userHasOptedOutDataElement,
     cookieDuration: cookieDuration
   });
-  window.aa('addAlgoliaAgent', 'algolia-launch-extension (2.3.0-beta.2)');
+  window.aa('addAlgoliaAgent', 'algolia-launch-extension (2.3.0-beta.4)');
 
   if (userTokenDataElement) {
     window.aa('setUserToken', userTokenDataElement);
