@@ -23,7 +23,7 @@ export default class ErrorBoundary extends Component {
 
     if (error) {
       // You can render any custom fallback UI
-      return <ErrorMessage message={error.message} />;
+      return <ErrorMessage message={ error.message } />;
     }
 
     return children;

@@ -30,7 +30,7 @@ module.exports = function(settings, event) {
 
   const recordId = (() => {
     if (recordIdDataElement) {
-      return recordIdDataElement
+      return recordIdDataElement;
     } else {
       const path = event.nativeEvent.target.closest('a').href;
       const url = new URL(path);
@@ -55,7 +55,7 @@ module.exports = function(settings, event) {
     });
 
     turbine.logger.log(
-      `Insights command: aa('clickedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
+      `Insights command: aa('clickedObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
     );
   } else if (objectIDs) {
     window.aa('clickedObjectIDs', payload);
@@ -67,7 +67,7 @@ module.exports = function(settings, event) {
     });
 
     turbine.logger.log(
-      `Insights command: aa('clickedObjectIDs', ${JSON.stringify(payload)});).`
+      `Insights command: aa('clickedObjectIDs', ${ JSON.stringify(payload) });).`
     );
   }
   return true;

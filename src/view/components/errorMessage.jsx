@@ -6,6 +6,6 @@ export default ({ message = 'There was an error!' }) => (
   <IllustratedMessage marginTop="size-1000">
     <NotFound />
     <Heading>An error has occured</Heading>
-    <Content>{message}</Content>
+    <Content>{ message }</Content>
   </IllustratedMessage>
 );

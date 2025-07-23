@@ -3,23 +3,23 @@ import { Controller } from 'react-hook-form';
 import ValidationWrapper from './validationWrapper';
 
 export default ({
-  name: componentName,
-  component: Component,
-  onChange: componentOnChange,
-  onBlur: componentOnBlur,
-  defaultValue,
-  label,
-  ...rest
-}) => {
+                  name: componentName,
+                  component: Component,
+                  onChange: componentOnChange,
+                  onBlur: componentOnBlur,
+                  defaultValue,
+                  label,
+                  ...rest
+                }) => {
   return (
     <Controller
       name={ componentName }
       value={ defaultValue }
-      render={({
-                 field: { onChange, onBlur, value, name, ref },
-                 fieldState: { invalid, isTouched, isDirty, error },
-                 formState,
-               }) => (
+      render={ ({
+                  field: { onChange, onBlur, value, name, ref },
+                  fieldState: { invalid, isTouched, isDirty, error },
+                  formState
+                }) => (
         <ValidationWrapper>
           <Component
             name={ name }
@@ -39,11 +39,11 @@ export default ({
             } }
             inputRef={ ref }
             { ...rest }
-          >{label}</Component>
-         <></>
+          >{ label }</Component>
+          <></>
         </ValidationWrapper>
-      )}
-      {...rest}
+      ) }
+      { ...rest }
     />
   );
 };

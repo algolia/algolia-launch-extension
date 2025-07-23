@@ -9,7 +9,7 @@ module.exports = function(settings, event) {
       timestamp,
       queryID,
       indexName,
-      objectIDs,
+      objectIDs
     },
     recordIdDataElement,
     eventName
@@ -37,12 +37,12 @@ module.exports = function(settings, event) {
     window.aa('convertedObjectIDsAfterSearch', updatedPayload);
 
     turbine.logger.log(
-      `Insights command: aa('convertedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
+      `Insights command: aa('convertedObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
     );
   } else if (objectIDs && objectIDs.length > 0) {
     window.aa('convertedObjectIDs', payload);
     turbine.logger.log(
-      `Insights command: aa('convertedObjectIDs', ${JSON.stringify(payload)});).`
+      `Insights command: aa('convertedObjectIDs', ${ JSON.stringify(payload) });).`
     );
   }
 

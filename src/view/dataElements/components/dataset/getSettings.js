@@ -5,7 +5,7 @@ export default ({
                   objectIDsDataElement,
                   positionsDataElement,
                   indexNameDataElement
-}) => ({
+                }) => ({
   hitQuerySelector,
   indexNameQuerySelector,
   queryIDDataElement,

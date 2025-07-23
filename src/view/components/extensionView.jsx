@@ -42,10 +42,10 @@ const ExtensionView = ({ getInitialValues, getSettings, validate, render }) => {
     <ErrorBoundary>
       <FormProvider
         // eslint-disable-next-line react/jsx-props-no-spreading
-        {...methods}
+        { ...methods }
       >
-        <form>{render()}</form>
-        {/* <DisplayFormState /> */}
+        <form>{ render() }</form>
+        {/* <DisplayFormState /> */ }
       </FormProvider>
     </ErrorBoundary>
   );

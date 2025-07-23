@@ -6,19 +6,19 @@ const getEventDetailsData = (srcElement, querySelector) => {
     const dataset = ancestor.dataset;
     const algoliaData = {
       queryID: dataset['insightsQueryId'],
-      objectIDs: [dataset['insightsObjectId']],
-      positions: [parseInt(dataset['insightsPosition'])],
+      objectIDs: [ dataset['insightsObjectId'] ],
+      positions: [ parseInt(dataset['insightsPosition']) ],
       raw: dataset
     };
 
     turbine.logger.log(
-      `Dataset Data Element', ${JSON.stringify(algoliaData)});).`
+      `Dataset Data Element', ${ JSON.stringify(algoliaData) });).`
     );
 
     return algoliaData;
   }
   return {};
-}
+};
 
 const getIndexNameData = (srcElement, querySelector) => {
   const ancestor = srcElement.closest(querySelector);
@@ -26,16 +26,16 @@ const getIndexNameData = (srcElement, querySelector) => {
     const dataset = ancestor.dataset;
     const algoliaData = {
       indexName: dataset['indexname']
-    }
+    };
 
     turbine.logger.log(
-      `Dataset Data Element', ${JSON.stringify(algoliaData)});).`
+      `Dataset Data Element', ${ JSON.stringify(algoliaData) });).`
     );
 
     return algoliaData;
   }
   return {};
-}
+};
 
 module.exports = function(settings, event) {
   const {

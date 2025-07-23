@@ -5,7 +5,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import ValidationWrapper from './validationWrapper';
 
 const addDataElementToken = (value, dataElementToken) =>
-  `${value || ''}${dataElementToken}`;
+  `${ value || '' }${ dataElementToken }`;
 
 const openDataElementSelector = (
   tokenize,
@@ -29,24 +29,24 @@ const openDataElementSelector = (
 };
 
 export default ({
-  name: componentName,
-  component: Component,
-  onChange: componentOnChange,
-  onBlur: componentOnBlur,
-  supportDataElement,
-  defaultValue = '',
-  ...rest
-}) => {
+                  name: componentName,
+                  component: Component,
+                  onChange: componentOnChange,
+                  onBlur: componentOnBlur,
+                  supportDataElement,
+                  defaultValue = '',
+                  ...rest
+                }) => {
   const methods = useFormContext();
   return (
     <Controller
       name={ componentName }
       defaultValue={ defaultValue }
-      render={({
-                 field: { onChange, onBlur, value, name, ref },
-                 fieldState: { invalid, isTouched, isDirty, error },
-                 formState,
-               }) => (
+      render={ ({
+                  field: { onChange, onBlur, value, name, ref },
+                  fieldState: { invalid, isTouched, isDirty, error },
+                  formState
+                }) => (
         <ValidationWrapper>
           <Component
             name={ name }
@@ -83,8 +83,8 @@ export default ({
             </ActionButton>
           ) : null }
         </ValidationWrapper>
-      )}
-      {...rest}
+      ) }
+      { ...rest }
     />
   );
 };

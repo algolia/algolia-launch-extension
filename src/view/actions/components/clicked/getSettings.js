@@ -1,8 +1,9 @@
 export default ({
                   eventDetailsDataElement,
                   recordIdDataElement,
-                  eventName }) => ({
+                  eventName
+                }) => ({
   eventDetailsDataElement,
   recordIdDataElement,
   eventName
-                  });
+});

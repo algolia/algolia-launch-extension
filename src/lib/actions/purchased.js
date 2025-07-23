@@ -51,13 +51,13 @@ module.exports = function(settings, event) {
     const updatedPayload = updatePayload(payload, objectData);
     window.aa('purchasedObjectIDsAfterSearch', updatedPayload);
     turbine.logger.log(
-      `Insights command: aa('purchasedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
+      `Insights command: aa('purchasedObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
     );
   } else {
     const updatedPayload = updatePayload(payload, objectData);
     window.aa('purchasedObjectIDs', updatedPayload);
     turbine.logger.log(
-      `Insights command: aa('purchasedObjectIDs', ${JSON.stringify(updatedPayload)});).`
+      `Insights command: aa('purchasedObjectIDs', ${ JSON.stringify(updatedPayload) });).`
     );
   }
 
