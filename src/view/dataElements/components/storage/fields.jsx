@@ -6,39 +6,32 @@ import {
   DisclosureTitle,
   Flex,
   Heading,
-  Radio,
-  RadioGroup
+  TextField
 } from '@adobe/react-spectrum';
 import React from 'react';
-import WrappedRadioGroup from '../../../components/WrappedRadioGroup';
+import WrappedTextField from '../../../components/wrappedTextField';
 
 export default () => (
   <Flex direction="column" gap="size-65">
     <Disclosure defaultExpanded={ true } isQuiet={ true }>
-      <DisclosureTitle>General</DisclosureTitle>
+      <DisclosureTitle>Overrides</DisclosureTitle>
       <DisclosurePanel>
-        <WrappedRadioGroup
-          name="storageStrategy"
-          component={ RadioGroup }
+        <WrappedTextField
+          name="recordIdDataElement"
+          component={ TextField }
           width="size-4600"
-          label="Storage Strategy"
-          isRequired
+          label="Record ID Data Element"
           necessityIndicator="label"
-          defaultValue="single"
+          supportDataElement
           contextualHelp={
-            <ContextualHelp variant="info">
-              <Heading>Storage Strategy</Heading>
+            <ContextualHelp>
+              <Heading>Record ID</Heading>
               <Content>
-                <Text>
-                  Select the storage type.
-                </Text>
+                Override default approach to create an id for payload look up in local storage.
               </Content>
             </ContextualHelp>
           }
-        >
-          <Radio value="localStorage">Local Storage</Radio>
-          <Radio value="sessionStorage">Session Storage</Radio>
-        </WrappedRadioGroup>
+        />
       </DisclosurePanel>
     </Disclosure>
   </Flex>

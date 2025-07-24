@@ -1,6 +1,6 @@
 {
   "name": "algolia-insights-extension",
-  "version": "2.3.0-beta.5",
+  "version": "2.3.0-beta.7",
   "author": {
     "name": "Algolia",
     "url": "https://www.algolia.com/"
@@ -36,10 +36,8 @@
       "npm run lint -- --fix"
     ]
   },
-  "dependencies": {
-    "@adobe/react-spectrum": "^3.42.2"
-  },
   "devDependencies": {
+    "@adobe/react-spectrum": "^3.42.2",
     "@adobe/reactor-document": "^1.0.0",
     "@adobe/reactor-sandbox": "^13.3.0",
     "@adobe/reactor-window": "^1.0.0",
