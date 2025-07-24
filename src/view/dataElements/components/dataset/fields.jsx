@@ -83,12 +83,12 @@ export default () => (
           name="objectIDsDataElement"
           component={ TextField }
           width="size-4600"
-          label="ObjectIDs Data Element"
+          label="Object IDs Data Element"
           necessityIndicator="label"
           supportDataElement
           contextualHelp={
             <ContextualHelp>
-              <Heading>ObjectIDs</Heading>
+              <Heading>Object IDs</Heading>
               <Content>
                 Override default approach to return ObjectIDs.
               </Content>

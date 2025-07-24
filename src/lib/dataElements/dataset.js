@@ -64,7 +64,7 @@ module.exports = function(settings, event) {
 
     const indexNameData = getIndexNameData(srcElement, indexNameQuerySelector);
     if (indexNameDataElement) {
-      eventDetailsData.indexName = indexNameDataElement;
+      indexNameData.indexName = indexNameDataElement;
     }
 
     return {
