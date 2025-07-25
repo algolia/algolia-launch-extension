@@ -2,7 +2,7 @@
   "displayName": "Algolia Insights",
   "name": "algolia-insights",
   "platform": "web",
-  "version": "2.2.10",
+  "version": "2.3.0-beta.8",
   "description": "Send events to Algolia to power AI products (AI Search, Recommend, Dynamic Reranking, Personalization, etc).",
   "author": {
     "name": "Algolia Professional Services",
@@ -93,6 +93,9 @@
           },
           "eventName": {
             "type": "string"
+          },
+          "recordIdDataElement": {
+            "type": "string"
           }
         }
       },
@@ -110,6 +113,9 @@
             "type": "string"
           },
           "eventName": {
+            "type": "string"
+          },
+          "recordIdDataElement": {
             "type": "string"
           }
         }
@@ -170,6 +176,18 @@
           },
           "indexNameQuerySelector": {
             "type": "string"
+          },
+          "queryIDDataElement": {
+            "type": "string"
+          },
+          "objectIDsDataElement": {
+            "type": "string"
+          },
+          "positionsDataElement": {
+            "type": "string"
+          },
+          "indexNameDataElement": {
+            "type": "string"
           }
         }
       },
@@ -206,9 +224,14 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+        "properties": {
+          "recordIdDataElement": {
+            "type": "string"
+          }
+        }
       },
-      "libPath": "src/lib/dataElements/storage.js"
+      "libPath": "src/lib/dataElements/storage.js",
+      "viewPath": "dataElements/storage.html"
     }
   ]
 }

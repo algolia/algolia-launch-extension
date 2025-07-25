@@ -1,6 +1,11 @@
 export default (initInfo) => {
   const { settings } = initInfo;
-  const { queryIDParamName = '', objectIDParamName = '', positionParamName = '', indexNameParamName = '' } = settings || {};
+  const {
+    queryIDParamName = '',
+    objectIDParamName = '',
+    positionParamName = '',
+    indexNameParamName = ''
+  } = settings || {};
 
   return {
     queryIDParamName,

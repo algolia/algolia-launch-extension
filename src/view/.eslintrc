@@ -21,7 +21,9 @@
     "jsx-a11y/label-has-associated-control": [
       2,
       {
-        "controlComponents": ["WrappedTextField"],
+        "controlComponents": [
+          "WrappedTextField"
+        ],
         "depth": 1
       }
     ],
@@ -42,12 +44,16 @@
         "ignorePattern": "^(\\s*(var|let|const)\\s.+=\\s*require\\s*\\()|(^\\s*import)"
       }
     ],
-    "comma-dangle": ["error", "never"],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
     "react/prop-types": 0,
     "no-param-reassign": 0,
     "no-prototype-builtins": 0,
     "jsx-a11y/label-has-for": 0,
-    "spaced-comment": 0, // To support our copyright banner.
+    "spaced-comment": 0,
+    // To support our copyright banner.
     "prefer-const": [
       "error",
       {

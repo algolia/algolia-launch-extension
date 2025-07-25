@@ -10,7 +10,7 @@ const getAlgoliaData = () => {
     algolia = localStorage.getItem(STORAGE_KEY);
   }
   return JSON.parse(algolia);
-}
+};
 const addEventToStore = (path, payload) => {
   const algolia = getAlgoliaData();
 
@@ -21,22 +21,22 @@ const addEventToStore = (path, payload) => {
     algolia[path] = payload;
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(algolia));
   }
-}
+};
 
 const removeEventToStore = (path) => {
   const algolia = getAlgoliaData();
   delete algolia[path];
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(algolia));
-}
+};
 
 const getEventToStore = (path) => {
   const algolia = getAlgoliaData();
   return algolia[path] || {};
-}
+};
 
 const clearEventToStore = () => {
   window.localStorage.removeItem(STORAGE_KEY);
-}
+};
 
 module.exports.addEventToStore = addEventToStore;
 module.exports.removeEventToStore = removeEventToStore;

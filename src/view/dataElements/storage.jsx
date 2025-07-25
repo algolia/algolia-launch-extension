@@ -7,17 +7,17 @@ import validateConfigurationFields from './components/storage/validate';
 
 export default () => (
   <ExtensionView
-    getInitialValues={({ initInfo }) => ({
+    getInitialValues={ ({ initInfo }) => ({
       ...getConfigurationInitValues(initInfo)
-    })}
-    getSettings={({ values }) => ({
+    }) }
+    getSettings={ ({ values }) => ({
       ...getConfigurationSettings(values)
-    })}
-    validate={(values) => ({
+    }) }
+    validate={ (values) => ({
       ...validateConfigurationFields(values)
-    })}
-    render={() => (
+    }) }
+    render={ () => (
       <ConfigurationFields />
-    )}
+    ) }
   />
 );

@@ -4,16 +4,16 @@ import { useFormContext } from 'react-hook-form';
 export default () => {
   const { formState } = useFormContext();
   return (
-    <div style={{ margin: '1rem 0' }}>
+    <div style={ { margin: '1rem 0' } }>
       <pre
-        style={{
+        style={ {
           background: '#f6f8fa',
           fontSize: '.65rem',
           padding: '.5rem'
-        }}
+        } }
       >
         <strong>formState = </strong>
-        {JSON.stringify(formState, null, 2)}
+        { JSON.stringify(formState, null, 2) }
       </pre>
     </div>
   );

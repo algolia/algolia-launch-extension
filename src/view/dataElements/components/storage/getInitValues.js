@@ -1,8 +1,8 @@
 export default (initInfo) => {
   const { settings } = initInfo;
-  const { storageStrategy = '' } = settings || {};
+  const { recordIdDataElement = '' } = settings || {};
 
   return {
-    storageStrategy
+    recordIdDataElement
   };
 };

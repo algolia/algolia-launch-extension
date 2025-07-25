@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
-import { useForm, FormProvider } from 'react-hook-form';
-
 import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
 import ErrorBoundary from './errorBoundary';
 // import DisplayFormState from './displayFormState';
 
@@ -43,10 +42,10 @@ const ExtensionView = ({ getInitialValues, getSettings, validate, render }) => {
     <ErrorBoundary>
       <FormProvider
         // eslint-disable-next-line react/jsx-props-no-spreading
-        {...methods}
+        { ...methods }
       >
-        <form>{render()}</form>
-        {/* <DisplayFormState /> */}
+        <form>{ render() }</form>
+        {/* <DisplayFormState /> */ }
       </FormProvider>
     </ErrorBoundary>
   );

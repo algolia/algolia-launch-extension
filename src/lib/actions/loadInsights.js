@@ -10,26 +10,28 @@ module.exports = function(settings) {
     authenticatedUserTokenDataElement
   } = extensionSettings;
   const {
-    useUserTokenCookie = false,
-    version = '2.13.0',
-    userHasOptedOutDataElement = false,
+    useUserTokenCookie,
+    version,
+    userHasOptedOutDataElement,
     cookieDuration = 15552000000
   } = settings;
-  const ALGOLIA_INSIGHTS_SRC = `https://cdn.jsdelivr.net/npm/search-insights@${version}/dist/search-insights.min.js`;
+  const ALGOLIA_INSIGHTS_SRC = `https://cdn.jsdelivr.net/npm/search-insights@${ version }/dist/search-insights.min.js`;
 
-  !function(e,a,t,n,s,i,c){e.AlgoliaAnalyticsObject=s,e[s]=e[s]||function(){
-    (e[s].queue=e[s].queue||[]).push(arguments)},e[s].version=(n.match(/@([^\/]+)\/?/) || [])[1],i=a.createElement(t),c=a.getElementsByTagName(t)[0],
-    i.async=1,i.src=n,c.parentNode.insertBefore(i,c)
-  }(window,document,"script",ALGOLIA_INSIGHTS_SRC,"aa");
+  !function(e, a, t, n, s, i, c) {
+    e.AlgoliaAnalyticsObject = s, e[s] = e[s] || function() {
+      (e[s].queue = e[s].queue || []).push(arguments);
+    }, e[s].version = (n.match(/@([^\/]+)\/?/) || [])[1], i = a.createElement(t), c = a.getElementsByTagName(t)[0],
+      i.async = 1, i.src = n, c.parentNode.insertBefore(i, c);
+  }(window, document, 'script', ALGOLIA_INSIGHTS_SRC, 'aa');
 
   window.aa('init', {
     appId: appId,
     apiKey: apiKey,
     useCookie: useUserTokenCookie,
-    userHasOptedOut: userHasOptedOutDataElement,
+    userHasOptedOut: (userHasOptedOutDataElement === null || userHasOptedOutDataElement === '') ? false: userHasOptedOutDataElement,
     cookieDuration: cookieDuration
   });
-  window.aa('addAlgoliaAgent', 'algolia-launch-extension (2.2.10)');
+  window.aa('addAlgoliaAgent', 'algolia-launch-extension (2.3.0-beta.8)');
 
   if (userTokenDataElement) {
     window.aa('setUserToken', userTokenDataElement);

@@ -1,1 +1,1 @@
-export default ({ storageStrategy }) => ({ storageStrategy });
+export default ({ recordIdDataElement }) => ({ recordIdDataElement });

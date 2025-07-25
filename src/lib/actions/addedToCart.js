@@ -38,12 +38,12 @@ module.exports = function(settings, event) {
       };
       window.aa('addedToCartObjectIDsAfterSearch', updatedPayload);
       turbine.logger.log(
-        `Insights command: aa('addedToCartObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
+        `Insights command: aa('addedToCartObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
       );
     } else {
       window.aa('addedToCartObjectIDs', payload);
       turbine.logger.log(
-        `Insights command: aa('addedToCartObjectIDs', ${JSON.stringify(payload)});).`
+        `Insights command: aa('addedToCartObjectIDs', ${ JSON.stringify(payload) });).`
       );
     }
   }

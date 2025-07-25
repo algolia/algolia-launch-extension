@@ -55,6 +55,12 @@ module.exports = (env) => {
   });
 
   plugins.push(
+    new webpack.EnvironmentPlugin({
+      CHROMATIC: false
+    })
+  );
+
+  plugins.push(
     new webpack.DefinePlugin({
       'process.env.SCALE_MEDIUM': 'true',
       'process.env.SCALE_LARGE': 'false',

@@ -9,8 +9,9 @@ module.exports = function(settings, event) {
       timestamp,
       queryID,
       indexName,
-      objectIDs,
+      objectIDs
     },
+    recordIdDataElement,
     eventName
   } = settings;
 
@@ -21,6 +22,8 @@ module.exports = function(settings, event) {
     userToken: extensionSettings.userTokenDataElement,
     objectIDs
   };
+
+  const recordId = (recordIdDataElement) ? recordIdDataElement : window.document.location.pathname;
 
   if (extensionSettings.authenticatedUserTokenDataElement) {
     payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
@@ -34,15 +37,16 @@ module.exports = function(settings, event) {
     window.aa('convertedObjectIDsAfterSearch', updatedPayload);
 
     turbine.logger.log(
-      `Insights command: aa('convertedObjectIDsAfterSearch', ${JSON.stringify(updatedPayload)});).`
+      `Insights command: aa('convertedObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
     );
   } else if (objectIDs && objectIDs.length > 0) {
     window.aa('convertedObjectIDs', payload);
     turbine.logger.log(
-      `Insights command: aa('convertedObjectIDs', ${JSON.stringify(payload)});).`
+      `Insights command: aa('convertedObjectIDs', ${ JSON.stringify(payload) });).`
     );
   }
-  removeEventToStore(window.document.location.pathname);
+
+  removeEventToStore(recordId);
   return true;
 };
 
