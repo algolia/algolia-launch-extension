@@ -10,9 +10,9 @@ module.exports = function(settings) {
     authenticatedUserTokenDataElement
   } = extensionSettings;
   const {
-    useUserTokenCookie = false,
-    version = '2.17.3',
-    userHasOptedOutDataElement = false,
+    useUserTokenCookie,
+    version,
+    userHasOptedOutDataElement,
     cookieDuration = 15552000000
   } = settings;
   const ALGOLIA_INSIGHTS_SRC = `https://cdn.jsdelivr.net/npm/search-insights@${ version }/dist/search-insights.min.js`;
@@ -28,10 +28,10 @@ module.exports = function(settings) {
     appId: appId,
     apiKey: apiKey,
     useCookie: useUserTokenCookie,
-    userHasOptedOut: userHasOptedOutDataElement,
+    userHasOptedOut: (userHasOptedOutDataElement === null || userHasOptedOutDataElement === '') ? false: userHasOptedOutDataElement,
     cookieDuration: cookieDuration
   });
-  window.aa('addAlgoliaAgent', 'algolia-launch-extension (2.3.0-beta.7)');
+  window.aa('addAlgoliaAgent', 'algolia-launch-extension (2.3.0-beta.8)');
 
   if (userTokenDataElement) {
     window.aa('setUserToken', userTokenDataElement);
