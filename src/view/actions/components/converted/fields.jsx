@@ -66,7 +66,7 @@ export default () => (
           name="disableRemoveEventFromStore"
           component={ Checkbox }
           width="size-4600"
-          label="Disbale Removal of Event Data from Storage"
+          label="Disable Removal of Event Data"
           necessityIndicator="label"
           defaultValue={ true }
           contextualHelp={
@@ -74,7 +74,7 @@ export default () => (
               <Heading>Disable Event Data Removal</Heading>
               <Content>
                 <Text>
-                  Check this box if you want to disable the removal of the event data from storage. The data can be used for other conversion events. The default value is <b>false</b>.
+                  Check this box if you want to disable removing of the event data from storage. By disabling, the data can be reused for other conversion events. The default value is <b>false</b>.
                 </Text>
               </Content>
             </ContextualHelp>
