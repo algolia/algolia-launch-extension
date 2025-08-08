@@ -3,12 +3,14 @@ export default (initInfo) => {
   const {
     eventDetailsDataElement = '',
     recordIdDataElement = '',
-    eventName = ''
+    eventName = '',
+    disableRemoveEventFromStore = false
   } = settings || {};
 
   return {
     eventDetailsDataElement,
     recordIdDataElement,
-    eventName
+    eventName,
+    disableRemoveEventFromStore
   };
 };

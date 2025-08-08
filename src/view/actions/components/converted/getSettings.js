@@ -1,5 +1,6 @@
-export default ({ eventDetailsDataElement, recordIdDataElement, eventName }) => ({
+export default ({ eventDetailsDataElement, recordIdDataElement, eventName, disableRemoveEventFromStore }) => ({
   eventDetailsDataElement,
   recordIdDataElement,
-  eventName
+  eventName,
+  disableRemoveEventFromStore
 });
