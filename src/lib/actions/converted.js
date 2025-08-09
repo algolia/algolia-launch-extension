@@ -12,7 +12,8 @@ module.exports = function(settings, event) {
       objectIDs
     },
     recordIdDataElement,
-    eventName
+    eventName,
+    disableRemoveEventFromStore
   } = settings;
 
   const payload = {
@@ -46,7 +47,9 @@ module.exports = function(settings, event) {
     );
   }
 
-  removeEventToStore(recordId);
+  if (!disableRemoveEventFromStore) {
+    removeEventToStore(recordId);
+  }
   return true;
 };
 

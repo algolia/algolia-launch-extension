@@ -1,4 +1,5 @@
 import {
+  Checkbox,
   Content,
   ContextualHelp,
   Disclosure,
@@ -10,6 +11,7 @@ import {
   TextField
 } from '@adobe/react-spectrum';
 import React from 'react';
+import WrappedCheckboxField from '../../../components/wrappedCheckboxField';
 import WrappedTextField from '../../../components/wrappedTextField';
 
 export default () => (
@@ -60,7 +62,24 @@ export default () => (
             </ContextualHelp>
           }
         />
-
+        <WrappedCheckboxField
+          name="disableRemoveEventFromStore"
+          component={ Checkbox }
+          width="size-4600"
+          label="Disable Removal of Event Data"
+          necessityIndicator="label"
+          defaultValue={ true }
+          contextualHelp={
+            <ContextualHelp variant="info">
+              <Heading>Disable Event Data Removal</Heading>
+              <Content>
+                <Text>
+                  Check this box if you want to disable removing of the event data from storage. By disabling, the data can be reused for other conversion events. The default value is <b>false</b>.
+                </Text>
+              </Content>
+            </ContextualHelp>
+          }
+        />
       </DisclosurePanel>
     </Disclosure>
     <Disclosure isQuiet={ true }>
