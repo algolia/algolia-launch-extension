@@ -6,7 +6,11 @@ export default (initInfo) => {
     queryIDDataElement = '',
     objectIDsDataElement = '',
     positionsDataElement = '',
-    indexNameDataElement = ''
+    indexNameDataElement = '',
+    priceDataElement = '',
+    quantityDataElement= '',
+    discountDataElement= '',
+    currency
   } = settings || {};
 
   return {
@@ -15,6 +19,10 @@ export default (initInfo) => {
     queryIDDataElement,
     objectIDsDataElement,
     positionsDataElement,
-    indexNameDataElement
+    indexNameDataElement,
+    priceDataElement,
+    quantityDataElement,
+    discountDataElement,
+    currency
   };
 };

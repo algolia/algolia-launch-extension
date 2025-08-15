@@ -116,26 +116,23 @@ export default () => (
             </ContextualHelp>
           }
         />
-        <WrappedPickerField
+        <WrappedTextField
           name="currency"
+          component={ TextField }
           width="size-4600"
-          label="Currency"
-          isRequired
+          label="Currency Code"
           necessityIndicator="label"
+          supportDataElement
           contextualHelp={
             <ContextualHelp variant="info">
-              <Heading>Currency</Heading>
+              <Heading>Currency Code</Heading>
               <Content>
                 <Text>
-                  Select the currency
+                  Specify the currency as ISO-4217 currency code, such as USD or EUR.
                 </Text>
               </Content>
             </ContextualHelp>
           }
-          items={ [
-            { id: 'USD', name: 'USD' },
-            { id: 'EUR', name: 'EUR' }
-          ] }
         />
       </DisclosurePanel>
     </Disclosure>

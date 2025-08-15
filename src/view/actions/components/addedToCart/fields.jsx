@@ -61,28 +61,27 @@ export default () => (
             </ContextualHelp>
           }
         />
-        <WrappedPickerField
-          name="currency"
+      </DisclosurePanel>
+    </Disclosure>
+    <Disclosure isQuiet={ true }>
+      <DisclosureTitle>Overrides</DisclosureTitle>
+      <DisclosurePanel>
+        <WrappedTextField
+          name="recordIdDataElement"
+          component={ TextField }
           width="size-4600"
-          label="Currency"
-          isRequired
+          label="Record ID Data Element"
           necessityIndicator="label"
+          supportDataElement
           contextualHelp={
-            <ContextualHelp variant="info">
-              <Heading>Currency</Heading>
+            <ContextualHelp>
+              <Heading>Record ID</Heading>
               <Content>
-                <Text>
-                  Select the currency
-                </Text>
+                Override default approach to create an id for payload look up in local storage.
               </Content>
             </ContextualHelp>
           }
-          items={ [
-            { id: 'USD', name: 'USD' },
-            { id: 'EUR', name: 'EUR' }
-          ] }
         />
-
       </DisclosurePanel>
     </Disclosure>
   </Flex>

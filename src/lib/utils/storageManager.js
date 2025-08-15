@@ -11,34 +11,34 @@ const getAlgoliaData = () => {
   }
   return JSON.parse(algolia);
 };
-const addEventToStore = (path, payload) => {
+const addEventToStore = (recordId, payload) => {
   const algolia = getAlgoliaData();
 
   // if payload has queryId, this means a new search was executed and we want to
   // tie the conversion to new search.
-  // if algolia object does not have path, then we want to capture this record
-  if (payload.queryID || algolia[path] == null) {
-    algolia[path] = payload;
+  // if algolia object does not have recordId, then we want to capture this record
+  if (payload.queryID || algolia[recordId] == null) {
+    algolia[recordId] = payload;
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(algolia));
   }
 };
 
-const removeEventToStore = (path) => {
+const removeEventToStore = (recordId) => {
   const algolia = getAlgoliaData();
-  delete algolia[path];
+  delete algolia[recordId];
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(algolia));
 };
 
-const getEventToStore = (path) => {
+const getEventFromStore = (recordId) => {
   const algolia = getAlgoliaData();
-  return algolia[path] || {};
+  return algolia[recordId] || {};
 };
 
-const clearEventToStore = () => {
+const clearEventsToStore = () => {
   window.localStorage.removeItem(STORAGE_KEY);
 };
 
 module.exports.addEventToStore = addEventToStore;
 module.exports.removeEventToStore = removeEventToStore;
-module.exports.getEventToStore = getEventToStore;
-module.exports.clearEventToStore = clearEventToStore;
+module.exports.getEventFromStore = getEventFromStore;
+module.exports.clearEventsToStore = clearEventsToStore;

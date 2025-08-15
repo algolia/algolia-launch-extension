@@ -1,20 +1,7 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { clearEventToStore } = require('../utils/storageManager');
-
-function updatePayload(payload, objectData) {
-  const updatedPayload = {
-    ...payload,
-    objectData
-  };
-  const value = objectData.reduce(function(accum, data) {
-    return accum + Number(data.price) * Number(data.quantity);
-  }, 0);
-  if (value) {
-    updatedPayload.value = value;
-  }
-  return updatedPayload;
-}
+const { clearEventsToStore } = require('../utils/storageManager');
+const { updatePayload } = require('../utils/dataPayload');
 
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
@@ -23,10 +10,10 @@ module.exports = function(settings, event) {
       timestamp,
       indexName,
       objectIDs,
-      objectData
+      objectData,
+      currency
     },
-    eventName,
-    currency
+    eventName
   } = settings;
 
   const payload = {
@@ -61,7 +48,7 @@ module.exports = function(settings, event) {
     );
   }
 
-  clearEventToStore();
+  clearEventsToStore();
   return true;
 };
 

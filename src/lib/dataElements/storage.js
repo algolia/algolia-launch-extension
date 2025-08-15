@@ -1,6 +1,6 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { getEventToStore } = require('../utils/storageManager');
+const { getEventFromStore } = require('../utils/storageManager');
 
 module.exports = function(settings) {
   const {
@@ -8,7 +8,7 @@ module.exports = function(settings) {
   } = settings;
 
   const recordId = (recordIdDataElement) ? recordIdDataElement : window.document.location.pathname;
-  const algoliaData = getEventToStore(recordId);
+  const algoliaData = getEventFromStore(recordId);
 
   turbine.logger.log(
     `Storage Data Element', ${ JSON.stringify(algoliaData) });).`

@@ -1,13 +1,13 @@
 'use strict';
 
-const getEventDetailsData = (srcElement, querySelector) => {
+const getEventDetailsData = (srcElement, querySelector, queryIDDataElement, objectIDsDataElement, positionsDataElement) => {
   const ancestor = srcElement.closest(querySelector);
   if (ancestor && ancestor.dataset) {
     const dataset = ancestor.dataset;
     const algoliaData = {
-      queryID: dataset['insightsQueryId'],
-      objectIDs: [ dataset['insightsObjectId'] ],
-      positions: [ parseInt(dataset['insightsPosition']) ],
+      queryID: queryIDDataElement || dataset['insightsQueryId'],
+      objectIDs: objectIDsDataElement || [ dataset['insightsObjectId'] ],
+      positions: positionsDataElement || [ parseInt(dataset['insightsPosition']) ],
       raw: dataset
     };
 
@@ -20,12 +20,12 @@ const getEventDetailsData = (srcElement, querySelector) => {
   return {};
 };
 
-const getIndexNameData = (srcElement, querySelector) => {
+const getIndexNameData = (srcElement, querySelector, indexNameDataElement) => {
   const ancestor = srcElement.closest(querySelector);
   if (ancestor && ancestor.dataset) {
     const dataset = ancestor.dataset;
     const algoliaData = {
-      indexName: dataset['indexname']
+      indexName: indexNameDataElement || dataset['indexname']
     };
 
     turbine.logger.log(
@@ -37,6 +37,25 @@ const getIndexNameData = (srcElement, querySelector) => {
   return {};
 };
 
+const getCommerceData = (priceDataElement, quantityDataElement, discountDataElement, currency) => {
+  const commerceData  =  {};
+  if (priceDataElement) {
+    const objectData = {};
+    objectData.price = priceDataElement;
+    if (quantityDataElement) {
+      objectData.quantity = quantityDataElement;
+    } else {
+      objectData.quantity = 1;
+    }
+    if (discountDataElement) {
+      objectData.discount = discountDataElement;
+    }
+    commerceData.objectData = [objectData];
+    commerceData.currency = currency;
+  }
+  return commerceData;
+}
+
 module.exports = function(settings, event) {
   const {
     hitQuerySelector,
@@ -44,33 +63,23 @@ module.exports = function(settings, event) {
     queryIDDataElement,
     objectIDsDataElement,
     positionsDataElement,
-    indexNameDataElement
+    indexNameDataElement,
+    priceDataElement,
+    quantityDataElement,
+    discountDataElement,
+    currency
   } = settings;
 
   if (event && event.nativeEvent && event.nativeEvent.target) {
     const srcElement = event.nativeEvent.target;
-    const eventDetailsData = getEventDetailsData(srcElement, hitQuerySelector);
-    if (queryIDDataElement) {
-      eventDetailsData.queryID = queryIDDataElement;
-    }
-
-    if (objectIDsDataElement) {
-      eventDetailsData.objectIDs = objectIDsDataElement;
-    }
-
-    if (positionsDataElement) {
-      eventDetailsData.positions = positionsDataElement;
-    }
-
-    const indexNameData = getIndexNameData(srcElement, indexNameQuerySelector);
-    if (indexNameDataElement) {
-      indexNameData.indexName = indexNameDataElement;
-    }
-
+    const eventDetailsData = getEventDetailsData(srcElement, hitQuerySelector, queryIDDataElement, objectIDsDataElement, positionsDataElement);
+    const indexNameData = getIndexNameData(srcElement, indexNameQuerySelector, indexNameDataElement);
+    const commerceData = getCommerceData(priceDataElement, quantityDataElement, discountDataElement, currency);
     return {
       timestamp: new Date().getTime(),
       ...eventDetailsData,
-      ...indexNameData
+      ...indexNameData,
+      ...commerceData
     };
   }
   return {};
