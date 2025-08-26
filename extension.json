@@ -2,7 +2,7 @@
   "displayName": "Algolia Insights",
   "name": "algolia-insights",
   "platform": "web",
-  "version": "3.0.0-beta.3",
+  "version": "3.0.0-beta.4",
   "description": "Send events to Algolia to power AI products (AI Search, Recommend, Dynamic Reranking, Personalization, etc).",
   "author": {
     "name": "Algolia Professional Services",
