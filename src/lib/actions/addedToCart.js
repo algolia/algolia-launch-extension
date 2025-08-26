@@ -1,6 +1,6 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { getEventFromStore, addEventToStore } = require('../utils/storageManager');
+const { addEventToStore } = require('../utils/storageManager');
 const { getPrice } = require('../utils/dataPayload');
 
 module.exports = function(settings, event) {

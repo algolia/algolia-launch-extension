@@ -62,7 +62,6 @@ module.exports = function(settings, event) {
   const {
     hitQuerySelector,
     indexNameQuerySelector,
-    recordIdDataElement,
     queryIDDataElement,
     objectIDsDataElement,
     positionsDataElement,
@@ -79,7 +78,7 @@ module.exports = function(settings, event) {
     const indexNameData = getIndexNameData(srcElement, indexNameQuerySelector, indexNameDataElement);
     const commerceData = getCommerceData(priceDataElement, quantityDataElement, discountDataElement, currency);
 
-    const recordId = (recordIdDataElement) ? recordIdDataElement : window.document.location.pathname;
+    const recordId = eventDetailsData.objectIDs[0];
     const payload = {
       timestamp: new Date().getTime(),
       ...eventDetailsData,

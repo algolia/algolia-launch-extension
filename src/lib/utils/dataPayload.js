@@ -1,14 +1,14 @@
-export function getPrice(objectData) {
+module.exports = function getPrice(objectData) {
   return (Number(objectData.price) - (Number(objectData.price) * Number(objectData.discount))) * Number(objectData.quantity);
 }
 
-export function getTotal(objectData) {
+module.exports = function getTotal(objectData) {
   return objectData.reduce(function(accum, data) {
     return accum + getPrice(data);
   }, 0);
 }
 
-export function updatePayload(payload, objectData) {
+module.exports = function updatePayload(payload, objectData) {
   const updatedPayload = {
     ...payload,
     objectData
