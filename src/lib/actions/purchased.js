@@ -11,6 +11,9 @@ module.exports = function(settings, event) {
       indexName,
       objectIDs,
       objectData,
+      price,
+      quantity,
+      discount,
       currency
     },
     eventName
@@ -22,6 +25,10 @@ module.exports = function(settings, event) {
     index: indexName || extensionSettings.indexName,
     userToken: extensionSettings.userTokenDataElement,
     objectIDs: objectIDs,
+    objectData,
+    price,
+    quantity,
+    discount,
     currency: currency || extensionSettings.currency
   };
 

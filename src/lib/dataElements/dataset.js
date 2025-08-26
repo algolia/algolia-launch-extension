@@ -1,5 +1,7 @@
 'use strict';
 
+const window = require('@adobe/reactor-window');
+const { addEventToStore } = require('../utils/storageManager');
 const getEventDetailsData = (srcElement, querySelector, queryIDDataElement, objectIDsDataElement, positionsDataElement) => {
   const ancestor = srcElement.closest(querySelector);
   if (ancestor && ancestor.dataset) {
@@ -50,7 +52,7 @@ const getCommerceData = (priceDataElement, quantityDataElement, discountDataElem
     if (discountDataElement) {
       objectData.discount = discountDataElement;
     }
-    commerceData.objectData = [objectData];
+    commerceData.objectData = [ objectData ];
     commerceData.currency = currency;
   }
   return commerceData;
@@ -60,6 +62,7 @@ module.exports = function(settings, event) {
   const {
     hitQuerySelector,
     indexNameQuerySelector,
+    recordIdDataElement,
     queryIDDataElement,
     objectIDsDataElement,
     positionsDataElement,
@@ -75,12 +78,17 @@ module.exports = function(settings, event) {
     const eventDetailsData = getEventDetailsData(srcElement, hitQuerySelector, queryIDDataElement, objectIDsDataElement, positionsDataElement);
     const indexNameData = getIndexNameData(srcElement, indexNameQuerySelector, indexNameDataElement);
     const commerceData = getCommerceData(priceDataElement, quantityDataElement, discountDataElement, currency);
-    return {
+
+    const recordId = (recordIdDataElement) ? recordIdDataElement : window.document.location.pathname;
+    const payload = {
       timestamp: new Date().getTime(),
       ...eventDetailsData,
       ...indexNameData,
       ...commerceData
     };
+    addEventToStore(recordId, payload);
+
+    return payload;
   }
   return {};
 };

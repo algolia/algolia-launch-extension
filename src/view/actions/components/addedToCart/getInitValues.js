@@ -3,12 +3,10 @@ export default (initInfo) => {
   const {
     eventDetailsDataElement = '',
     eventName = '',
-    recordIdDataElement = ''
   } = settings || {};
 
   return {
     eventDetailsDataElement,
-    eventName,
-    recordIdDataElement
+    eventName
   };
 };

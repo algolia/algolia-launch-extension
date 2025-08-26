@@ -11,6 +11,7 @@ const getAlgoliaData = () => {
   }
   return JSON.parse(algolia);
 };
+
 const addEventToStore = (recordId, payload) => {
   const algolia = getAlgoliaData();
 

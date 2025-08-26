@@ -9,9 +9,9 @@ module.exports = function(settings, event) {
       timestamp,
       queryID,
       indexName,
-      objectIDs
+      objectIDs,
+      recordId
     },
-    recordIdDataElement,
     eventName,
     disableRemoveEventFromStore
   } = settings;
@@ -23,9 +23,6 @@ module.exports = function(settings, event) {
     userToken: extensionSettings.userTokenDataElement,
     objectIDs
   };
-
-  const recordId = (recordIdDataElement) ? recordIdDataElement : window.document.location.pathname;
-
   if (extensionSettings.authenticatedUserTokenDataElement) {
     payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
   }
