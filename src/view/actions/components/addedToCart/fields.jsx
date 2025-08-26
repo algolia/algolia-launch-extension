@@ -10,7 +10,6 @@ import {
   TextField
 } from '@adobe/react-spectrum';
 import React from 'react';
-import WrappedPickerField from '../../../components/wrappedPickerField';
 import WrappedTextField from '../../../components/wrappedTextField';
 
 export default () => (
