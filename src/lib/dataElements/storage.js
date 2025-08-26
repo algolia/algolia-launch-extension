@@ -4,14 +4,14 @@ const { getEventFromStore, addEventToStore } = require('../utils/storageManager'
 
 module.exports = function(settings) {
   const {
-    objectIDsDataElement,
+    objectIDDataElement,
     priceDataElement,
     quantityDataElement,
     discountDataElement,
     currency
   } = settings;
 
-  const recordId = (objectIDsDataElement) ? objectIDsDataElement : window.document.location.pathname;
+  const recordId = (objectIDDataElement) ? objectIDDataElement : window.document.location.pathname;
   const algoliaData = getEventFromStore(recordId);
 
   if (algoliaData.objectData && algoliaData.objectData.length > 0) {

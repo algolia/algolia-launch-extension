@@ -1,7 +1,7 @@
 export default (initInfo) => {
   const { settings } = initInfo;
   const {
-    objectIDsDataElement = '',
+    objectIDDataElement = '',
     priceDataElement,
     quantityDataElement,
     discountDataElement,
@@ -9,7 +9,7 @@ export default (initInfo) => {
   } = settings || {};
 
   return {
-    objectIDsDataElement,
+    objectIDDataElement,
     priceDataElement,
     quantityDataElement,
     discountDataElement,

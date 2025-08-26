@@ -18,7 +18,7 @@ export default () => (
       <DisclosureTitle>Overrides</DisclosureTitle>
       <DisclosurePanel>
         <WrappedTextField
-          name="objectIDsDataElement"
+          name="objectIDDataElement"
           component={ TextField }
           width="size-4600"
           label="Object IDs Data Element"
@@ -28,7 +28,7 @@ export default () => (
             <ContextualHelp>
               <Heading>Object IDs</Heading>
               <Content>
-                Override default approach to return ObjectIDs.
+                Override default approach to return ObjectID that is used as a key to get the data from browser storage.
               </Content>
             </ContextualHelp>
           }
