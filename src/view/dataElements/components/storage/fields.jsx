@@ -18,17 +18,17 @@ export default () => (
       <DisclosureTitle>Overrides</DisclosureTitle>
       <DisclosurePanel>
         <WrappedTextField
-          name="objectIDDataElement"
+          name="recordIDDataElement"
           component={ TextField }
           width="size-4600"
-          label="Object IDs Data Element"
+          label="Record ID Data Element"
           necessityIndicator="label"
           supportDataElement
           contextualHelp={
             <ContextualHelp>
-              <Heading>Object IDs</Heading>
+              <Heading>Query ID</Heading>
               <Content>
-                Override default approach to return ObjectID that is used as a key to get the data from browser storage.
+                Override default approach to use page url as the record Id.  The record Id is used to store and look up data to send to Algolia for this product/page.
               </Content>
             </ContextualHelp>
           }

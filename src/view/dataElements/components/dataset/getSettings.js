@@ -1,6 +1,7 @@
 export default ({
                   hitQuerySelector,
                   indexNameQuerySelector,
+                  recordIDDataElement,
                   queryIDDataElement,
                   objectIDsDataElement,
                   positionsDataElement,
@@ -12,6 +13,7 @@ export default ({
                 }) => ({
   hitQuerySelector,
   indexNameQuerySelector,
+  recordIDDataElement,
   queryIDDataElement,
   objectIDsDataElement,
   positionsDataElement,

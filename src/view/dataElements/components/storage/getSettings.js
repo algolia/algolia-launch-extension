@@ -1,11 +1,11 @@
 export default ({
-                  objectIDDataElement,
+                  recordIDDataElement,
                   priceDataElement,
                   quantityDataElement,
                   discountDataElement,
                   currency
 }) => ({
-  objectIDDataElement,
+  recordIDDataElement,
   priceDataElement,
   quantityDataElement,
   discountDataElement,

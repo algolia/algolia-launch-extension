@@ -3,6 +3,7 @@ export default (initInfo) => {
   const {
     hitQuerySelector = '',
     indexNameQuerySelector = '',
+    recordIDDataElement = '',
     queryIDDataElement = '',
     objectIDsDataElement = '',
     positionsDataElement = '',
@@ -16,6 +17,7 @@ export default (initInfo) => {
   return {
     hitQuerySelector,
     indexNameQuerySelector,
+    recordIDDataElement,
     queryIDDataElement,
     objectIDsDataElement,
     positionsDataElement,

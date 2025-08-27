@@ -58,10 +58,25 @@ const getCommerceData = (priceDataElement, quantityDataElement, discountDataElem
   return commerceData;
 }
 
+const getRecordId = (srcElement, recordIDDataElement) => {
+  if (recordIDDataElement) {
+    return recordIDDataElement
+  } else {
+    const link = srcElement.closest('a').href;
+    if (link.startsWith('/')) {
+      return link;
+    } else {
+      const url = new URL(link);
+      return url.pathname;
+    }
+  }
+}
+
 module.exports = function(settings, event) {
   const {
     hitQuerySelector,
     indexNameQuerySelector,
+    recordIDDataElement,
     queryIDDataElement,
     objectIDsDataElement,
     positionsDataElement,
@@ -78,7 +93,7 @@ module.exports = function(settings, event) {
     const indexNameData = getIndexNameData(srcElement, indexNameQuerySelector, indexNameDataElement);
     const commerceData = getCommerceData(priceDataElement, quantityDataElement, discountDataElement, currency);
 
-    const recordId = eventDetailsData.objectIDs[0];
+    const recordId = getRecordId(srcElement, recordIDDataElement);
     const payload = {
       timestamp: new Date().getTime(),
       ...eventDetailsData,
