@@ -1,21 +1,24 @@
-module.exports = function getPrice(objectData) {
-  return (Number(objectData.price) - (Number(objectData.price) * Number(objectData.discount))) * Number(objectData.quantity);
+function getPrice(item) {
+  const price = (Number(item.price) - (Number(item.price) * Number(item.discount))) * Number(item.quantity);
+  return Math.round(price * 100) / 100;
 }
 
-module.exports = function getTotal(objectData) {
-  return objectData.reduce(function(accum, data) {
-    return accum + getPrice(data);
+function getTotal(objectData) {
+  return objectData.reduce(function(accum, item) {
+    return accum + getPrice(item);
   }, 0);
 }
 
-module.exports = function updatePayload(payload, objectData) {
+function updatePayload(payload) {
   const updatedPayload = {
-    ...payload,
-    objectData
+    ...payload
   };
-  const value = getTotal(objectData);
+  const value = getTotal(updatedPayload.objectData);
   if (value && value > 0) {
     updatedPayload.value = value;
   }
   return updatedPayload;
 }
+
+module.exports.getTotal = getTotal;
+module.exports.updatePayload = updatePayload;

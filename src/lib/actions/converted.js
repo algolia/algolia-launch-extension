@@ -10,7 +10,7 @@ module.exports = function(settings, event) {
       queryID,
       indexName,
       objectIDs,
-      recordId
+      recordID
     },
     eventName,
     disableRemoveEventFromStore
@@ -45,7 +45,7 @@ module.exports = function(settings, event) {
   }
 
   if (!disableRemoveEventFromStore) {
-    removeEventToStore(recordId);
+    removeEventToStore(recordID);
   }
   return true;
 };

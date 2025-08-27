@@ -11,9 +11,6 @@ module.exports = function(settings, event) {
       indexName,
       objectIDs,
       objectData,
-      price,
-      quantity,
-      discount,
       currency
     },
     eventName
@@ -24,11 +21,8 @@ module.exports = function(settings, event) {
     eventName,
     index: indexName || extensionSettings.indexName,
     userToken: extensionSettings.userTokenDataElement,
-    objectIDs: objectIDs,
+    objectIDs,
     objectData,
-    price,
-    quantity,
-    discount,
     currency: currency || extensionSettings.currency
   };
 
@@ -42,13 +36,13 @@ module.exports = function(settings, event) {
   }
 
   if (isPurchasedWithQueryID) {
-    const updatedPayload = updatePayload(payload, objectData);
+    const updatedPayload = updatePayload(payload);
     window.aa('purchasedObjectIDsAfterSearch', updatedPayload);
     turbine.logger.log(
       `Insights command: aa('purchasedObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
     );
   } else {
-    const updatedPayload = updatePayload(payload, objectData);
+    const updatedPayload = updatePayload(payload);
     window.aa('purchasedObjectIDs', updatedPayload);
     turbine.logger.log(
       `Insights command: aa('purchasedObjectIDs', ${ JSON.stringify(updatedPayload) });).`

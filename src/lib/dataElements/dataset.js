@@ -93,16 +93,19 @@ module.exports = function(settings, event) {
     const indexNameData = getIndexNameData(srcElement, indexNameQuerySelector, indexNameDataElement);
     const commerceData = getCommerceData(priceDataElement, quantityDataElement, discountDataElement, currency);
 
-    const recordId = getRecordId(srcElement, recordIDDataElement);
+    const recordID = getRecordId(srcElement, recordIDDataElement);
     const payload = {
       timestamp: new Date().getTime(),
       ...eventDetailsData,
       ...indexNameData,
       ...commerceData
     };
-    addEventToStore(recordId, payload);
+    addEventToStore(recordID, payload);
 
-    return payload;
+    return {
+      ...payload,
+      recordID
+    };
   }
   return {};
 };

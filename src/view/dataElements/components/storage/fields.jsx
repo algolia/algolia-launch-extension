@@ -26,9 +26,9 @@ export default () => (
           supportDataElement
           contextualHelp={
             <ContextualHelp>
-              <Heading>Query ID</Heading>
+              <Heading>Record ID</Heading>
               <Content>
-                Override default approach to use page url as the record Id.  The record Id is used to store and look up data to send to Algolia for this product/page.
+                Override default approach to use page url as the record .  The record id is used to store and look up data to send to Algolia for this product/page.
               </Content>
             </ContextualHelp>
           }

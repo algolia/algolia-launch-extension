@@ -11,8 +11,8 @@ module.exports = function(settings) {
     currency
   } = settings;
 
-  const recordId = (recordIDDataElement) ? recordIDDataElement : window.document.location.pathname;
-  const algoliaData = getEventFromStore(recordId);
+  const recordID = (recordIDDataElement) ? recordIDDataElement : window.document.location.pathname;
+  const algoliaData = getEventFromStore(recordID);
 
   if (algoliaData.objectData && algoliaData.objectData.length > 0) {
     const dataItem = algoliaData.objectData[0];
@@ -35,5 +35,8 @@ module.exports = function(settings) {
     `Storage Data Element', ${ JSON.stringify(algoliaData) });).`
   );
 
-  return algoliaData;
+  return {
+    ...algoliaData,
+    recordID
+  };
 };

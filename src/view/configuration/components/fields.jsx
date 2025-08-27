@@ -30,7 +30,7 @@ export default () => (
               <Heading>Application ID</Heading>
               <Content>
                 <Text>
-                  Enter the Application Id which can be found in the on the Algolia Dashboard in the <a
+                  Enter the Application ID which can be found in the on the Algolia Dashboard in the <a
                   href="https://www.algolia.com/account/api-keys/all" target="_child">API Keys</a> section.
                 </Text>
               </Content>
