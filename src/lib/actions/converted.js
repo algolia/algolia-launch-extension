@@ -1,6 +1,6 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { removeEventToStore } = require('../utils/storageManager');
+const { removeEventFromStore } = require('../utils/storageManager');
 
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
@@ -45,7 +45,7 @@ module.exports = function(settings, event) {
   }
 
   if (!disableRemoveEventFromStore) {
-    removeEventToStore(recordID);
+    removeEventFromStore(recordID);
   }
   return true;
 };
