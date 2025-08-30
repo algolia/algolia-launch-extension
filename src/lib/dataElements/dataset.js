@@ -14,9 +14,8 @@ const getEventDetailsData = (srcElement, querySelector, queryIDDataElement, obje
     };
 
     turbine.logger.log(
-      `Dataset Data Element', ${ JSON.stringify(algoliaData) });).`
+      `Dataset Data Element - Event Details Data: ', ${ JSON.stringify(algoliaData) });).`
     );
-
     return algoliaData;
   }
   return {};
@@ -26,15 +25,14 @@ const getIndexNameData = (srcElement, querySelector, indexNameDataElement) => {
   const ancestor = srcElement.closest(querySelector);
   if (ancestor && ancestor.dataset) {
     const dataset = ancestor.dataset;
-    const algoliaData = {
+    const indexNameData = {
       indexName: indexNameDataElement || dataset['indexname']
     };
 
     turbine.logger.log(
-      `Dataset Data Element', ${ JSON.stringify(algoliaData) });).`
+      `Dataset Data Element - Index Name Data: ', ${ JSON.stringify(indexNameData) });).`
     );
-
-    return algoliaData;
+    return indexNameData;
   }
   return {};
 };
@@ -55,6 +53,10 @@ const getCommerceData = (priceDataElement, quantityDataElement, discountDataElem
     commerceData.objectData = [ objectData ];
     commerceData.currency = currency;
   }
+
+  turbine.logger.log(
+    `Dataset Data Element - Commerce Data: ', ${ JSON.stringify(commerceData) });).`
+  );
   return commerceData;
 }
 

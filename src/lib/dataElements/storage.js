@@ -20,6 +20,9 @@ const updateCommerceData = (algoliaData, priceDataElement, quantityDataElement, 
   if (currency) {
     algoliaData.currency = currency;
   }
+  turbine.logger.log(
+    `Dataset Data Element - Algolia Data: ', ${ JSON.stringify(algoliaData) });).`
+  );
 }
 
 module.exports = function(settings) {
