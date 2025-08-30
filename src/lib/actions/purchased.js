@@ -1,67 +1,94 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { clearEventToStore } = require('../utils/storageManager');
-
-function updatePayload(payload, objectData) {
-  const updatedPayload = {
-    ...payload,
-    objectData
-  };
-  const value = objectData.reduce(function(accum, data) {
-    return accum + Number(data.price) * Number(data.quantity);
-  }, 0);
-  if (value) {
-    updatedPayload.value = value;
-  }
-  return updatedPayload;
-}
+const { getAllEventFromStore, removeEventFromStore } = require('../utils/storageManager');
+const { updatePayload } = require('../utils/dataPayload');
 
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
-    eventDetailsDataElement: {
-      timestamp,
+    eventName,
+    purchasedItemsDataElement
+  } = settings;
+  const payload = {
+    timestamp: new Date().getTime(),
+    eventName,
+    userToken: extensionSettings.userTokenDataElement,
+  }
+
+  // get all the events from the browser storage for processing.
+  const events = getAllEventFromStore();
+  const payloads = {};
+  Object.keys(events).forEach(recordId => {
+    const {
+      queryID,
       indexName,
       objectIDs,
-      objectData
-    },
-    eventName,
-    currency
-  } = settings;
+      objectData,
+      currency
+    } = events[recordId];
 
-  const payload = {
-    timestamp,
-    eventName,
-    index: indexName || extensionSettings.indexName,
-    userToken: extensionSettings.userTokenDataElement,
-    objectIDs: objectIDs,
-    currency: currency || extensionSettings.currency
-  };
+    // Check if the Object ID is part of the purchased item before sending the purchase event.
+    if (objectIDs && objectIDs.length > 0 && purchasedItemsDataElement.includes(objectIDs[0])) {
+      // Add Query ID to each objectData item for purchase event
+      if (objectData) {
+        objectData.forEach(item => {
+          item.queryID = queryID;
+        })
+      }
+      if (payloads[indexName]) {
+        const payload = payloads[indexName];
+        payload.objectIDs.push(...objectIDs);
+        payload.objectData.push(...objectData);
+      } else {
+        const payload = {
+          timestamp: Date.now(),
+          eventName,
+          index: indexName || extensionSettings.indexName,
+          userToken: extensionSettings.userTokenDataElement,
+          objectIDs,
+          objectData,
+          currency: currency || extensionSettings.currency,
+          recordId
+        }
+        if (extensionSettings.authenticatedUserTokenDataElement) {
+          payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
+        }
+        payloads[indexName] = payload;
+      }
+    }
+  });
 
-  if (extensionSettings.authenticatedUserTokenDataElement) {
-    payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
-  }
+  // Loop through all the payloads to send purchase event for each index
+  Object.keys(payloads).forEach(indexName => {
+    const payload = payloads[indexName];
 
-  let isPurchasedWithQueryID = false;
-  if (objectData && objectData.length > 0) {
-    isPurchasedWithQueryID = objectData.find(data => data.queryID !== null);
-  }
+    // Get record ID from payload and remove it so the payload can be sent to
+    // Algolia without the record ID
+    const recordId = payload.recordId;
+    delete payload.recordId;
 
-  if (isPurchasedWithQueryID) {
-    const updatedPayload = updatePayload(payload, objectData);
-    window.aa('purchasedObjectIDsAfterSearch', updatedPayload);
-    turbine.logger.log(
-      `Insights command: aa('purchasedObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
-    );
-  } else {
-    const updatedPayload = updatePayload(payload, objectData);
-    window.aa('purchasedObjectIDs', updatedPayload);
-    turbine.logger.log(
-      `Insights command: aa('purchasedObjectIDs', ${ JSON.stringify(updatedPayload) });).`
-    );
-  }
+    const objectData = payload.objectData;
+    let isPurchasedWithQueryID = false;
+    if (objectData && objectData.length > 0) {
+      isPurchasedWithQueryID = objectData.find(data => data.queryID !== null);
+    }
 
-  clearEventToStore();
-  return true;
+    if (isPurchasedWithQueryID) {
+      const updatedPayload = updatePayload(payload);
+      window.aa('purchasedObjectIDsAfterSearch', updatedPayload);
+      turbine.logger.log(
+        `Insights command: aa('purchasedObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
+      );
+    } else {
+      const updatedPayload = updatePayload(payload);
+      window.aa('purchasedObjectIDs', updatedPayload);
+      turbine.logger.log(
+        `Insights command: aa('purchasedObjectIDs', ${ JSON.stringify(updatedPayload) });).`
+      );
+    }
+
+    // removing from local store since the item is purchased and no future events need to be sent for this object id.
+    removeEventFromStore(recordId);
+  });
 };
 

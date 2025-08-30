@@ -1,6 +1,6 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { removeEventToStore } = require('../utils/storageManager');
+const { removeEventFromStore } = require('../utils/storageManager');
 
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
@@ -9,9 +9,9 @@ module.exports = function(settings, event) {
       timestamp,
       queryID,
       indexName,
-      objectIDs
+      objectIDs,
+      recordID
     },
-    recordIdDataElement,
     eventName,
     disableRemoveEventFromStore
   } = settings;
@@ -23,9 +23,6 @@ module.exports = function(settings, event) {
     userToken: extensionSettings.userTokenDataElement,
     objectIDs
   };
-
-  const recordId = (recordIdDataElement) ? recordIdDataElement : window.document.location.pathname;
-
   if (extensionSettings.authenticatedUserTokenDataElement) {
     payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
   }
@@ -48,7 +45,7 @@ module.exports = function(settings, event) {
   }
 
   if (!disableRemoveEventFromStore) {
-    removeEventToStore(recordId);
+    removeEventFromStore(recordID);
   }
   return true;
 };

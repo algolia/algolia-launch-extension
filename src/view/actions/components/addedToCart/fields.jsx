@@ -10,7 +10,6 @@ import {
   TextField
 } from '@adobe/react-spectrum';
 import React from 'react';
-import WrappedPickerField from '../../../components/wrappedPickerField';
 import WrappedTextField from '../../../components/wrappedTextField';
 
 export default () => (
@@ -61,28 +60,6 @@ export default () => (
             </ContextualHelp>
           }
         />
-        <WrappedPickerField
-          name="currency"
-          width="size-4600"
-          label="Currency"
-          isRequired
-          necessityIndicator="label"
-          contextualHelp={
-            <ContextualHelp variant="info">
-              <Heading>Currency</Heading>
-              <Content>
-                <Text>
-                  Select the currency
-                </Text>
-              </Content>
-            </ContextualHelp>
-          }
-          items={ [
-            { id: 'USD', name: 'USD' },
-            { id: 'EUR', name: 'EUR' }
-          ] }
-        />
-
       </DisclosurePanel>
     </Disclosure>
   </Flex>

@@ -1,10 +1,12 @@
 export default (initInfo) => {
   const { settings } = initInfo;
-  const { eventDetailsDataElement = '', eventName = '', currency = '' } = settings || {};
+  const {
+    eventDetailsDataElement = '',
+    eventName = '',
+  } = settings || {};
 
   return {
     eventDetailsDataElement,
-    eventName,
-    currency
+    eventName
   };
 };

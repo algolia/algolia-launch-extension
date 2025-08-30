@@ -1,1 +1,1 @@
-export default ({ eventDetailsDataElement, eventName, currency }) => ({ eventDetailsDataElement, eventName, currency });
+export default ({ eventName, purchasedItemsDataElement }) => ({ eventName, purchasedItemsDataElement });

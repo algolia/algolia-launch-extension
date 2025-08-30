@@ -3,18 +3,28 @@ export default (initInfo) => {
   const {
     hitQuerySelector = '',
     indexNameQuerySelector = '',
-    queryIDDataElement = '',
-    objectIDsDataElement = '',
-    positionsDataElement = '',
-    indexNameDataElement = ''
+    recordIDDataElement,
+    queryIDDataElement,
+    objectIDsDataElement,
+    positionsDataElement,
+    indexNameDataElement,
+    priceDataElement,
+    quantityDataElement,
+    discountDataElement,
+    currency
   } = settings || {};
 
   return {
     hitQuerySelector,
     indexNameQuerySelector,
+    recordIDDataElement,
     queryIDDataElement,
     objectIDsDataElement,
     positionsDataElement,
-    indexNameDataElement
+    indexNameDataElement,
+    priceDataElement,
+    quantityDataElement,
+    discountDataElement,
+    currency
   };
 };

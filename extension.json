@@ -2,7 +2,7 @@
   "displayName": "Algolia Insights",
   "name": "algolia-insights",
   "platform": "web",
-  "version": "2.3.1",
+  "version": "3.0.0",
   "description": "Send events to Algolia to power AI products (AI Search, Recommend, Dynamic Reranking, Personalization, etc).",
   "author": {
     "name": "Algolia Professional Services",
@@ -67,13 +67,13 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
+          "eventName": {
+            "type": "string"
+          },
           "eventDetailsDataElement": {
             "type": "string"
           },
           "userTokenDataElement": {
-            "type": "string"
-          },
-          "eventName": {
             "type": "string"
           }
         }
@@ -88,14 +88,14 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "eventDetailsDataElement": {
-            "type": "string"
-          },
           "eventName": {
             "type": "string"
           },
-          "recordIdDataElement": {
+          "eventDetailsDataElement": {
             "type": "string"
+          },
+          "disableRemoveEventFromStore": {
+            "type": "boolean"
           }
         }
       },
@@ -109,13 +109,10 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "eventDetailsDataElement": {
-            "type": "string"
-          },
           "eventName": {
             "type": "string"
           },
-          "recordIdDataElement": {
+          "eventDetailsDataElement": {
             "type": "string"
           }
         }
@@ -130,13 +127,10 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "eventDetailsDataElement": {
-            "type": "string"
-          },
           "eventName": {
             "type": "string"
           },
-          "currency": {
+          "purchasedItemsDataElement": {
             "type": "string"
           }
         }
@@ -177,6 +171,9 @@
           "indexNameQuerySelector": {
             "type": "string"
           },
+          "recordIDDataElement": {
+            "type": "string"
+          },
           "queryIDDataElement": {
             "type": "string"
           },
@@ -187,6 +184,18 @@
             "type": "string"
           },
           "indexNameDataElement": {
+            "type": "string"
+          },
+          "priceDataElement": {
+            "type": "string"
+          },
+          "quantityDataElement": {
+            "type": "string"
+          },
+          "discountDataElement": {
+            "type": "string"
+          },
+          "currency": {
             "type": "string"
           }
         }
@@ -225,7 +234,19 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
-          "recordIdDataElement": {
+          "recordIDDataElement": {
+            "type": "string"
+          },
+          "priceDataElement": {
+            "type": "string"
+          },
+          "quantityDataElement": {
+            "type": "string"
+          },
+          "discountDataElement": {
+            "type": "string"
+          },
+          "currency": {
             "type": "string"
           }
         }

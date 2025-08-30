@@ -1,18 +1,52 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { getEventToStore } = require('../utils/storageManager');
+const { getEventFromStore, addEventToStore } = require('../utils/storageManager');
+
+const updateCommerceData = (algoliaData, priceDataElement, quantityDataElement, discountDataElement, currency) => {
+  if (!algoliaData.objectData) {
+    algoliaData.objectData = [{}];
+  }
+
+  const dataItem = algoliaData.objectData[0];
+  if (priceDataElement) {
+    dataItem.price = priceDataElement;
+  }
+  if (quantityDataElement) {
+    dataItem.quantity = quantityDataElement;
+  }
+  if (discountDataElement) {
+    dataItem.discount = discountDataElement;
+  }
+  if (currency) {
+    algoliaData.currency = currency;
+  }
+  turbine.logger.log(
+    `Dataset Data Element - Algolia Data: ', ${ JSON.stringify(algoliaData) });).`
+  );
+}
 
 module.exports = function(settings) {
   const {
-    recordIdDataElement
+    recordIDDataElement,
+    priceDataElement,
+    quantityDataElement,
+    discountDataElement,
+    currency
   } = settings;
 
-  const recordId = (recordIdDataElement) ? recordIdDataElement : window.document.location.pathname;
-  const algoliaData = getEventToStore(recordId);
+  const recordID = (recordIDDataElement) ? recordIDDataElement : window.document.location.pathname;
+  const algoliaData = getEventFromStore(recordID);
+
+  updateCommerceData(algoliaData, priceDataElement, quantityDataElement, discountDataElement, currency);
 
   turbine.logger.log(
     `Storage Data Element', ${ JSON.stringify(algoliaData) });).`
   );
 
-  return algoliaData;
+  addEventToStore(recordID, algoliaData);
+
+  return {
+    ...algoliaData,
+    recordID
+  };
 };

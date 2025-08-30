@@ -29,7 +29,7 @@ export default () => (
               <Heading>Object ID Param Name</Heading>
               <Content>
                 <Text>
-                  Enter the query param name that contains the Object Id.
+                  Enter the query param name that contains the Object ID.
                 </Text>
               </Content>
             </ContextualHelp>
@@ -64,7 +64,7 @@ export default () => (
               <Heading>Query ID Param Name</Heading>
               <Content>
                 <Text>
-                  Enter the query param name that contains the Query Id.
+                  Enter the query param name that contains the Query ID.
                 </Text>
               </Content>
             </ContextualHelp>

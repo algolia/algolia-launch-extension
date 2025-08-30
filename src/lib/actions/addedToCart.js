@@ -1,6 +1,6 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { removeEventToStore } = require('../utils/storageManager');
+const { updatePayload } = require('../utils/dataPayload');
 
 module.exports = function(settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
@@ -10,10 +10,10 @@ module.exports = function(settings, event) {
       queryID,
       indexName,
       objectIDs,
-      objectData
+      objectData,
+      currency
     },
-    eventName,
-    currency
+    eventName
   } = settings;
 
   const payload = {
@@ -33,7 +33,7 @@ module.exports = function(settings, event) {
   if (objectIDs && objectIDs.length > 0) {
     if (queryID) {
       const updatedPayload = {
-        ...payload,
+        ...updatePayload(payload),
         queryID
       };
       window.aa('addedToCartObjectIDsAfterSearch', updatedPayload);
@@ -41,9 +41,12 @@ module.exports = function(settings, event) {
         `Insights command: aa('addedToCartObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
       );
     } else {
-      window.aa('addedToCartObjectIDs', payload);
+      const updatedPayload = {
+        ...updatePayload(payload)
+      };
+      window.aa('addedToCartObjectIDs', updatedPayload);
       turbine.logger.log(
-        `Insights command: aa('addedToCartObjectIDs', ${ JSON.stringify(payload) });).`
+        `Insights command: aa('addedToCartObjectIDs', ${ JSON.stringify(updatedPayload) });).`
       );
     }
   }

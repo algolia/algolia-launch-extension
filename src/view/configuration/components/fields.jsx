@@ -30,7 +30,7 @@ export default () => (
               <Heading>Application ID</Heading>
               <Content>
                 <Text>
-                  Enter the Application Id which can be found in the on the Algolia Dashboard in the <a
+                  Enter the Application ID which can be found in the on the Algolia Dashboard in the <a
                   href="https://www.algolia.com/account/api-keys/all" target="_child">API Keys</a> section.
                 </Text>
               </Content>
@@ -116,26 +116,23 @@ export default () => (
             </ContextualHelp>
           }
         />
-        <WrappedPickerField
+        <WrappedTextField
           name="currency"
+          component={ TextField }
           width="size-4600"
-          label="Currency"
-          isRequired
+          label="Currency Code"
           necessityIndicator="label"
+          supportDataElement
           contextualHelp={
             <ContextualHelp variant="info">
-              <Heading>Currency</Heading>
+              <Heading>Currency Code</Heading>
               <Content>
                 <Text>
-                  Select the currency
+                  Specify the currency as ISO-4217 currency code, such as USD or EUR.
                 </Text>
               </Content>
             </ContextualHelp>
           }
-          items={ [
-            { id: 'USD', name: 'USD' },
-            { id: 'EUR', name: 'EUR' }
-          ] }
         />
       </DisclosurePanel>
     </Disclosure>
