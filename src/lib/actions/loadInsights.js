@@ -31,7 +31,7 @@ module.exports = function(settings) {
     userHasOptedOut: (userHasOptedOutDataElement === null || userHasOptedOutDataElement === '') ? false: userHasOptedOutDataElement,
     cookieDuration: cookieDuration
   });
-  window.aa('addAlgoliaAgent', 'algolia-launch-extension (3.0.0-beta.13)');
+  window.aa('addAlgoliaAgent', 'algolia-launch-extension (3.0.0-beta.16)');
 
   if (userTokenDataElement) {
     window.aa('setUserToken', userTokenDataElement);

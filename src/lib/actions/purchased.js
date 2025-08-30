@@ -35,8 +35,8 @@ module.exports = function(settings, event) {
           item.queryID = queryID;
         })
       }
-      if (payloads[recordId]) {
-        const payload = payloads[recordId];
+      if (payloads[indexName]) {
+        const payload = payloads[indexName];
         payload.objectIDs.push(...objectIDs);
         payload.objectData.push(...objectData);
       } else {
@@ -47,19 +47,26 @@ module.exports = function(settings, event) {
           userToken: extensionSettings.userTokenDataElement,
           objectIDs,
           objectData,
-          currency: currency || extensionSettings.currency
+          currency: currency || extensionSettings.currency,
+          recordId
         }
         if (extensionSettings.authenticatedUserTokenDataElement) {
           payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
         }
-        payloads[recordId] = payload;
+        payloads[indexName] = payload;
       }
     }
   });
 
   // Loop through all the payloads to send purchase event for each index
-  Object.keys(payloads).forEach(recordId => {
-    const payload = payloads[recordId];
+  Object.keys(payloads).forEach(indexName => {
+    const payload = payloads[indexName];
+
+    // Get record ID from payload and remove it so the payload can be sent to
+    // Algolia without the record ID
+    const recordId = payload.recordId;
+    delete payload.recordId;
+
     const objectData = payload.objectData;
     let isPurchasedWithQueryID = false;
     if (objectData && objectData.length > 0) {
