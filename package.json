@@ -1,6 +1,6 @@
 {
   "name": "algolia-insights-extension",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "author": {
     "name": "Algolia",
     "url": "https://www.algolia.com/"
@@ -39,7 +39,7 @@
   "devDependencies": {
     "@adobe/react-spectrum": "^3.47.2",
     "@adobe/reactor-document": "^1.0.0",
-    "@adobe/reactor-sandbox": "^13.4.0",
+    "@adobe/reactor-sandbox": "^14.0.0",
     "@adobe/reactor-window": "^1.0.0",
     "@babel/core": "^7.29.7",
     "@babel/eslint-parser": "^7.29.7",

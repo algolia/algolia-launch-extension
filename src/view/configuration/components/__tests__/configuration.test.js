@@ -104,6 +104,30 @@ describe('configuration validate', () => {
     expect(errors.apiKey).toBeDefined();
   });
 
+  it('does not require appId or apiKey when a proxyUrl is set', () => {
+    const errors = validate({
+      ...validValues,
+      appId: '',
+      apiKey: '',
+      proxyUrl: 'https://proxy.example.com'
+    });
+    expect(errors.appId).toBeUndefined();
+    expect(errors.apiKey).toBeUndefined();
+  });
+
+  it('still validates the proxyUrl format when credentials are omitted', () => {
+    const errors = validate({
+      ...validValues,
+      appId: '',
+      apiKey: '',
+      proxyUrl: 'not-a-url'
+    });
+    expect(errors.appId).toBeUndefined();
+    expect(errors.apiKey).toBeUndefined();
+    expect(errors.proxyUrl).toBeDefined();
+    expect(errors.proxyUrl.type).toBe('pattern');
+  });
+
   it('returns a currency error when currency is missing', () => {
     const errors = validate({ ...validValues, currency: '' });
     expect(errors.currency).toBeDefined();

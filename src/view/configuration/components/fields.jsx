@@ -10,9 +10,15 @@ import {
   TextField
 } from '@adobe/react-spectrum';
 import React from 'react';
+import { useWatch } from 'react-hook-form';
 import WrappedTextField from '../../components/wrappedTextField';
 
 export default function () {
+  const proxyUrl = useWatch({ name: 'proxyUrl' });
+  // When a proxy URL is configured, the proxy injects the Algolia credentials
+  // server-side, so the App ID and Search API Key become optional here.
+  const credentialsRequired = !(proxyUrl && proxyUrl.trim());
+
   return (
     <Flex direction="column" gap="size-65">
       <Disclosure defaultExpanded isQuiet>
@@ -23,7 +29,7 @@ export default function () {
             component={TextField}
             width="size-4600"
             label="Application ID"
-            isRequired
+            isRequired={credentialsRequired}
             necessityIndicator="label"
             contextualHelp={
               <ContextualHelp variant="info">
@@ -38,7 +44,8 @@ export default function () {
                     >
                       API Keys
                     </a>{' '}
-                    section.
+                    section. Optional when a Proxy URL is configured, since the
+                    proxy supplies the credentials.
                   </Text>
                 </Content>
               </ContextualHelp>
@@ -49,7 +56,7 @@ export default function () {
             component={TextField}
             width="size-4600"
             label="Search API Key"
-            isRequired
+            isRequired={credentialsRequired}
             necessityIndicator="label"
             contextualHelp={
               <ContextualHelp variant="info">
@@ -64,7 +71,8 @@ export default function () {
                     >
                       API Keys
                     </a>{' '}
-                    section.
+                    section. Leave blank when using a Proxy URL to keep the key
+                    hidden from the browser; the proxy injects it server-side.
                   </Text>
                 </Content>
               </ContextualHelp>
@@ -163,10 +171,12 @@ export default function () {
                 <Content>
                   <Text>
                     Optional. Enter the URL of your server to route Insights
-                    events through before they are forwarded to Algolia. The
-                    Application ID and Search API Key from the Authentication
-                    section are still used to authenticate with Algolia. Leave
-                    blank to send events directly to Algolia.
+                    events through before they are forwarded to Algolia. When
+                    set, your proxy is responsible for injecting the Algolia
+                    Application ID and Search API Key, so those fields can be
+                    left blank to keep the credentials hidden from the browser.
+                    Leave this blank to send events directly to Algolia using
+                    the credentials above.
                   </Text>
                 </Content>
               </ContextualHelp>

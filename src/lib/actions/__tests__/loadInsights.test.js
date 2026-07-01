@@ -70,6 +70,38 @@ describe('loadInsights - init options', () => {
     expect(initCall[1].apiKey).toBe('MY_API_KEY');
   });
 
+  it('coerces empty appId/apiKey to empty strings so the library accepts them (credential-hiding proxy)', () => {
+    turbine.getExtensionSettings.mockReturnValue({
+      appId: '',
+      apiKey: '',
+      userTokenDataElement: '',
+      authenticatedUserTokenDataElement: '',
+      proxyUrl: 'https://proxy.example.com'
+    });
+
+    loadInsights(baseSettings);
+
+    const initCall = mockAa.mock.calls.find((c) => c[0] === 'init');
+    expect(initCall).toBeDefined();
+    expect(initCall[1].host).toBe('https://proxy.example.com');
+    expect(initCall[1].appId).toBe('');
+    expect(initCall[1].apiKey).toBe('');
+  });
+
+  it('coerces undefined appId/apiKey to empty strings', () => {
+    turbine.getExtensionSettings.mockReturnValue({
+      userTokenDataElement: '',
+      authenticatedUserTokenDataElement: '',
+      proxyUrl: 'https://proxy.example.com'
+    });
+
+    loadInsights(baseSettings);
+
+    const initCall = mockAa.mock.calls.find((c) => c[0] === 'init');
+    expect(initCall[1].appId).toBe('');
+    expect(initCall[1].apiKey).toBe('');
+  });
+
   it('does not set host when proxyUrl is undefined', () => {
     turbine.getExtensionSettings.mockReturnValue({
       appId: 'APP',

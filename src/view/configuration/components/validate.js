@@ -1,14 +1,19 @@
 export default (values) => {
   const errors = {};
 
-  if (!values.appId) {
+  // When a proxy URL is configured, the proxy is responsible for injecting the
+  // Algolia credentials server-side, so the Application ID and Search API Key
+  // no longer need to be provided (and shouldn't be, to keep the key hidden).
+  const usingProxy = Boolean(values.proxyUrl && values.proxyUrl.trim());
+
+  if (!usingProxy && !values.appId) {
     errors.appId = {
       message: 'Please specify your Application ID',
       type: 'required'
     };
   }
 
-  if (!values.apiKey) {
+  if (!usingProxy && !values.apiKey) {
     errors.apiKey = {
       message: 'Please specify your Search API Key',
       type: 'required'

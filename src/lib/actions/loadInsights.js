@@ -35,9 +35,13 @@ module.exports = function (settings) {
       c.parentNode.insertBefore(i, c);
   })(window, document, 'script', ALGOLIA_INSIGHTS_SRC, 'aa');
 
+  // search-insights throws when sending events if appId/apiKey are `undefined`
+  // and no per-event credentials are supplied. Coercing to empty strings keeps
+  // its credential check satisfied so a credential-hiding proxy (which injects
+  // the real credentials server-side) can be used without providing them here.
   const initOptions = {
-    appId,
-    apiKey,
+    appId: appId || '',
+    apiKey: apiKey || '',
     useCookie: useUserTokenCookie,
     userHasOptedOut:
       userHasOptedOutDataElement === null || userHasOptedOutDataElement === ''
@@ -51,7 +55,7 @@ module.exports = function (settings) {
   }
 
   window.aa('init', initOptions);
-  window.aa('addAlgoliaAgent', 'algolia-launch-extension (3.0.0)');
+  window.aa('addAlgoliaAgent', 'algolia-launch-extension (3.1.0)');
 
   if (userTokenDataElement) {
     window.aa('setUserToken', userTokenDataElement);
