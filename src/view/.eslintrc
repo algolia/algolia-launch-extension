@@ -1,8 +1,12 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2020,
     "sourceType": "module",
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    },
     "ecmaFeatures": {
       "jsx": true,
       "experimentalObjectRestSpread": true
@@ -60,7 +64,15 @@
         "destructuring": "all"
       }
     ],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "func-names": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-no-useless-fragment": 0,
+    "react/require-default-props": 0,
+    "react/forbid-prop-types": 0,
+    "react/no-deprecated": 0,
+    "no-new": 0
   },
   "env": {
     "es6": true,

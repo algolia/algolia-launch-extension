@@ -2,7 +2,7 @@
 const window = require('@adobe/reactor-window');
 const { updatePayload } = require('../utils/dataPayload');
 
-module.exports = function(settings, event) {
+module.exports = function (settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
     eventDetailsDataElement: {
@@ -27,7 +27,8 @@ module.exports = function(settings, event) {
   };
 
   if (extensionSettings.authenticatedUserTokenDataElement) {
-    payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
+    payload.authenticatedUserToken =
+      extensionSettings.authenticatedUserTokenDataElement;
   }
 
   if (objectIDs && objectIDs.length > 0) {
@@ -38,7 +39,9 @@ module.exports = function(settings, event) {
       };
       window.aa('addedToCartObjectIDsAfterSearch', updatedPayload);
       turbine.logger.log(
-        `Insights command: aa('addedToCartObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
+        `Insights command: aa('addedToCartObjectIDsAfterSearch', ${JSON.stringify(
+          updatedPayload
+        )});).`
       );
     } else {
       const updatedPayload = {
@@ -46,11 +49,12 @@ module.exports = function(settings, event) {
       };
       window.aa('addedToCartObjectIDs', updatedPayload);
       turbine.logger.log(
-        `Insights command: aa('addedToCartObjectIDs', ${ JSON.stringify(updatedPayload) });).`
+        `Insights command: aa('addedToCartObjectIDs', ${JSON.stringify(
+          updatedPayload
+        )});).`
       );
     }
   }
 
   return true;
 };
-

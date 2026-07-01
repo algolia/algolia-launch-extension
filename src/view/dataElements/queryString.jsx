@@ -5,19 +5,19 @@ import getConfigurationInitValues from './components/queryString/getInitValues';
 import getConfigurationSettings from './components/queryString/getSettings';
 import validateConfigurationFields from './components/queryString/validate';
 
-export default () => (
-  <ExtensionView
-    getInitialValues={ ({ initInfo }) => ({
-      ...getConfigurationInitValues(initInfo)
-    }) }
-    getSettings={ ({ values }) => ({
-      ...getConfigurationSettings(values)
-    }) }
-    validate={ (values) => ({
-      ...validateConfigurationFields(values)
-    }) }
-    render={ () => (
-      <ConfigurationFields />
-    ) }
-  />
-);
+export default function () {
+  return (
+    <ExtensionView
+      getInitialValues={({ initInfo }) => ({
+        ...getConfigurationInitValues(initInfo)
+      })}
+      getSettings={({ values }) => ({
+        ...getConfigurationSettings(values)
+      })}
+      validate={(values) => ({
+        ...validateConfigurationFields(values)
+      })}
+      render={() => <ConfigurationFields />}
+    />
+  );
+}

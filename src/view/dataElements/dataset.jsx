@@ -5,19 +5,19 @@ import getConfigurationInitValues from './components/dataset/getInitValues';
 import getConfigurationSettings from './components/dataset/getSettings';
 import validateConfigurationFields from './components/dataset/validate';
 
-export default () => (
-  <ExtensionView
-    getInitialValues={ ({ initInfo }) => ({
-      ...getConfigurationInitValues(initInfo)
-    }) }
-    getSettings={ ({ values }) => ({
-      ...getConfigurationSettings(values)
-    }) }
-    validate={ (values) => ({
-      ...validateConfigurationFields(values)
-    }) }
-    render={ () => (
-      <ConfigurationFields />
-    ) }
-  />
-);
+export default function () {
+  return (
+    <ExtensionView
+      getInitialValues={({ initInfo }) => ({
+        ...getConfigurationInitValues(initInfo)
+      })}
+      getSettings={({ values }) => ({
+        ...getConfigurationSettings(values)
+      })}
+      validate={(values) => ({
+        ...validateConfigurationFields(values)
+      })}
+      render={() => <ConfigurationFields />}
+    />
+  );
+}

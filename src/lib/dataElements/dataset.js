@@ -2,19 +2,29 @@
 
 const window = require('@adobe/reactor-window');
 const { addEventToStore } = require('../utils/storageManager');
-const getEventDetailsData = (srcElement, querySelector, queryIDDataElement, objectIDsDataElement, positionsDataElement) => {
+const getEventDetailsData = (
+  srcElement,
+  querySelector,
+  queryIDDataElement,
+  objectIDsDataElement,
+  positionsDataElement
+) => {
   const ancestor = srcElement.closest(querySelector);
   if (ancestor && ancestor.dataset) {
     const dataset = ancestor.dataset;
     const algoliaData = {
       queryID: queryIDDataElement || dataset['insightsQueryId'],
-      objectIDs: objectIDsDataElement || [ dataset['insightsObjectId'] ],
-      positions: positionsDataElement || [ parseInt(dataset['insightsPosition']) ],
+      objectIDs: objectIDsDataElement || [dataset['insightsObjectId']],
+      positions: positionsDataElement || [
+        parseInt(dataset['insightsPosition'])
+      ],
       raw: dataset
     };
 
     turbine.logger.log(
-      `Dataset Data Element - Event Details Data: ', ${ JSON.stringify(algoliaData) });).`
+      `Dataset Data Element - Event Details Data: ', ${JSON.stringify(
+        algoliaData
+      )});).`
     );
     return algoliaData;
   }
@@ -30,15 +40,22 @@ const getIndexNameData = (srcElement, querySelector, indexNameDataElement) => {
     };
 
     turbine.logger.log(
-      `Dataset Data Element - Index Name Data: ', ${ JSON.stringify(indexNameData) });).`
+      `Dataset Data Element - Index Name Data: ', ${JSON.stringify(
+        indexNameData
+      )});).`
     );
     return indexNameData;
   }
   return {};
 };
 
-const getCommerceData = (priceDataElement, quantityDataElement, discountDataElement, currency) => {
-  const commerceData  =  {};
+const getCommerceData = (
+  priceDataElement,
+  quantityDataElement,
+  discountDataElement,
+  currency
+) => {
+  const commerceData = {};
   if (priceDataElement) {
     const objectData = {};
     objectData.price = priceDataElement;
@@ -50,19 +67,21 @@ const getCommerceData = (priceDataElement, quantityDataElement, discountDataElem
     if (discountDataElement) {
       objectData.discount = discountDataElement;
     }
-    commerceData.objectData = [ objectData ];
+    commerceData.objectData = [objectData];
     commerceData.currency = currency;
   }
 
   turbine.logger.log(
-    `Dataset Data Element - Commerce Data: ', ${ JSON.stringify(commerceData) });).`
+    `Dataset Data Element - Commerce Data: ', ${JSON.stringify(
+      commerceData
+    )});).`
   );
   return commerceData;
-}
+};
 
 const getRecordId = (srcElement, recordIDDataElement) => {
   if (recordIDDataElement) {
-    return recordIDDataElement
+    return recordIDDataElement;
   } else {
     const link = srcElement.closest('a').href;
     if (link.startsWith('/')) {
@@ -72,9 +91,9 @@ const getRecordId = (srcElement, recordIDDataElement) => {
       return url.pathname;
     }
   }
-}
+};
 
-module.exports = function(settings, event) {
+module.exports = function (settings, event) {
   const {
     hitQuerySelector,
     indexNameQuerySelector,
@@ -91,9 +110,24 @@ module.exports = function(settings, event) {
 
   if (event && event.nativeEvent && event.nativeEvent.target) {
     const srcElement = event.nativeEvent.target;
-    const eventDetailsData = getEventDetailsData(srcElement, hitQuerySelector, queryIDDataElement, objectIDsDataElement, positionsDataElement);
-    const indexNameData = getIndexNameData(srcElement, indexNameQuerySelector, indexNameDataElement);
-    const commerceData = getCommerceData(priceDataElement, quantityDataElement, discountDataElement, currency);
+    const eventDetailsData = getEventDetailsData(
+      srcElement,
+      hitQuerySelector,
+      queryIDDataElement,
+      objectIDsDataElement,
+      positionsDataElement
+    );
+    const indexNameData = getIndexNameData(
+      srcElement,
+      indexNameQuerySelector,
+      indexNameDataElement
+    );
+    const commerceData = getCommerceData(
+      priceDataElement,
+      quantityDataElement,
+      discountDataElement,
+      currency
+    );
 
     const recordID = getRecordId(srcElement, recordIDDataElement);
     const payload = {

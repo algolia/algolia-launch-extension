@@ -6,7 +6,8 @@ export default (initInfo) => {
     indexName = '',
     userTokenDataElement = '',
     authenticatedUserTokenDataElement = '',
-    currency = ''
+    currency = '',
+    proxyUrl = ''
   } = settings || {};
 
   return {
@@ -15,6 +16,7 @@ export default (initInfo) => {
     indexName,
     userTokenDataElement,
     authenticatedUserTokenDataElement,
-    currency
+    currency,
+    proxyUrl
   };
 };

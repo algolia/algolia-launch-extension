@@ -36,5 +36,21 @@ export default (values) => {
     };
   }
 
+  if (values.proxyUrl) {
+    const isValidUrl = (url) => {
+      try {
+        return !!new URL(url);
+      } catch {
+        return false;
+      }
+    };
+    if (!isValidUrl(values.proxyUrl)) {
+      errors.proxyUrl = {
+        message: 'Please enter a valid URL (e.g. https://proxy.example.com)',
+        type: 'pattern'
+      };
+    }
+  }
+
   return errors;
 };

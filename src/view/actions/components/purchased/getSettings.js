@@ -1,1 +1,4 @@
-export default ({ eventName, purchasedItemsDataElement }) => ({ eventName, purchasedItemsDataElement });
+export default ({ eventName, purchasedItemsDataElement }) => ({
+  eventName,
+  purchasedItemsDataElement
+});

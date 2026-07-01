@@ -28,32 +28,35 @@ const showError = (obj, path) => {
   return obj;
 };
 
-export default ({ children }) => {
-  const [ firstChild, ...restChildren ] = children;
+export default function ({ children }) {
+  const [firstChild, ...restChildren] = children;
   const fieldName = firstChild.props.name;
-  const fieldOnChange = firstChild.props.onChange || firstChild.props.onSelectionChange;
+  const fieldOnChange =
+    firstChild.props.onChange || firstChild.props.onSelectionChange;
   const { errors, trigger } = useFormContext();
 
   return (
     <Flex direction="row">
       <Flex direction="column">
-        { children.length > 0 ? React.cloneElement(children[0], {
-          validationState: showError(errors, fieldName) ? 'invalid' : '',
-          onChange: (e) => {
-            fieldOnChange(e);
-            trigger(fieldName).catch(e => console.error);
-          }
-        }) : '' }
+        {children.length > 0
+          ? React.cloneElement(children[0], {
+              validationState: showError(errors, fieldName) ? 'invalid' : '',
+              onChange: (e) => {
+                fieldOnChange(e);
+                trigger(fieldName).catch(() => {});
+              }
+            })
+          : ''}
 
         <div className="error">
-          { showError(errors, fieldName) ? (
-            <Text>{ showError(errors, fieldName).message }</Text>
+          {showError(errors, fieldName) ? (
+            <Text>{showError(errors, fieldName).message}</Text>
           ) : (
             <Text>&nbsp;</Text>
-          ) }
+          )}
         </div>
       </Flex>
-      { restChildren }
+      {restChildren}
     </Flex>
   );
-};
+}

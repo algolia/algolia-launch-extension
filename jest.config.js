@@ -5,6 +5,7 @@ module.exports = {
   projects: [
     {
       displayName: 'test views',
+      testEnvironment: 'jsdom',
       setupFilesAfterEnv: ['./src/view/jest.setup.js'],
       moduleNameMapper: {
         '\\.(css|styl)$': '<rootDir>/src/view/__tests_helpers__/styleMock.js'
@@ -17,6 +18,7 @@ module.exports = {
     {
       displayName: 'test library modules',
       testEnvironment: 'node',
+      setupFilesAfterEnv: ['<rootDir>/src/lib/actions/__tests__/setupTests.js'],
       modulePathIgnorePatterns: [
         '<rootDir>/src/view/',
         '<rootDir>/src/lib/actions/__tests__/setupTests.js'
@@ -25,7 +27,8 @@ module.exports = {
     {
       displayName: 'lint',
       runner: 'jest-runner-eslint',
-      testMatch: ['<rootDir>/src/**']
+      testMatch: ['<rootDir>/src/**'],
+      testPathIgnorePatterns: ['/__tests__/', '/__tests_helpers__/']
     }
   ],
 

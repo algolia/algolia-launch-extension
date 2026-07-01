@@ -1,11 +1,16 @@
+'use strict';
+
 function getPrice(item) {
-  const price = (Number(item.price) - ((item.discount) ? (Number(item.price) * Number(item.discount)) : 0)) * Number(item.quantity);
+  const price =
+    (Number(item.price) -
+      (item.discount ? Number(item.price) * Number(item.discount) : 0)) *
+    Number(item.quantity);
   return Math.round(price * 100) / 100;
 }
 
 function getTotal(objectData) {
   if (objectData && objectData.length > 0) {
-    return objectData.reduce(function(accum, item) {
+    return objectData.reduce(function (accum, item) {
       return accum + getPrice(item);
     }, 0);
   }

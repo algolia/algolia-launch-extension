@@ -4,7 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import ErrorBoundary from './errorBoundary';
 // import DisplayFormState from './displayFormState';
 
-const ExtensionView = ({ getInitialValues, getSettings, validate, render }) => {
+function ExtensionView({ getInitialValues, getSettings, validate, render }) {
   const methods = useForm({
     resolver: (values) => ({ values, errors: validate(values) })
   });
@@ -42,20 +42,19 @@ const ExtensionView = ({ getInitialValues, getSettings, validate, render }) => {
     <ErrorBoundary>
       <FormProvider
         // eslint-disable-next-line react/jsx-props-no-spreading
-        { ...methods }
+        {...methods}
       >
-        <form>{ render() }</form>
-        {/* <DisplayFormState /> */ }
+        <form>{render()}</form>
+        {/* <DisplayFormState /> */}
       </FormProvider>
     </ErrorBoundary>
   );
-};
+}
 
 ExtensionView.propTypes = {
   getInitialValues: PropTypes.func.isRequired,
   getSettings: PropTypes.func.isRequired,
-  validate: PropTypes.func,
-  validationSchema: PropTypes.object,
+  validate: PropTypes.func.isRequired,
   render: PropTypes.func.isRequired
 };
 
