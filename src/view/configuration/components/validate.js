@@ -1,10 +1,15 @@
 export default (values) => {
   const errors = {};
 
-  // When a proxy URL is configured, the proxy is responsible for injecting the
+  // The authentication method determines which credentials are required. When
+  // the proxy method is selected, the proxy is responsible for injecting the
   // Algolia credentials server-side, so the Application ID and Search API Key
-  // no longer need to be provided (and shouldn't be, to keep the key hidden).
-  const usingProxy = Boolean(values.proxyUrl && values.proxyUrl.trim());
+  // are optional (and shouldn't be provided, to keep the key hidden). Fall back
+  // to the presence of a proxy URL for configurations saved before the method
+  // was made explicit.
+  const usingProxy = values.credentialType
+    ? values.credentialType === 'proxy'
+    : Boolean(values.proxyUrl && values.proxyUrl.trim());
 
   if (!usingProxy && !values.appId) {
     errors.appId = {
@@ -34,14 +39,12 @@ export default (values) => {
     };
   }
 
-  if (!values.currency) {
-    errors.currency = {
-      message: 'Please specify the Currency for the property',
+  if (usingProxy && !(values.proxyUrl && values.proxyUrl.trim())) {
+    errors.proxyUrl = {
+      message: 'Please specify your Proxy URL',
       type: 'required'
     };
-  }
-
-  if (values.proxyUrl) {
+  } else if (values.proxyUrl && values.proxyUrl.trim()) {
     const isValidUrl = (url) => {
       try {
         return !!new URL(url);

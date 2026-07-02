@@ -17,6 +17,10 @@
       "$schema": "http://json-schema.org/draft-04/schema#",
       "type": "object",
       "properties": {
+        "credentialType": {
+          "type": "string",
+          "enum": ["credentials", "proxy"]
+        },
         "appId": {
           "type": "string"
         },
