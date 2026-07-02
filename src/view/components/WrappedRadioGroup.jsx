@@ -14,13 +14,12 @@ export default function ({
   return (
     <Controller
       name={componentName}
-      value={defaultValue}
+      defaultValue={defaultValue}
       render={({ field: { onChange, onBlur, value, name, ref } }) => (
         <ValidationWrapper>
           <Component
             name={name}
             value={value}
-            isSelected={value}
             onBlur={(e) => {
               onBlur(e);
               if (componentOnBlur) {
@@ -33,14 +32,13 @@ export default function ({
                 componentOnChange(e);
               }
             }}
-            inputRef={ref}
+            ref={ref}
             label={label}
             defaultValue={defaultValue}
             {...rest}
           >
             {rest.children}
           </Component>
-          <></>
         </ValidationWrapper>
       )}
       {...rest}

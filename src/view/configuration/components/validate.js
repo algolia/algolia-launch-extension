@@ -49,7 +49,10 @@ export default (values) => {
         return false;
       }
     };
-    if (!isValidUrl(values.proxyUrl)) {
+    // A data element token (e.g. %proxyUrl%) is resolved at runtime, so it
+    // can't be validated as a URL here.
+    const isDataElementToken = /^%[^%]+%$/.test(values.proxyUrl.trim());
+    if (!isDataElementToken && !isValidUrl(values.proxyUrl)) {
       errors.proxyUrl = {
         message: 'Please enter a valid URL (e.g. https://proxy.example.com)',
         type: 'pattern'

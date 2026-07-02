@@ -1,61 +1,54 @@
-import { Flex, Text } from '@adobe/react-spectrum';
+import { Flex } from '@adobe/react-spectrum';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
-const showError = (obj, path) => {
-  if (!obj) {
-    return '';
+const getError = (obj, path) => {
+  if (!obj || !path) {
+    return undefined;
   }
 
   if (obj[path]) {
     return obj[path];
   }
 
-  if (!path) {
-    return '';
-  }
-
   const parts = path.split('[').map((k) => k.replace(']', ''));
+  let current = obj;
   for (let i = 0; i < parts.length; i += 1) {
     const part = parts[i];
-    if (obj[part]) {
-      obj = obj[part];
+    if (current[part]) {
+      current = current[part];
     } else {
-      return obj[part];
+      return undefined;
     }
   }
 
-  return obj;
+  return current;
 };
 
 export default function ({ children }) {
-  const [firstChild, ...restChildren] = children;
+  const childArray = React.Children.toArray(children);
+  const [firstChild, ...restChildren] = childArray;
   const fieldName = firstChild.props.name;
   const fieldOnChange =
     firstChild.props.onChange || firstChild.props.onSelectionChange;
-  const { errors, trigger } = useFormContext();
+  const {
+    formState: { errors },
+    trigger
+  } = useFormContext();
+
+  const fieldError = getError(errors, fieldName);
+  const errorMessage = fieldError?.message;
 
   return (
-    <Flex direction="row">
-      <Flex direction="column">
-        {children.length > 0
-          ? React.cloneElement(children[0], {
-              validationState: showError(errors, fieldName) ? 'invalid' : '',
-              onChange: (e) => {
-                fieldOnChange(e);
-                trigger(fieldName).catch(() => {});
-              }
-            })
-          : ''}
-
-        <div className="error">
-          {showError(errors, fieldName) ? (
-            <Text>{showError(errors, fieldName).message}</Text>
-          ) : (
-            <Text>&nbsp;</Text>
-          )}
-        </div>
-      </Flex>
+    <Flex direction="row" alignItems="start">
+      {React.cloneElement(firstChild, {
+        isInvalid: Boolean(fieldError),
+        errorMessage,
+        onChange: (e) => {
+          if (fieldOnChange) fieldOnChange(e);
+          trigger(fieldName).catch(() => {});
+        }
+      })}
       {restChildren}
     </Flex>
   );

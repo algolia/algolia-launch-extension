@@ -16,7 +16,7 @@ export default function ({
         <ValidationWrapper>
           <ComboBox
             name={name}
-            value={value}
+            inputValue={value}
             selectedKey={value}
             onBlur={(e) => {
               onBlur(e);
@@ -30,12 +30,11 @@ export default function ({
                 componentOnChange(e);
               }
             }}
-            inputRef={ref}
+            ref={ref}
             {...rest}
           >
             {(item) => <Item key={item.id}>{item.name}</Item>}
           </ComboBox>
-          <></>
         </ValidationWrapper>
       )}
       {...rest}

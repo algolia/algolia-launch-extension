@@ -104,7 +104,7 @@ export default function () {
             supportDataElement
             contextualHelp={
               <ContextualHelp>
-                <Heading>Quantity</Heading>
+                <Heading>Discount</Heading>
                 <Content>Get the discount decimal value for this item.</Content>
               </ContextualHelp>
             }

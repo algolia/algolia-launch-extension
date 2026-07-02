@@ -57,7 +57,7 @@ export default function () {
                     <code>queryId</code> (optional)). If the Data Element
                     contains <code>queryId</code>, the event will be classed as{' '}
                     <b>Converted after Search</b> otherwise it will be
-                    considered a <b>Converted</b>event class. If Index Name is
+                    considered a <b>Converted</b> event class. If Index Name is
                     not available from the Data Element, then the default Index
                     Name will be used when sending events.
                   </Text>
@@ -70,7 +70,6 @@ export default function () {
             component={Checkbox}
             width="size-4600"
             label="Disable Removal of Event Data"
-            necessityIndicator="label"
             defaultValue
             contextualHelp={
               <ContextualHelp variant="info">

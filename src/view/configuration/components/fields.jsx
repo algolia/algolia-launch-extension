@@ -6,6 +6,7 @@ import {
   DisclosureTitle,
   Flex,
   Heading,
+  Link,
   Text,
   TextField
 } from '@adobe/react-spectrum';
@@ -36,14 +37,15 @@ export default function () {
                 <Heading>Application ID</Heading>
                 <Content>
                   <Text>
-                    Enter the Application ID which can be found in the on the
-                    Algolia Dashboard in the{' '}
-                    <a
+                    Enter the Application ID found on the Algolia Dashboard in
+                    the{' '}
+                    <Link
                       href="https://www.algolia.com/account/api-keys/all"
-                      target="_child"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       API Keys
-                    </a>{' '}
+                    </Link>{' '}
                     section. Optional when a Proxy URL is configured, since the
                     proxy supplies the credentials.
                   </Text>
@@ -63,14 +65,15 @@ export default function () {
                 <Heading>Search API Key</Heading>
                 <Content>
                   <Text>
-                    Enter Search API Key which can be found in the on the
-                    Algolia Dashboard in the{' '}
-                    <a
+                    Enter the Search API Key found on the Algolia Dashboard in
+                    the{' '}
+                    <Link
                       href="https://www.algolia.com/account/api-keys/all"
-                      target="_child"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       API Keys
-                    </a>{' '}
+                    </Link>{' '}
                     section. Leave blank when using a Proxy URL to keep the key
                     hidden from the browser; the proxy injects it server-side.
                   </Text>
@@ -165,6 +168,7 @@ export default function () {
             width="size-4600"
             label="Proxy URL"
             necessityIndicator="label"
+            supportDataElement
             contextualHelp={
               <ContextualHelp variant="info">
                 <Heading>Proxy URL</Heading>
@@ -176,7 +180,8 @@ export default function () {
                     Application ID and Search API Key, so those fields can be
                     left blank to keep the credentials hidden from the browser.
                     Leave this blank to send events directly to Algolia using
-                    the credentials above.
+                    the credentials above. You can also use a data element to
+                    set this value dynamically.
                   </Text>
                 </Content>
               </ContextualHelp>

@@ -31,7 +31,7 @@ export default function () {
                 <Content>
                   <Text>
                     Enter the Event Name that can be used to further refine this{' '}
-                    <b>convert</b> event
+                    <b>add to cart</b> event
                   </Text>
                 </Content>
               </ContextualHelp>

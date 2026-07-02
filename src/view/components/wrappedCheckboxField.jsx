@@ -14,7 +14,7 @@ export default function ({
   return (
     <Controller
       name={componentName}
-      value={defaultValue}
+      defaultValue={defaultValue}
       render={({ field: { onChange, onBlur, value, name, ref } }) => (
         <ValidationWrapper>
           <Component
@@ -33,12 +33,11 @@ export default function ({
                 componentOnChange(e);
               }
             }}
-            inputRef={ref}
+            ref={ref}
             {...rest}
           >
             {label}
           </Component>
-          <></>
         </ValidationWrapper>
       )}
       {...rest}

@@ -1,3 +1,4 @@
+import { Form } from '@adobe/react-spectrum';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -44,8 +45,10 @@ function ExtensionView({ getInitialValues, getSettings, validate, render }) {
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...methods}
       >
-        <form>{render()}</form>
-        {/* <DisplayFormState /> */}
+        <Form validationBehavior="native">
+          {render()}
+          {/* <DisplayFormState /> */}
+        </Form>
       </FormProvider>
     </ErrorBoundary>
   );

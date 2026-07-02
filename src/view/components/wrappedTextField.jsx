@@ -28,6 +28,7 @@ const openDataElementSelector =
 
 export default function ({
   name: componentName,
+  label,
   component: Component,
   onChange: componentOnChange,
   onBlur: componentOnBlur,
@@ -44,6 +45,7 @@ export default function ({
         <ValidationWrapper>
           <Component
             name={name}
+            label={label}
             value={value}
             onBlur={(e) => {
               onBlur(e);
@@ -57,16 +59,19 @@ export default function ({
                 componentOnChange(e);
               }
             }}
-            inputRef={ref}
+            ref={ref}
             autoComplete="off"
             {...rest}
           />
           {supportDataElement ? (
             <ActionButton
-              alignSelf="flex-end"
+              alignSelf="end"
               marginStart="size-65"
-              marginBottom="size-225"
-              aria-label="Icon only"
+              aria-label={
+                label
+                  ? `Select a data element for ${label}`
+                  : 'Select a data element'
+              }
               onPress={openDataElementSelector(
                 supportDataElement,
                 name,
