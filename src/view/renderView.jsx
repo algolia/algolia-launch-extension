@@ -6,7 +6,11 @@ import './global.styl';
 
 export default (View) => {
   ReactDOM.render(
-    <Provider theme={defaultTheme}>
+    <Provider
+      theme={defaultTheme}
+      colorScheme="light"
+      UNSAFE_style={{ background: 'transparent' }}
+    >
       <View />
     </Provider>,
     document.getElementById('content')

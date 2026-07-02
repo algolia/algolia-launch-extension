@@ -9,7 +9,7 @@ export default (values) => {
   // was made explicit.
   const usingProxy = values.credentialType
     ? values.credentialType === 'proxy'
-    : Boolean(values.proxyUrl && values.proxyUrl.trim());
+    : Boolean(values.proxyUrlDataElement && values.proxyUrlDataElement.trim());
 
   if (!usingProxy && !values.appId) {
     errors.appId = {
@@ -39,12 +39,13 @@ export default (values) => {
     };
   }
 
-  if (usingProxy && !(values.proxyUrl && values.proxyUrl.trim())) {
-    errors.proxyUrl = {
+  const proxyUrl = values.proxyUrlDataElement;
+  if (usingProxy && !(proxyUrl && proxyUrl.trim())) {
+    errors.proxyUrlDataElement = {
       message: 'Please specify your Proxy URL',
       type: 'required'
     };
-  } else if (values.proxyUrl && values.proxyUrl.trim()) {
+  } else if (proxyUrl && proxyUrl.trim()) {
     const isValidUrl = (url) => {
       try {
         return !!new URL(url);
@@ -54,9 +55,9 @@ export default (values) => {
     };
     // A data element token (e.g. %proxyUrl%) is resolved at runtime, so it
     // can't be validated as a URL here.
-    const isDataElementToken = /^%[^%]+%$/.test(values.proxyUrl.trim());
-    if (!isDataElementToken && !isValidUrl(values.proxyUrl)) {
-      errors.proxyUrl = {
+    const isDataElementToken = /^%[^%]+%$/.test(proxyUrl.trim());
+    if (!isDataElementToken && !isValidUrl(proxyUrl)) {
+      errors.proxyUrlDataElement = {
         message: 'Please enter a valid URL (e.g. https://proxy.example.com)',
         type: 'pattern'
       };

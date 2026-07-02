@@ -6,10 +6,10 @@ export default ({
   userTokenDataElement,
   authenticatedUserTokenDataElement,
   currency,
-  proxyUrl
+  proxyUrlDataElement
 }) => {
   const resolvedCredentialType =
-    credentialType || (proxyUrl ? 'proxy' : 'credentials');
+    credentialType || (proxyUrlDataElement ? 'proxy' : 'credentials');
   const usingProxy = resolvedCredentialType === 'proxy';
 
   return {
@@ -23,6 +23,6 @@ export default ({
     // Only persist the proxy URL when the proxy authentication method is
     // selected, so switching back to direct credentials doesn't leave a stale
     // host that would still route events through the proxy at runtime.
-    proxyUrl: usingProxy ? proxyUrl : ''
+    proxyUrlDataElement: usingProxy ? proxyUrlDataElement : ''
   };
 };

@@ -8,19 +8,20 @@ export default (initInfo) => {
     userTokenDataElement = '',
     authenticatedUserTokenDataElement = '',
     currency = '',
-    proxyUrl = ''
+    proxyUrlDataElement = ''
   } = settings || {};
 
   return {
     // Fall back to the presence of a proxy URL for configurations saved before
     // the authentication method was made explicit.
-    credentialType: credentialType || (proxyUrl ? 'proxy' : 'credentials'),
+    credentialType:
+      credentialType || (proxyUrlDataElement ? 'proxy' : 'credentials'),
     appId,
     apiKey,
     indexName,
     userTokenDataElement,
     authenticatedUserTokenDataElement,
     currency,
-    proxyUrl
+    proxyUrlDataElement
   };
 };

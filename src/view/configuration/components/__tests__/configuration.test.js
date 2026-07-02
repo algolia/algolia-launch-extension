@@ -13,11 +13,11 @@ describe('configuration getInitValues', () => {
       userTokenDataElement: '',
       authenticatedUserTokenDataElement: '',
       currency: '',
-      proxyUrl: ''
+      proxyUrlDataElement: ''
     });
   });
 
-  it('maps settings including proxyUrl', () => {
+  it('maps settings including proxyUrlDataElement', () => {
     const result = getInitValues({
       settings: {
         appId: 'APP',
@@ -26,35 +26,35 @@ describe('configuration getInitValues', () => {
         userTokenDataElement: 'token',
         authenticatedUserTokenDataElement: 'auth-token',
         currency: 'USD',
-        proxyUrl: 'https://proxy.example.com'
+        proxyUrlDataElement: 'https://proxy.example.com'
       }
     });
-    expect(result.proxyUrl).toBe('https://proxy.example.com');
+    expect(result.proxyUrlDataElement).toBe('https://proxy.example.com');
     expect(result.appId).toBe('APP');
   });
 
-  it('defaults proxyUrl to empty string when not in settings', () => {
+  it('defaults proxyUrlDataElement to empty string when not in settings', () => {
     const result = getInitValues({
       settings: { appId: 'APP', apiKey: 'KEY' }
     });
-    expect(result.proxyUrl).toBe('');
+    expect(result.proxyUrlDataElement).toBe('');
   });
 
   it('uses the persisted credentialType when present', () => {
     const result = getInitValues({
-      settings: { credentialType: 'proxy', proxyUrl: '%proxy%' }
+      settings: { credentialType: 'proxy', proxyUrlDataElement: '%proxy%' }
     });
     expect(result.credentialType).toBe('proxy');
   });
 
-  it('derives credentialType from a proxyUrl for legacy settings', () => {
+  it('derives credentialType from a proxyUrlDataElement for legacy settings', () => {
     const result = getInitValues({
-      settings: { proxyUrl: 'https://proxy.example.com' }
+      settings: { proxyUrlDataElement: 'https://proxy.example.com' }
     });
     expect(result.credentialType).toBe('proxy');
   });
 
-  it('derives the credentials credentialType when no proxyUrl is set', () => {
+  it('derives the credentials credentialType when no proxyUrlDataElement is set', () => {
     const result = getInitValues({
       settings: { appId: 'APP', apiKey: 'KEY' }
     });
@@ -63,7 +63,7 @@ describe('configuration getInitValues', () => {
 });
 
 describe('configuration getSettings', () => {
-  it('includes proxyUrl in returned settings', () => {
+  it('includes proxyUrlDataElement in returned settings', () => {
     const result = getSettings({
       credentialType: 'proxy',
       appId: 'APP',
@@ -72,13 +72,13 @@ describe('configuration getSettings', () => {
       userTokenDataElement: 'token',
       authenticatedUserTokenDataElement: '',
       currency: 'EUR',
-      proxyUrl: 'https://proxy.example.com'
+      proxyUrlDataElement: 'https://proxy.example.com'
     });
     expect(result.credentialType).toBe('proxy');
-    expect(result.proxyUrl).toBe('https://proxy.example.com');
+    expect(result.proxyUrlDataElement).toBe('https://proxy.example.com');
   });
 
-  it('includes empty proxyUrl when not set', () => {
+  it('includes empty proxyUrlDataElement when not set', () => {
     const result = getSettings({
       credentialType: 'credentials',
       appId: 'APP',
@@ -87,13 +87,13 @@ describe('configuration getSettings', () => {
       userTokenDataElement: 'token',
       authenticatedUserTokenDataElement: '',
       currency: 'USD',
-      proxyUrl: ''
+      proxyUrlDataElement: ''
     });
     expect(result.credentialType).toBe('credentials');
-    expect(result.proxyUrl).toBe('');
+    expect(result.proxyUrlDataElement).toBe('');
   });
 
-  it('clears the proxyUrl when the credentials method is selected', () => {
+  it('clears the proxyUrlDataElement when the credentials method is selected', () => {
     const result = getSettings({
       credentialType: 'credentials',
       appId: 'APP',
@@ -102,9 +102,9 @@ describe('configuration getSettings', () => {
       userTokenDataElement: 'token',
       authenticatedUserTokenDataElement: '',
       currency: 'USD',
-      proxyUrl: 'https://proxy.example.com'
+      proxyUrlDataElement: 'https://proxy.example.com'
     });
-    expect(result.proxyUrl).toBe('');
+    expect(result.proxyUrlDataElement).toBe('');
   });
 });
 
@@ -115,23 +115,29 @@ describe('configuration validate', () => {
     indexName: 'idx',
     userTokenDataElement: 'token',
     currency: 'USD',
-    proxyUrl: ''
+    proxyUrlDataElement: ''
   };
 
-  it('returns no errors for valid values with empty proxyUrl', () => {
+  it('returns no errors for valid values with empty proxyUrlDataElement', () => {
     const errors = validate(validValues);
     expect(Object.keys(errors)).toHaveLength(0);
   });
 
-  it('returns no errors when proxyUrl is a valid URL', () => {
-    const errors = validate({ ...validValues, proxyUrl: 'https://proxy.example.com' });
-    expect(errors.proxyUrl).toBeUndefined();
+  it('returns no errors when proxyUrlDataElement is a valid URL', () => {
+    const errors = validate({
+      ...validValues,
+      proxyUrlDataElement: 'https://proxy.example.com'
+    });
+    expect(errors.proxyUrlDataElement).toBeUndefined();
   });
 
-  it('returns a proxyUrl error when proxyUrl is not a valid URL', () => {
-    const errors = validate({ ...validValues, proxyUrl: 'not-a-url' });
-    expect(errors.proxyUrl).toBeDefined();
-    expect(errors.proxyUrl.type).toBe('pattern');
+  it('returns a proxyUrlDataElement error when it is not a valid URL', () => {
+    const errors = validate({
+      ...validValues,
+      proxyUrlDataElement: 'not-a-url'
+    });
+    expect(errors.proxyUrlDataElement).toBeDefined();
+    expect(errors.proxyUrlDataElement.type).toBe('pattern');
   });
 
   it('returns an appId error when appId is missing', () => {
@@ -144,28 +150,28 @@ describe('configuration validate', () => {
     expect(errors.apiKey).toBeDefined();
   });
 
-  it('does not require appId or apiKey when a proxyUrl is set', () => {
+  it('does not require appId or apiKey when a proxyUrlDataElement is set', () => {
     const errors = validate({
       ...validValues,
       appId: '',
       apiKey: '',
-      proxyUrl: 'https://proxy.example.com'
+      proxyUrlDataElement: 'https://proxy.example.com'
     });
     expect(errors.appId).toBeUndefined();
     expect(errors.apiKey).toBeUndefined();
   });
 
-  it('still validates the proxyUrl format when credentials are omitted', () => {
+  it('still validates the proxyUrlDataElement format when credentials are omitted', () => {
     const errors = validate({
       ...validValues,
       appId: '',
       apiKey: '',
-      proxyUrl: 'not-a-url'
+      proxyUrlDataElement: 'not-a-url'
     });
     expect(errors.appId).toBeUndefined();
     expect(errors.apiKey).toBeUndefined();
-    expect(errors.proxyUrl).toBeDefined();
-    expect(errors.proxyUrl.type).toBe('pattern');
+    expect(errors.proxyUrlDataElement).toBeDefined();
+    expect(errors.proxyUrlDataElement.type).toBe('pattern');
   });
 
   it('does not require currency', () => {
@@ -184,28 +190,28 @@ describe('configuration validate', () => {
     expect(errors.apiKey).toBeDefined();
   });
 
-  it('requires a proxyUrl when the proxy method is selected', () => {
+  it('requires a proxyUrlDataElement when the proxy method is selected', () => {
     const errors = validate({
       ...validValues,
       credentialType: 'proxy',
       appId: '',
       apiKey: '',
-      proxyUrl: ''
+      proxyUrlDataElement: ''
     });
     expect(errors.appId).toBeUndefined();
     expect(errors.apiKey).toBeUndefined();
-    expect(errors.proxyUrl).toBeDefined();
-    expect(errors.proxyUrl.type).toBe('required');
+    expect(errors.proxyUrlDataElement).toBeDefined();
+    expect(errors.proxyUrlDataElement.type).toBe('required');
   });
 
-  it('accepts a data element token as the proxyUrl', () => {
+  it('accepts a data element token as the proxyUrlDataElement', () => {
     const errors = validate({
       ...validValues,
       credentialType: 'proxy',
       appId: '',
       apiKey: '',
-      proxyUrl: '%myProxyUrl%'
+      proxyUrlDataElement: '%myProxyUrl%'
     });
-    expect(errors.proxyUrl).toBeUndefined();
+    expect(errors.proxyUrlDataElement).toBeUndefined();
   });
 });

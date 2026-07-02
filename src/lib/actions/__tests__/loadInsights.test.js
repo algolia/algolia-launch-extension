@@ -33,13 +33,13 @@ beforeEach(() => {
 });
 
 describe('loadInsights - init options', () => {
-  it('calls aa("init") with appId, apiKey and no host when proxyUrl is not set', () => {
+  it('calls aa("init") with appId, apiKey and no host when proxyUrlDataElement is not set', () => {
     turbine.getExtensionSettings.mockReturnValue({
       appId: 'MY_APP_ID',
       apiKey: 'MY_API_KEY',
       userTokenDataElement: '',
       authenticatedUserTokenDataElement: '',
-      proxyUrl: ''
+      proxyUrlDataElement: ''
     });
 
     loadInsights(baseSettings);
@@ -52,13 +52,13 @@ describe('loadInsights - init options', () => {
     expect(initOptions.host).toBeUndefined();
   });
 
-  it('calls aa("init") with host set when proxyUrl is provided', () => {
+  it('calls aa("init") with host set when proxyUrlDataElement is provided', () => {
     turbine.getExtensionSettings.mockReturnValue({
       appId: 'MY_APP_ID',
       apiKey: 'MY_API_KEY',
       userTokenDataElement: '',
       authenticatedUserTokenDataElement: '',
-      proxyUrl: 'https://proxy.example.com'
+      proxyUrlDataElement: 'https://proxy.example.com'
     });
 
     loadInsights(baseSettings);
@@ -76,7 +76,7 @@ describe('loadInsights - init options', () => {
       apiKey: '',
       userTokenDataElement: '',
       authenticatedUserTokenDataElement: '',
-      proxyUrl: 'https://proxy.example.com'
+      proxyUrlDataElement: 'https://proxy.example.com'
     });
 
     loadInsights(baseSettings);
@@ -92,7 +92,7 @@ describe('loadInsights - init options', () => {
     turbine.getExtensionSettings.mockReturnValue({
       userTokenDataElement: '',
       authenticatedUserTokenDataElement: '',
-      proxyUrl: 'https://proxy.example.com'
+      proxyUrlDataElement: 'https://proxy.example.com'
     });
 
     loadInsights(baseSettings);
@@ -102,7 +102,7 @@ describe('loadInsights - init options', () => {
     expect(initCall[1].apiKey).toBe('');
   });
 
-  it('does not set host when proxyUrl is undefined', () => {
+  it('does not set host when proxyUrlDataElement is undefined', () => {
     turbine.getExtensionSettings.mockReturnValue({
       appId: 'APP',
       apiKey: 'KEY',

@@ -10,7 +10,7 @@ module.exports = function (settings) {
     apiKey,
     userTokenDataElement,
     authenticatedUserTokenDataElement,
-    proxyUrl
+    proxyUrlDataElement
   } = extensionSettings;
   const {
     useUserTokenCookie,
@@ -50,8 +50,8 @@ module.exports = function (settings) {
     cookieDuration
   };
 
-  if (proxyUrl) {
-    initOptions.host = proxyUrl;
+  if (proxyUrlDataElement) {
+    initOptions.host = proxyUrlDataElement;
   }
 
   window.aa('init', initOptions);

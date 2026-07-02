@@ -1,4 +1,5 @@
 import {
+  Accordion,
   Content,
   ContextualHelp,
   Disclosure,
@@ -22,8 +23,11 @@ export default function () {
   const usingProxy = credentialType === 'proxy';
 
   return (
-    <Flex direction="column" gap="size-65">
-      <Disclosure defaultExpanded isQuiet>
+    <Accordion
+      allowsMultipleExpanded
+      defaultExpandedKeys={['authentication', 'configuration']}
+    >
+      <Disclosure id="authentication">
         <DisclosureTitle>Authentication</DisclosureTitle>
         <DisclosurePanel>
           <Flex direction="column" gap="size-200">
@@ -55,7 +59,7 @@ export default function () {
             {usingProxy ? (
               <>
                 <WrappedTextField
-                  name="proxyUrl"
+                  name="proxyUrlDataElement"
                   component={TextField}
                   width="size-4600"
                   label="Proxy URL"
@@ -187,7 +191,7 @@ export default function () {
           </Flex>
         </DisclosurePanel>
       </Disclosure>
-      <Disclosure defaultExpanded isQuiet>
+      <Disclosure id="configuration">
         <DisclosureTitle>Configuration</DisclosureTitle>
         <DisclosurePanel>
           <WrappedTextField
@@ -268,6 +272,6 @@ export default function () {
           />
         </DisclosurePanel>
       </Disclosure>
-    </Flex>
+    </Accordion>
   );
 }

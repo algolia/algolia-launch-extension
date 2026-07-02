@@ -1,10 +1,10 @@
 import {
+  Accordion,
   Content,
   ContextualHelp,
   Disclosure,
   DisclosurePanel,
   DisclosureTitle,
-  Flex,
   Heading,
   Text,
   TextField
@@ -14,8 +14,8 @@ import WrappedTextField from '../../../components/wrappedTextField';
 
 export default function () {
   return (
-    <Flex direction="column" gap="size-65">
-      <Disclosure defaultExpanded isQuiet>
+    <Accordion defaultExpandedKeys={['overrides']}>
+      <Disclosure id="overrides">
         <DisclosureTitle>Overrides</DisclosureTitle>
         <DisclosurePanel>
           <WrappedTextField
@@ -100,6 +100,6 @@ export default function () {
           />
         </DisclosurePanel>
       </Disclosure>
-    </Flex>
+    </Accordion>
   );
 }
