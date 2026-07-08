@@ -1,39 +1,38 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { getAllEventFromStore, removeEventFromStore } = require('../utils/storageManager');
+const {
+  getAllEventFromStore,
+  removeEventFromStore
+} = require('../utils/storageManager');
 const { updatePayload } = require('../utils/dataPayload');
 
-module.exports = function(settings, event) {
+module.exports = function (settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
-  const {
-    eventName,
-    purchasedItemsDataElement
-  } = settings;
+  const { eventName, purchasedItemsDataElement } = settings;
   const payload = {
     timestamp: new Date().getTime(),
     eventName,
-    userToken: extensionSettings.userTokenDataElement,
-  }
+    userToken: extensionSettings.userTokenDataElement
+  };
 
   // get all the events from the browser storage for processing.
   const events = getAllEventFromStore();
   const payloads = {};
-  Object.keys(events).forEach(recordId => {
-    const {
-      queryID,
-      indexName,
-      objectIDs,
-      objectData,
-      currency
-    } = events[recordId];
+  Object.keys(events).forEach((recordId) => {
+    const { queryID, indexName, objectIDs, objectData, currency } =
+      events[recordId];
 
     // Check if the Object ID is part of the purchased item before sending the purchase event.
-    if (objectIDs && objectIDs.length > 0 && purchasedItemsDataElement.includes(objectIDs[0])) {
+    if (
+      objectIDs &&
+      objectIDs.length > 0 &&
+      purchasedItemsDataElement.includes(objectIDs[0])
+    ) {
       // Add Query ID to each objectData item for purchase event
       if (objectData) {
-        objectData.forEach(item => {
+        objectData.forEach((item) => {
           item.queryID = queryID;
-        })
+        });
       }
       if (payloads[indexName]) {
         const payload = payloads[indexName];
@@ -49,9 +48,10 @@ module.exports = function(settings, event) {
           objectData,
           currency: currency || extensionSettings.currency,
           recordId
-        }
+        };
         if (extensionSettings.authenticatedUserTokenDataElement) {
-          payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
+          payload.authenticatedUserToken =
+            extensionSettings.authenticatedUserTokenDataElement;
         }
         payloads[indexName] = payload;
       }
@@ -59,7 +59,7 @@ module.exports = function(settings, event) {
   });
 
   // Loop through all the payloads to send purchase event for each index
-  Object.keys(payloads).forEach(indexName => {
+  Object.keys(payloads).forEach((indexName) => {
     const payload = payloads[indexName];
 
     // Get record ID from payload and remove it so the payload can be sent to
@@ -70,20 +70,24 @@ module.exports = function(settings, event) {
     const objectData = payload.objectData;
     let isPurchasedWithQueryID = false;
     if (objectData && objectData.length > 0) {
-      isPurchasedWithQueryID = objectData.find(data => data.queryID !== null);
+      isPurchasedWithQueryID = objectData.find((data) => data.queryID !== null);
     }
 
     if (isPurchasedWithQueryID) {
       const updatedPayload = updatePayload(payload);
       window.aa('purchasedObjectIDsAfterSearch', updatedPayload);
       turbine.logger.log(
-        `Insights command: aa('purchasedObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
+        `Insights command: aa('purchasedObjectIDsAfterSearch', ${JSON.stringify(
+          updatedPayload
+        )});).`
       );
     } else {
       const updatedPayload = updatePayload(payload);
       window.aa('purchasedObjectIDs', updatedPayload);
       turbine.logger.log(
-        `Insights command: aa('purchasedObjectIDs', ${ JSON.stringify(updatedPayload) });).`
+        `Insights command: aa('purchasedObjectIDs', ${JSON.stringify(
+          updatedPayload
+        )});).`
       );
     }
 
@@ -91,4 +95,3 @@ module.exports = function(settings, event) {
     removeEventFromStore(recordId);
   });
 };
-

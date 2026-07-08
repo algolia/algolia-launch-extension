@@ -1,3 +1,5 @@
 *.html
 *.css
 *.styl
+**/__tests__/**
+**/__tests_helpers__/**

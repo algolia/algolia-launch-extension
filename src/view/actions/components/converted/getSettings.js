@@ -1,4 +1,8 @@
-export default ({ eventDetailsDataElement, eventName, disableRemoveEventFromStore }) => ({
+export default ({
+  eventDetailsDataElement,
+  eventName,
+  disableRemoveEventFromStore
+}) => ({
   eventDetailsDataElement,
   eventName,
   disableRemoveEventFromStore

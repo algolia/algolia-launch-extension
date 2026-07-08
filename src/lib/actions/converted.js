@@ -2,7 +2,7 @@
 const window = require('@adobe/reactor-window');
 const { removeEventFromStore } = require('../utils/storageManager');
 
-module.exports = function(settings, event) {
+module.exports = function (settings, event) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
     eventDetailsDataElement: {
@@ -24,7 +24,8 @@ module.exports = function(settings, event) {
     objectIDs
   };
   if (extensionSettings.authenticatedUserTokenDataElement) {
-    payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
+    payload.authenticatedUserToken =
+      extensionSettings.authenticatedUserTokenDataElement;
   }
 
   if (queryID && objectIDs && objectIDs.length > 0) {
@@ -35,12 +36,16 @@ module.exports = function(settings, event) {
     window.aa('convertedObjectIDsAfterSearch', updatedPayload);
 
     turbine.logger.log(
-      `Insights command: aa('convertedObjectIDsAfterSearch', ${ JSON.stringify(updatedPayload) });).`
+      `Insights command: aa('convertedObjectIDsAfterSearch', ${JSON.stringify(
+        updatedPayload
+      )});).`
     );
   } else if (objectIDs && objectIDs.length > 0) {
     window.aa('convertedObjectIDs', payload);
     turbine.logger.log(
-      `Insights command: aa('convertedObjectIDs', ${ JSON.stringify(payload) });).`
+      `Insights command: aa('convertedObjectIDs', ${JSON.stringify(
+        payload
+      )});).`
     );
   }
 
@@ -49,4 +54,3 @@ module.exports = function(settings, event) {
   }
   return true;
 };
-

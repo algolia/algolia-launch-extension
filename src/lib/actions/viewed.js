@@ -1,13 +1,9 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-module.exports = function(settings) {
+module.exports = function (settings) {
   const extensionSettings = turbine.getExtensionSettings();
   const {
-    eventDetailsDataElement: {
-      timestamp,
-      indexName,
-      objectIDs
-    },
+    eventDetailsDataElement: { timestamp, indexName, objectIDs },
     eventName
   } = settings;
 
@@ -20,7 +16,8 @@ module.exports = function(settings) {
   };
 
   if (extensionSettings.authenticatedUserTokenDataElement) {
-    payload.authenticatedUserToken = extensionSettings.authenticatedUserTokenDataElement;
+    payload.authenticatedUserToken =
+      extensionSettings.authenticatedUserTokenDataElement;
   }
 
   if (objectIDs && objectIDs.length > 0) {
@@ -28,7 +25,7 @@ module.exports = function(settings) {
   }
 
   turbine.logger.log(
-    `Insights command: aa('viewedObjectIDs', ${ JSON.stringify(payload) });).`
+    `Insights command: aa('viewedObjectIDs', ${JSON.stringify(payload)});).`
   );
   return true;
 };

@@ -1,8 +1,17 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { getEventFromStore, addEventToStore } = require('../utils/storageManager');
+const {
+  getEventFromStore,
+  addEventToStore
+} = require('../utils/storageManager');
 
-const updateCommerceData = (algoliaData, priceDataElement, quantityDataElement, discountDataElement, currency) => {
+const updateCommerceData = (
+  algoliaData,
+  priceDataElement,
+  quantityDataElement,
+  discountDataElement,
+  currency
+) => {
   if (!algoliaData.objectData) {
     algoliaData.objectData = [{}];
   }
@@ -21,11 +30,11 @@ const updateCommerceData = (algoliaData, priceDataElement, quantityDataElement, 
     algoliaData.currency = currency;
   }
   turbine.logger.log(
-    `Dataset Data Element - Algolia Data: ', ${ JSON.stringify(algoliaData) });).`
+    `Dataset Data Element - Algolia Data: ', ${JSON.stringify(algoliaData)});).`
   );
-}
+};
 
-module.exports = function(settings) {
+module.exports = function (settings) {
   const {
     recordIDDataElement,
     priceDataElement,
@@ -34,13 +43,21 @@ module.exports = function(settings) {
     currency
   } = settings;
 
-  const recordID = (recordIDDataElement) ? recordIDDataElement : window.document.location.pathname;
+  const recordID = recordIDDataElement
+    ? recordIDDataElement
+    : window.document.location.pathname;
   const algoliaData = getEventFromStore(recordID);
 
-  updateCommerceData(algoliaData, priceDataElement, quantityDataElement, discountDataElement, currency);
+  updateCommerceData(
+    algoliaData,
+    priceDataElement,
+    quantityDataElement,
+    discountDataElement,
+    currency
+  );
 
   turbine.logger.log(
-    `Storage Data Element', ${ JSON.stringify(algoliaData) });).`
+    `Storage Data Element', ${JSON.stringify(algoliaData)});).`
   );
 
   addEventToStore(recordID, algoliaData);
