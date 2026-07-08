@@ -55,7 +55,7 @@ module.exports = function (settings) {
   }
 
   window.aa('init', initOptions);
-  window.aa('addAlgoliaAgent', 'algolia-launch-extension (3.1.0)');
+  window.aa('addAlgoliaAgent', 'algolia-launch-extension (3.2.1)');
 
   if (userTokenDataElement) {
     window.aa('setUserToken', userTokenDataElement);
