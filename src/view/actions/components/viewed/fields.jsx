@@ -51,7 +51,7 @@ export default function () {
                 <Content>
                   <Text>
                     Select a Data Element that will retrieve the event details (
-                    <code>indexName</code>, <code>objectId</code>). If Index
+                    <code>indexName</code>, <code>objectIDs</code>). If Index
                     Name is not available from the Data Element, then the
                     default Index Name will be used when sending events.
                   </Text>

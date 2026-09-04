@@ -63,14 +63,14 @@ export default function () {
             component={Checkbox}
             width="size-4600"
             label="Use User Token Cookie"
-            defaultValue
+            defaultValue={false}
             contextualHelp={
               <ContextualHelp variant="info">
                 <Heading>Use User Token Cookie</Heading>
                 <Content>
                   <Text>
                     Check this box if you want Algolia to generate a User Token
-                    cookie. The default value is <b>true</b>.
+                    cookie. This option is not selected by default.
                   </Text>
                 </Content>
               </ContextualHelp>

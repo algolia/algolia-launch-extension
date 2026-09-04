@@ -91,7 +91,9 @@ export default function () {
             contextualHelp={
               <ContextualHelp>
                 <Heading>Quantity</Heading>
-                <Content>Get the quantity for this item.</Content>
+                <Content>
+                  Get the quantity for this item. Defaults to 1 if not provided.
+                </Content>
               </ContextualHelp>
             }
           />
@@ -145,9 +147,9 @@ export default function () {
               <ContextualHelp>
                 <Heading>Record ID</Heading>
                 <Content>
-                  Override default approach to use page url as the record id.
-                  The record id is used to store and look up data to send to
-                  Algolia for this product/page.
+                  Override the default of using the page URL as the record ID.
+                  The record ID is a localStorage lookup key for this
+                  product/page. It is not sent to Algolia.
                 </Content>
               </ContextualHelp>
             }

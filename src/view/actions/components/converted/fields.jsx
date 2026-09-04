@@ -53,13 +53,16 @@ export default function () {
                 <Content>
                   <Text>
                     Select a Data Element that will retrieve the event details (
-                    <code>indexName</code>, <code>objectId</code>,{' '}
-                    <code>queryId</code> (optional)). If the Data Element
-                    contains <code>queryId</code>, the event will be classed as{' '}
-                    <b>Converted after Search</b> otherwise it will be
-                    considered a <b>Converted</b> event class. If Index Name is
-                    not available from the Data Element, then the default Index
-                    Name will be used when sending events.
+                    <code>indexName</code>, <code>objectIDs</code>,{' '}
+                    <code>queryID</code> (optional), <code>recordID</code>{' '}
+                    (optional)). <code>recordID</code> is used as a localStorage
+                    lookup key to remove stored event data; it is not sent to
+                    Algolia. If the Data Element contains <code>queryID</code>,
+                    the event will be classed as <b>Converted after Search</b>{' '}
+                    otherwise it will be considered a <b>Converted</b> event
+                    class. If Index Name is not available from the Data Element,
+                    then the default Index Name will be used when sending
+                    events.
                   </Text>
                 </Content>
               </ContextualHelp>
@@ -70,7 +73,7 @@ export default function () {
             component={Checkbox}
             width="size-4600"
             label="Disable Removal of Event Data"
-            defaultValue
+            defaultValue={false}
             contextualHelp={
               <ContextualHelp variant="info">
                 <Heading>Disable Event Data Removal</Heading>
