@@ -13,7 +13,8 @@ describe('configuration getInitValues', () => {
       userTokenDataElement: '',
       authenticatedUserTokenDataElement: '',
       currency: '',
-      proxyUrlDataElement: ''
+      proxyUrlDataElement: '',
+      proxyHeadersDataElement: ''
     });
   });
 
@@ -60,6 +61,26 @@ describe('configuration getInitValues', () => {
     });
     expect(result.credentialType).toBe('credentials');
   });
+
+  it('maps proxyHeadersDataElement from settings', () => {
+    const result = getInitValues({
+      settings: {
+        credentialType: 'proxy',
+        proxyUrlDataElement: 'https://proxy.example.com',
+        proxyHeadersDataElement: '{"Authorization":"Bearer token"}'
+      }
+    });
+    expect(result.proxyHeadersDataElement).toBe(
+      '{"Authorization":"Bearer token"}'
+    );
+  });
+
+  it('defaults proxyHeadersDataElement to empty string when not in settings', () => {
+    const result = getInitValues({
+      settings: { appId: 'APP', apiKey: 'KEY' }
+    });
+    expect(result.proxyHeadersDataElement).toBe('');
+  });
 });
 
 describe('configuration getSettings', () => {
@@ -72,7 +93,8 @@ describe('configuration getSettings', () => {
       userTokenDataElement: 'token',
       authenticatedUserTokenDataElement: '',
       currency: 'EUR',
-      proxyUrlDataElement: 'https://proxy.example.com'
+      proxyUrlDataElement: 'https://proxy.example.com',
+      proxyHeadersDataElement: ''
     });
     expect(result.credentialType).toBe('proxy');
     expect(result.proxyUrlDataElement).toBe('https://proxy.example.com');
@@ -87,7 +109,8 @@ describe('configuration getSettings', () => {
       userTokenDataElement: 'token',
       authenticatedUserTokenDataElement: '',
       currency: 'USD',
-      proxyUrlDataElement: ''
+      proxyUrlDataElement: '',
+      proxyHeadersDataElement: ''
     });
     expect(result.credentialType).toBe('credentials');
     expect(result.proxyUrlDataElement).toBe('');
@@ -102,9 +125,57 @@ describe('configuration getSettings', () => {
       userTokenDataElement: 'token',
       authenticatedUserTokenDataElement: '',
       currency: 'USD',
-      proxyUrlDataElement: 'https://proxy.example.com'
+      proxyUrlDataElement: 'https://proxy.example.com',
+      proxyHeadersDataElement: '{"Authorization":"Bearer token"}'
     });
     expect(result.proxyUrlDataElement).toBe('');
+  });
+
+  it('includes proxyHeadersDataElement when proxy method is selected', () => {
+    const result = getSettings({
+      credentialType: 'proxy',
+      appId: '',
+      apiKey: '',
+      indexName: 'idx',
+      userTokenDataElement: 'token',
+      authenticatedUserTokenDataElement: '',
+      currency: '',
+      proxyUrlDataElement: 'https://proxy.example.com',
+      proxyHeadersDataElement: '{"Authorization":"Bearer token"}'
+    });
+    expect(result.proxyHeadersDataElement).toBe(
+      '{"Authorization":"Bearer token"}'
+    );
+  });
+
+  it('clears proxyHeadersDataElement when credentials method is selected', () => {
+    const result = getSettings({
+      credentialType: 'credentials',
+      appId: 'APP',
+      apiKey: 'KEY',
+      indexName: 'idx',
+      userTokenDataElement: 'token',
+      authenticatedUserTokenDataElement: '',
+      currency: '',
+      proxyUrlDataElement: 'https://proxy.example.com',
+      proxyHeadersDataElement: '{"Authorization":"Bearer token"}'
+    });
+    expect(result.proxyHeadersDataElement).toBe('');
+  });
+
+  it('preserves empty proxyHeadersDataElement when proxy method is selected', () => {
+    const result = getSettings({
+      credentialType: 'proxy',
+      appId: '',
+      apiKey: '',
+      indexName: 'idx',
+      userTokenDataElement: 'token',
+      authenticatedUserTokenDataElement: '',
+      currency: '',
+      proxyUrlDataElement: 'https://proxy.example.com',
+      proxyHeadersDataElement: ''
+    });
+    expect(result.proxyHeadersDataElement).toBe('');
   });
 });
 
@@ -115,7 +186,8 @@ describe('configuration validate', () => {
     indexName: 'idx',
     userTokenDataElement: 'token',
     currency: 'USD',
-    proxyUrlDataElement: ''
+    proxyUrlDataElement: '',
+    proxyHeadersDataElement: ''
   };
 
   it('returns no errors for valid values with empty proxyUrlDataElement', () => {
@@ -213,5 +285,89 @@ describe('configuration validate', () => {
       proxyUrlDataElement: '%myProxyUrl%'
     });
     expect(errors.proxyUrlDataElement).toBeUndefined();
+  });
+
+  it('ignores a stale invalid proxyUrlDataElement when the credentials method is selected', () => {
+    const errors = validate({
+      ...validValues,
+      credentialType: 'credentials',
+      proxyUrlDataElement: 'not-a-url'
+    });
+    expect(errors.proxyUrlDataElement).toBeUndefined();
+  });
+
+  describe('proxyHeadersDataElement', () => {
+    const proxyValues = {
+      ...validValues,
+      credentialType: 'proxy',
+      appId: '',
+      apiKey: '',
+      proxyUrlDataElement: 'https://proxy.example.com'
+    };
+
+    it('accepts an empty value', () => {
+      const errors = validate({ ...proxyValues, proxyHeadersDataElement: '' });
+      expect(errors.proxyHeadersDataElement).toBeUndefined();
+    });
+
+    it('accepts a single data element token', () => {
+      const errors = validate({
+        ...proxyValues,
+        proxyHeadersDataElement: '%myHeaders%'
+      });
+      expect(errors.proxyHeadersDataElement).toBeUndefined();
+    });
+
+    it('accepts a JSON object', () => {
+      const errors = validate({
+        ...proxyValues,
+        proxyHeadersDataElement: '{"Authorization":"Bearer token"}'
+      });
+      expect(errors.proxyHeadersDataElement).toBeUndefined();
+    });
+
+    it('accepts a JSON object with a data element token inside a value', () => {
+      const errors = validate({
+        ...proxyValues,
+        proxyHeadersDataElement: '{"Authorization":"Bearer %myToken%"}'
+      });
+      expect(errors.proxyHeadersDataElement).toBeUndefined();
+    });
+
+    it('rejects a non-JSON string', () => {
+      const errors = validate({
+        ...proxyValues,
+        proxyHeadersDataElement: 'not-json'
+      });
+      expect(errors.proxyHeadersDataElement).toBeDefined();
+      expect(errors.proxyHeadersDataElement.type).toBe('pattern');
+    });
+
+    it('rejects a JSON array', () => {
+      const errors = validate({
+        ...proxyValues,
+        proxyHeadersDataElement: '["Authorization","Bearer token"]'
+      });
+      expect(errors.proxyHeadersDataElement).toBeDefined();
+      expect(errors.proxyHeadersDataElement.type).toBe('pattern');
+    });
+
+    it('rejects a JSON primitive', () => {
+      const errors = validate({
+        ...proxyValues,
+        proxyHeadersDataElement: '"just-a-string"'
+      });
+      expect(errors.proxyHeadersDataElement).toBeDefined();
+      expect(errors.proxyHeadersDataElement.type).toBe('pattern');
+    });
+
+    it('ignores a stale invalid value when the credentials method is selected', () => {
+      const errors = validate({
+        ...validValues,
+        credentialType: 'credentials',
+        proxyHeadersDataElement: 'not-json'
+      });
+      expect(errors.proxyHeadersDataElement).toBeUndefined();
+    });
   });
 });

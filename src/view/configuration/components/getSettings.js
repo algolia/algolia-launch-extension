@@ -6,7 +6,8 @@ export default ({
   userTokenDataElement,
   authenticatedUserTokenDataElement,
   currency,
-  proxyUrlDataElement
+  proxyUrlDataElement,
+  proxyHeadersDataElement
 }) => {
   const resolvedCredentialType =
     credentialType || (proxyUrlDataElement ? 'proxy' : 'credentials');
@@ -20,9 +21,10 @@ export default ({
     userTokenDataElement,
     authenticatedUserTokenDataElement,
     currency,
-    // Only persist the proxy URL when the proxy authentication method is
-    // selected, so switching back to direct credentials doesn't leave a stale
-    // host that would still route events through the proxy at runtime.
-    proxyUrlDataElement: usingProxy ? proxyUrlDataElement : ''
+    // Only persist proxy fields when the proxy authentication method is
+    // selected, so switching back to direct credentials doesn't leave stale
+    // values that would still route events through the proxy at runtime.
+    proxyUrlDataElement: usingProxy ? proxyUrlDataElement : '',
+    proxyHeadersDataElement: usingProxy ? proxyHeadersDataElement : ''
   };
 };

@@ -41,6 +41,9 @@
         },
         "proxyUrlDataElement": {
           "type": "string"
+        },
+        "proxyHeadersDataElement": {
+          "type": "string"
         }
       }
     }
