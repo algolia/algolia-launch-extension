@@ -60,7 +60,7 @@ module.exports = function (settings) {
     window.aa.version = version;
 
     window.aa('init', initOptions);
-    window.aa('addAlgoliaAgent', 'algolia-launch-extension (3.2.1)');
+    window.aa('addAlgoliaAgent', 'algolia-launch-extension (3.3.0)');
 
     if (userTokenDataElement) {
       window.aa('setUserToken', userTokenDataElement);
@@ -120,7 +120,7 @@ module.exports = function (settings) {
     })(window, document, 'script', ALGOLIA_INSIGHTS_SRC, 'aa');
 
     window.aa('init', initOptions);
-    window.aa('addAlgoliaAgent', 'algolia-launch-extension (3.2.1)');
+    window.aa('addAlgoliaAgent', 'algolia-launch-extension (3.3.0)');
 
     if (userTokenDataElement) {
       window.aa('setUserToken', userTokenDataElement);
