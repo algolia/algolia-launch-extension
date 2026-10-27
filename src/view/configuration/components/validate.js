@@ -45,7 +45,7 @@ export default (values) => {
       message: 'Please specify your Proxy URL',
       type: 'required'
     };
-  } else if (proxyUrl && proxyUrl.trim()) {
+  } else if (usingProxy && proxyUrl && proxyUrl.trim()) {
     const isValidUrl = (url) => {
       try {
         return !!new URL(url);
@@ -59,6 +59,36 @@ export default (values) => {
     if (!isDataElementToken && !isValidUrl(proxyUrl)) {
       errors.proxyUrlDataElement = {
         message: 'Please enter a valid URL (e.g. https://proxy.example.com)',
+        type: 'pattern'
+      };
+    }
+  }
+
+  // Proxy fields are hidden (but keep their form values) when the Default
+  // method is selected, so only validate them in proxy mode; otherwise a stale
+  // value would block saving with an error the user can't see.
+  const proxyHeaders = values.proxyHeadersDataElement;
+  if (usingProxy && proxyHeaders && proxyHeaders.trim()) {
+    const isPlainObject = (text) => {
+      try {
+        const parsed = JSON.parse(text);
+        return (
+          typeof parsed === 'object' &&
+          parsed !== null &&
+          !Array.isArray(parsed)
+        );
+      } catch {
+        return false;
+      }
+    };
+    // A single data element token is resolved at runtime, so it can't be
+    // validated as JSON here.
+    const isDataElementToken = /^%[^%]+%$/.test(proxyHeaders.trim());
+    if (!isDataElementToken && !isPlainObject(proxyHeaders.trim())) {
+      errors.proxyHeadersDataElement = {
+        message:
+          'Please enter a JSON object of header names to values' +
+          ' (e.g. {"Authorization": "Bearer token"}) or a data element',
         type: 'pattern'
       };
     }

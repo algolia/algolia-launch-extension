@@ -29,9 +29,9 @@ export default function () {
               <ContextualHelp>
                 <Heading>Record ID</Heading>
                 <Content>
-                  Override default approach to use page url as the record id.
-                  The record id is used to store and look up data to send to
-                  Algolia for this product/page.
+                  Override the default of using the page URL as the record ID.
+                  The record ID is a localStorage lookup key for this
+                  product/page. It is not sent to Algolia.
                 </Content>
               </ContextualHelp>
             }
@@ -46,7 +46,12 @@ export default function () {
             contextualHelp={
               <ContextualHelp>
                 <Heading>Price</Heading>
-                <Content>Get the price for this item.</Content>
+                <Content>
+                  Get the price for this item. Updates stored{' '}
+                  <code>objectData</code>. Storage always returns{' '}
+                  <code>objectData</code>; with no commerce values it is a
+                  single empty object (<code>{'[{}]'}</code>).
+                </Content>
               </ContextualHelp>
             }
           />

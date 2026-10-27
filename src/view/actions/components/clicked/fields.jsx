@@ -51,14 +51,18 @@ export default function () {
                 <Content>
                   <Text>
                     Select a Data Element that will retrieve the event details (
-                    <code>indexName</code>, <code>objectId</code>,{' '}
-                    <code>queryId</code> (optional), <code>position</code>{' '}
-                    (optional)). If the Data Element contains{' '}
-                    <code>queryId</code> and <code>position</code>, the event
-                    will be classed as <b>Clicked after Search</b> otherwise it
-                    will be considered a <b>Clicked</b> event class. If Index
-                    Name is not available from the Data Element, then the
-                    default Index Name will be used when sending events.
+                    <code>indexName</code>, <code>objectIDs</code>,{' '}
+                    <code>queryID</code> (optional), <code>positions</code>{' '}
+                    (optional), <code>price</code> (optional),{' '}
+                    <code>quantity</code> (optional), <code>discount</code>{' '}
+                    (optional), <code>objectData</code> (optional),{' '}
+                    <code>currency</code> (optional)). If the Data Element
+                    contains <code>queryID</code> and <code>positions</code>,
+                    the event will be classed as <b>Clicked after Search</b>{' '}
+                    otherwise it will be considered a <b>Clicked</b> event
+                    class. If Index Name is not available from the Data Element,
+                    then the default Index Name will be used when sending
+                    events.
                   </Text>
                 </Content>
               </ContextualHelp>

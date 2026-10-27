@@ -11,3 +11,4 @@ test_results
 *.iml
 upload.sh
 release.sh
+.DS_Store

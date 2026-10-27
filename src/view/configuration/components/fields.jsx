@@ -84,6 +84,32 @@ export default function () {
                   }
                 />
                 <WrappedTextField
+                  name="proxyHeadersDataElement"
+                  component={TextField}
+                  width="size-4600"
+                  label="Proxy Headers"
+                  necessityIndicator="label"
+                  supportDataElement
+                  contextualHelp={
+                    <ContextualHelp variant="info">
+                      <Heading>Proxy Headers</Heading>
+                      <Content>
+                        <Text>
+                          Optional. Specify HTTP headers to include on every
+                          POST to your proxy URL. Use a data element that
+                          returns a plain object of header names to values (e.g.{' '}
+                          <b>{'{ "Authorization": "Bearer token" }'}</b>), or
+                          enter a JSON object directly. Data element tokens
+                          inside JSON values must be quoted (e.g.{' '}
+                          <b>{'{"Authorization": "Bearer %myToken%"}'}</b>).
+                          Your proxy must allow these headers in its CORS
+                          configuration.
+                        </Text>
+                      </Content>
+                    </ContextualHelp>
+                  }
+                />
+                <WrappedTextField
                   name="appId"
                   component={TextField}
                   width="size-4600"

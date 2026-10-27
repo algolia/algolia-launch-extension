@@ -51,10 +51,12 @@ export default function () {
                 <Content>
                   <Text>
                     Select a Data Element that will retrieve the event details (
-                    <code>indexName</code>, <code>objectId</code>,{' '}
-                    <code>queryId</code> (optional), <code>objectData</code>{' '}
+                    <code>indexName</code>, <code>objectIDs</code>,{' '}
+                    <code>objectData</code>, <code>price</code>,{' '}
+                    <code>quantity</code>, <code>discount</code> (optional),{' '}
+                    <code>queryID</code> (optional), <code>currency</code>{' '}
                     (optional)). If the Data Element contains{' '}
-                    <code>queryId</code>, the event will be classed as{' '}
+                    <code>queryID</code>, the event will be classed as{' '}
                     <b>Added to cart object IDs after search</b> otherwise it
                     will be considered a <b>Added to cart object IDs</b> event
                     class. If Index Name is not available from the Data Element,

@@ -51,7 +51,7 @@ export default function () {
                   <Text>
                     Select a Data Element that will retrieve purchased item ids.
                     The purchase item ids will be used to look up events in
-                    browser storage to be sent to Algolia as a purchase event.
+                    localStorage to be sent to Algolia as a purchase event.
                   </Text>
                 </Content>
               </ContextualHelp>

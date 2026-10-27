@@ -8,7 +8,8 @@ export default (initInfo) => {
     userTokenDataElement = '',
     authenticatedUserTokenDataElement = '',
     currency = '',
-    proxyUrlDataElement = ''
+    proxyUrlDataElement = '',
+    proxyHeadersDataElement = ''
   } = settings || {};
 
   return {
@@ -22,6 +23,7 @@ export default (initInfo) => {
     userTokenDataElement,
     authenticatedUserTokenDataElement,
     currency,
-    proxyUrlDataElement
+    proxyUrlDataElement,
+    proxyHeadersDataElement
   };
 };
