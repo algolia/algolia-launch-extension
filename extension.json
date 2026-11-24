@@ -263,6 +263,29 @@
       },
       "libPath": "src/lib/dataElements/storage.js",
       "viewPath": "dataElements/storage.html"
+    },
+    {
+      "displayName": "HTML Attribute",
+      "name": "html-attribute",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+          "selector": {
+            "type": "string",
+            "default": "html"
+          },
+          "attributeName": {
+            "type": "string",
+            "default": "lang"
+          },
+          "outputKey": {
+            "type": "string"
+          }
+        }
+      },
+      "libPath": "src/lib/dataElements/htmlAttribute.js",
+      "viewPath": "dataElements/htmlAttribute.html"
     }
   ]
 }
