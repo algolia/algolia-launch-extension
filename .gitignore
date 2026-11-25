@@ -12,3 +12,4 @@ test_results
 upload.sh
 release.sh
 .DS_Store
+.env

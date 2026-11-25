@@ -234,6 +234,99 @@ describe('hitsListChanged event', () => {
     expect(trigger).not.toHaveBeenCalled();
   });
 
+  it('does not report hits removed before the debounce elapses', async () => {
+    setBody(hitList([]));
+    setup();
+    const list = document.querySelector('.ais-Hits-list');
+
+    appendHTML(list, hitHTML('a') + hitHTML('b'));
+    await flushMutations();
+    list.querySelector('[data-insights-object-id="a"]').remove();
+    await advance();
+
+    expect(trigger).toHaveBeenCalledTimes(1);
+    expect(trigger.mock.calls[0][0].objectIDs).toEqual(['b']);
+  });
+
+  it('does not fire when every queued hit was removed', async () => {
+    setBody(hitList([]));
+    setup();
+    const list = document.querySelector('.ais-Hits-list');
+
+    appendHTML(list, hitHTML('a'));
+    await flushMutations();
+    list.innerHTML = '';
+    await advance();
+
+    expect(trigger).not.toHaveBeenCalled();
+  });
+
+  it('does not fire for a list detached before the debounce elapses', async () => {
+    setup();
+
+    appendHTML(
+      document.body,
+      `<div data-indexname="products">${hitList(['a'], {
+        className: 'aa-List'
+      })}</div>`
+    );
+    await flushMutations();
+    document.body.innerHTML = '';
+    await advance();
+
+    expect(trigger).not.toHaveBeenCalled();
+  });
+
+  it('does not mark removed hits as sent when dedupe is enabled', async () => {
+    setBody(hitList([]));
+    setup({ dedupe: true });
+    const list = document.querySelector('.ais-Hits-list');
+
+    appendHTML(list, hitHTML('a'));
+    await flushMutations();
+    list.innerHTML = '';
+    await advance();
+    expect(trigger).not.toHaveBeenCalled();
+
+    appendHTML(list, hitHTML('a'));
+    await advance();
+
+    expect(trigger).toHaveBeenCalledTimes(1);
+    expect(trigger.mock.calls[0][0].objectIDs).toEqual(['a']);
+  });
+
+  it('fires when a reused hit element gets a new objectID', async () => {
+    setBody(hitList(['a', 'b']));
+    setup();
+    await advance();
+    trigger.mockClear();
+
+    const hits = document.querySelectorAll('[data-insights-object-id]');
+    hits[0].setAttribute('data-insights-object-id', 'c');
+    hits[1].setAttribute('data-insights-object-id', 'd');
+    await advance();
+
+    expect(trigger).toHaveBeenCalledTimes(1);
+    expect(trigger.mock.calls[0][0].objectIDs).toEqual(['c', 'd']);
+  });
+
+  it('ignores attribute writes that keep the same objectID or are outside a list', async () => {
+    setBody(`${hitList(['a'])}<div id="outside"></div>`);
+    setup();
+    await advance();
+    trigger.mockClear();
+
+    document
+      .querySelector('[data-insights-object-id]')
+      .setAttribute('data-insights-object-id', 'a');
+    document
+      .querySelector('#outside')
+      .setAttribute('data-insights-object-id', 'z');
+    await advance();
+
+    expect(trigger).not.toHaveBeenCalled();
+  });
+
   it('honors a custom listSelector', async () => {
     setBody(`<ul class="my-list">${hitHTML('m')}</ul>${hitList(['d'])}`);
 

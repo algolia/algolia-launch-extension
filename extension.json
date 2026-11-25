@@ -2,7 +2,7 @@
   "displayName": "Algolia Insights",
   "name": "algolia-insights",
   "platform": "web",
-  "version": "3.4.0-beta.2",
+  "version": "3.4.0-beta.4",
   "description": "Send events to Algolia to power AI products (AI Search, Recommend, Dynamic Reranking, Personalization, etc).",
   "author": {
     "name": "Algolia Professional Services",
@@ -19,7 +19,10 @@
       "properties": {
         "credentialType": {
           "type": "string",
-          "enum": ["credentials", "proxy"]
+          "enum": [
+            "credentials",
+            "proxy"
+          ]
         },
         "appId": {
           "type": "string"
@@ -302,6 +305,25 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {
+          "mappings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "selector": {
+                  "type": "string",
+                  "default": "html"
+                },
+                "attributeName": {
+                  "type": "string",
+                  "default": "lang"
+                },
+                "outputKey": {
+                  "type": "string"
+                }
+              }
+            }
+          },
           "selector": {
             "type": "string",
             "default": "html"

@@ -4,57 +4,124 @@ import validate from '../validate';
 
 describe('htmlAttribute view helpers', () => {
   describe('getInitValues', () => {
-    it('defaults to html / lang for a new data element', () => {
+    it('defaults to one html/lang mapping for a new data element', () => {
       expect(getInitValues({})).toEqual({
-        selector: 'html',
-        attributeName: 'lang',
-        outputKey: ''
+        mappings: [{ selector: 'html', attributeName: 'lang', outputKey: '' }]
       });
     });
 
-    it('maps saved settings', () => {
+    it('maps saved mappings settings', () => {
       expect(
         getInitValues({
           settings: {
+            mappings: [
+              {
+                selector: 'body',
+                attributeName: 'data-locale',
+                outputKey: 'locale'
+              }
+            ]
+          }
+        })
+      ).toEqual({
+        mappings: [
+          {
             selector: 'body',
             attributeName: 'data-locale',
             outputKey: 'locale'
           }
+        ]
+      });
+    });
+
+    it('migrates legacy single-mapping settings', () => {
+      expect(
+        getInitValues({
+          settings: {
+            selector: 'html',
+            attributeName: 'lang',
+            outputKey: 'Accept-Language'
+          }
         })
       ).toEqual({
-        selector: 'body',
-        attributeName: 'data-locale',
-        outputKey: 'locale'
+        mappings: [
+          {
+            selector: 'html',
+            attributeName: 'lang',
+            outputKey: 'Accept-Language'
+          }
+        ]
       });
     });
   });
 
   describe('getSettings', () => {
-    it('trims values', () => {
+    it('trims mapping values', () => {
       expect(
         getSettings({
-          selector: ' html ',
-          attributeName: ' lang ',
-          outputKey: ' '
+          mappings: [
+            {
+              selector: ' html ',
+              attributeName: ' lang ',
+              outputKey: ' '
+            }
+          ]
         })
-      ).toEqual({ selector: 'html', attributeName: 'lang', outputKey: '' });
+      ).toEqual({
+        mappings: [{ selector: 'html', attributeName: 'lang', outputKey: '' }]
+      });
     });
   });
 
   describe('validate', () => {
-    it('passes with valid values', () => {
-      expect(validate({ selector: 'html', attributeName: 'lang' })).toEqual({});
+    it('passes with valid mappings', () => {
+      expect(
+        validate({
+          mappings: [{ selector: 'html', attributeName: 'lang' }]
+        })
+      ).toEqual({});
     });
 
-    it('requires selector and attribute name', () => {
-      const errors = validate({ selector: '', attributeName: '' });
-      expect(errors.selector.type).toBe('required');
-      expect(errors.attributeName.type).toBe('required');
+    it('requires at least one mapping', () => {
+      const errors = validate({ mappings: [] });
+      expect(errors.mappings.type).toBe('required');
+    });
+
+    it('requires selector and attribute name per mapping', () => {
+      const errors = validate({
+        mappings: [{ selector: '', attributeName: '' }]
+      });
+      expect(errors.mappings[0].selector.type).toBe('required');
+      expect(errors.mappings[0].attributeName.type).toBe('required');
     });
 
     it('rejects an invalid selector', () => {
-      const errors = validate({ selector: '!!', attributeName: 'lang' });
-      expect(errors.selector.type).toBe('invalid');
+      const errors = validate({
+        mappings: [{ selector: '!!', attributeName: 'lang' }]
+      });
+      expect(errors.mappings[0].selector.type).toBe('invalid');
+    });
+
+    it('rejects duplicate output keys, including the attribute name fallback', () => {
+      const errors = validate({
+        mappings: [
+          { selector: 'html', attributeName: 'lang', outputKey: '' },
+          { selector: 'body', attributeName: 'data-x', outputKey: 'lang' }
+        ]
+      });
+      expect(errors.mappings[0]).toBeUndefined();
+      expect(errors.mappings[1].outputKey.type).toBe('duplicate');
+    });
+
+    it('allows distinct output keys for the same attribute', () => {
+      expect(
+        validate({
+          mappings: [
+            { selector: 'html', attributeName: 'lang', outputKey: 'a' },
+            { selector: 'body', attributeName: 'lang', outputKey: 'b' }
+          ]
+        })
+      ).toEqual({});
     });
   });
 });

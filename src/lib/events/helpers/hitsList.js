@@ -66,6 +66,11 @@ const collectObjectIDs = (node, listSelector) => {
 };
 
 /**
+ * Returns the objectIDs currently rendered inside a list, as a Set.
+ */
+const objectIDsInList = (list) => new Set(idsWithin(list, false));
+
+/**
  * Resolves the index name for a list from the closest ancestor matching
  * `indexNameQuerySelector`, reading data-indexname or data-insights-index.
  * Returns undefined when nothing is found.
@@ -94,6 +99,7 @@ const chunk = (items, size) => {
 module.exports = {
   OBJECT_ID_ATTRIBUTE,
   collectObjectIDs,
+  objectIDsInList,
   resolveIndexName,
   chunk
 };

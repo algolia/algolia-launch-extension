@@ -11,15 +11,18 @@ const getError = (obj, path) => {
     return obj[path];
   }
 
-  const parts = path.split('[').map((k) => k.replace(']', ''));
+  // Support nested paths used by field arrays, e.g. "mappings.0.selector"
+  // or "mappings[0].selector".
+  const parts = path
+    .replace(/\[(\w+)\]/g, '.$1')
+    .split('.')
+    .filter(Boolean);
   let current = obj;
   for (let i = 0; i < parts.length; i += 1) {
-    const part = parts[i];
-    if (current[part]) {
-      current = current[part];
-    } else {
+    if (current == null || typeof current !== 'object') {
       return undefined;
     }
+    current = current[parts[i]];
   }
 
   return current;

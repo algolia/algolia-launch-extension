@@ -3,7 +3,12 @@
  */
 'use strict';
 
-const { chunk, collectObjectIDs, resolveIndexName } = require('../hitsList');
+const {
+  chunk,
+  collectObjectIDs,
+  objectIDsInList,
+  resolveIndexName
+} = require('../hitsList');
 
 const LIST_SELECTOR = '.ais-Hits-list';
 
@@ -64,6 +69,16 @@ describe('collectObjectIDs', () => {
     );
 
     expect(collectObjectIDs(list, LIST_SELECTOR).get(list)).toEqual(['a']);
+  });
+});
+
+describe('objectIDsInList', () => {
+  it('returns the set of objectIDs rendered inside the list', () => {
+    const list = fromHTML(
+      `<ul class="ais-Hits-list"><li data-insights-object-id="a"></li><li data-insights-object-id="b"></li><li data-insights-object-id=""></li></ul>`
+    );
+
+    expect(objectIDsInList(list)).toEqual(new Set(['a', 'b']));
   });
 });
 

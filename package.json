@@ -1,6 +1,6 @@
 {
   "name": "algolia-insights-extension",
-  "version": "3.4.0-beta.2",
+  "version": "3.4.0-beta.4",
   "author": {
     "name": "Algolia",
     "url": "https://www.algolia.com/"
@@ -19,6 +19,8 @@
     "build:watch": "webpack --mode development --watch",
     "sandbox": "concurrently -k -n webpack,sandbox -c \"bgBlue,bgMagenta\" \"npm run build:watch\" \"reactor-sandbox\"",
     "package": "npm i && npm run build && npx @adobe/reactor-packager",
+    "upload": "npx --yes dotenv-cli -e .env -- npx @adobe/reactor-uploader",
+    "release": "npx --yes dotenv-cli -e .env -- npx @adobe/reactor-releaser",
     "prepack": "npm test && npm run build",
     "lint": "eslint 'src/**'",
     "format": "pretty-quick",

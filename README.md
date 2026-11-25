@@ -46,21 +46,30 @@ npx @adobe/reactor-sandbox
 The command packages the Launch extension places the file at the root of the folder.
 
 ```
-npx @adobe/reactor-packager
+npm run package
+```
+
+### Upload & Release credentials
+
+Copy `.env.example` to `.env` and set Adobe I/O OAuth Server-to-Server credentials from the [Adobe Developer Console](https://console.adobe.io):
+
+```
+REACTOR_IO_INTEGRATION_CLIENT_ID=
+REACTOR_IO_INTEGRATION_CLIENT_SECRET=
 ```
 
 ### Upload
 
-The command uploads the package to the targeted Adobe Launch service in Adobe IO.
+Uploads the packaged zip to Adobe Experience Platform Tags:
 
 ```
-npx @adobe/reactor-uploader --private-key=<LOCATION of PRIVATE-KEY> --org-id=<ORG-ID> --tech-account-id=<TEST-ACCOUNT-ID> --api-key=<API-KEY> --client-secret=<CLIENT-SECRET>
+npm run upload
 ```
 
 ### Release
 
-The command releases the package to be installed for use.
+Releases the uploaded package so it can be installed:
 
 ```
-npx @adobe/reactor-releaser --private-key=<LOCATION of PRIVATE-KEY> --org-id=<ORG-ID> --tech-account-id=<TEST-ACCOUNT-ID> --api-key=<API-KEY> --client-secret=<CLIENT-SECRET>
+npm run release
 ```

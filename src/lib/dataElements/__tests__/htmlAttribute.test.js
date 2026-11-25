@@ -38,29 +38,7 @@ describe('htmlAttribute data element', () => {
     expect(htmlAttribute()).toEqual({ lang: 'fr' });
   });
 
-  it('overrides the attribute name', () => {
-    mockQuerySelector.mockReturnValue(makeElement({ dir: 'rtl' }));
-
-    const result = htmlAttribute({ attributeName: 'dir' });
-
-    expect(result).toEqual({ dir: 'rtl' });
-  });
-
-  it('uses a custom selector for other elements', () => {
-    mockQuerySelector.mockReturnValue(
-      makeElement({ 'data-locale': 'de-DE' })
-    );
-
-    const result = htmlAttribute({
-      selector: 'body',
-      attributeName: 'data-locale'
-    });
-
-    expect(mockQuerySelector).toHaveBeenCalledWith('body');
-    expect(result).toEqual({ 'data-locale': 'de-DE' });
-  });
-
-  it('uses the output key as the JSON key when provided', () => {
+  it('supports legacy single-mapping settings', () => {
     mockQuerySelector.mockReturnValue(makeElement({ lang: 'en-US' }));
 
     const result = htmlAttribute({ outputKey: 'Accept-Language' });
@@ -68,13 +46,63 @@ describe('htmlAttribute data element', () => {
     expect(result).toEqual({ 'Accept-Language': 'en-US' });
   });
 
-  it('trims whitespace from settings', () => {
+  it('merges multiple mappings into one object', () => {
+    mockQuerySelector
+      .mockReturnValueOnce(makeElement({ lang: 'en-US' }))
+      .mockReturnValueOnce(makeElement({ content: 'US' }));
+
+    const result = htmlAttribute({
+      mappings: [
+        {
+          selector: 'html',
+          attributeName: 'lang',
+          outputKey: 'Accept-Language'
+        },
+        {
+          selector: 'meta[name="countryCodeIso2"]',
+          attributeName: 'content',
+          outputKey: 'X-Country'
+        }
+      ]
+    });
+
+    expect(mockQuerySelector).toHaveBeenNthCalledWith(1, 'html');
+    expect(mockQuerySelector).toHaveBeenNthCalledWith(
+      2,
+      'meta[name="countryCodeIso2"]'
+    );
+    expect(result).toEqual({
+      'Accept-Language': 'en-US',
+      'X-Country': 'US'
+    });
+  });
+
+  it('skips mappings that cannot be resolved and keeps the rest', () => {
+    mockQuerySelector
+      .mockReturnValueOnce(null)
+      .mockReturnValueOnce(makeElement({ lang: 'en' }));
+
+    const result = htmlAttribute({
+      mappings: [
+        { selector: '#missing', attributeName: 'lang', outputKey: 'Missing' },
+        { selector: 'html', attributeName: 'lang', outputKey: 'Accept-Language' }
+      ]
+    });
+
+    expect(result).toEqual({ 'Accept-Language': 'en' });
+  });
+
+  it('trims whitespace from mapping settings', () => {
     mockQuerySelector.mockReturnValue(makeElement({ lang: 'en' }));
 
     const result = htmlAttribute({
-      selector: '  html ',
-      attributeName: ' lang ',
-      outputKey: ' locale '
+      mappings: [
+        {
+          selector: '  html ',
+          attributeName: ' lang ',
+          outputKey: ' locale '
+        }
+      ]
     });
 
     expect(mockQuerySelector).toHaveBeenCalledWith('html');
@@ -84,21 +112,21 @@ describe('htmlAttribute data element', () => {
   it('falls back to a DOM property when the attribute is missing', () => {
     mockQuerySelector.mockReturnValue(makeElement({}, { title: 'Hello' }));
 
-    const result = htmlAttribute({ attributeName: 'title' });
+    const result = htmlAttribute({
+      mappings: [{ attributeName: 'title' }]
+    });
 
     expect(result).toEqual({ title: 'Hello' });
   });
 
-  it('returns an empty object when the element is not found', () => {
+  it('returns an empty object when no mappings resolve', () => {
     mockQuerySelector.mockReturnValue(null);
 
-    expect(htmlAttribute({ selector: '#missing' })).toEqual({});
-  });
-
-  it('returns an empty object when the attribute is missing or empty', () => {
-    mockQuerySelector.mockReturnValue(makeElement({ lang: '' }, { lang: '' }));
-
-    expect(htmlAttribute({})).toEqual({});
+    expect(
+      htmlAttribute({
+        mappings: [{ selector: '#missing', attributeName: 'lang' }]
+      })
+    ).toEqual({});
   });
 
   it('returns an empty object and logs an error for an invalid selector', () => {
@@ -106,7 +134,11 @@ describe('htmlAttribute data element', () => {
       throw new Error('bad selector');
     });
 
-    expect(htmlAttribute({ selector: '!!' })).toEqual({});
+    expect(
+      htmlAttribute({
+        mappings: [{ selector: '!!', attributeName: 'lang' }]
+      })
+    ).toEqual({});
     expect(turbine.logger.error).toHaveBeenCalled();
   });
 });

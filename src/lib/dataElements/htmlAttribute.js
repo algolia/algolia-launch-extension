@@ -7,34 +7,46 @@ const DEFAULT_ATTRIBUTE_NAME = 'lang';
 const isPrimitive = (value) =>
   ['string', 'number', 'boolean'].includes(typeof value);
 
-/**
- * Reads an attribute (or, as a fallback, a DOM property) from an HTML element
- * and returns it as a JSON object: { [outputKey]: value }.
- *
- * Settings:
- *  - selector:      CSS selector of the element to read (default: "html")
- *  - attributeName: attribute/property to read           (default: "lang")
- *  - outputKey:     key used in the returned object      (default: attributeName)
- *
- * Examples:
- *  <html lang="en-US"> with defaults          -> { "lang": "en-US" }
- *  attributeName "lang", outputKey "Accept-Language" -> { "Accept-Language": "en-US" }
- *
- * Returns an empty object when the element or value cannot be found, so the
- * result is always safe to use as an object (e.g. as Proxy Headers).
- */
-module.exports = function (settings) {
-  const {
-    selector: selectorSetting,
-    attributeName: attributeNameSetting,
-    outputKey: outputKeySetting
-  } = settings || {};
-
-  const selector = (selectorSetting || '').trim() || DEFAULT_SELECTOR;
+const normalizeMapping = (mapping) => {
+  const selector = (mapping.selector || '').trim() || DEFAULT_SELECTOR;
   const attributeName =
-    (attributeNameSetting || '').trim() || DEFAULT_ATTRIBUTE_NAME;
-  const outputKey = (outputKeySetting || '').trim() || attributeName;
+    (mapping.attributeName || '').trim() || DEFAULT_ATTRIBUTE_NAME;
+  const outputKey = (mapping.outputKey || '').trim() || attributeName;
 
+  return { selector, attributeName, outputKey };
+};
+
+const getMappings = (settings) => {
+  if (
+    settings &&
+    Array.isArray(settings.mappings) &&
+    settings.mappings.length
+  ) {
+    return settings.mappings.map(normalizeMapping);
+  }
+
+  // Legacy single-mapping settings shape from 3.4.0-beta.1.
+  if (
+    settings &&
+    (settings.selector || settings.attributeName || settings.outputKey)
+  ) {
+    return [normalizeMapping(settings)];
+  }
+
+  return [normalizeMapping({})];
+};
+
+const readValue = (element, attributeName) => {
+  let value = element.getAttribute(attributeName);
+  if (value === null || value === undefined || value === '') {
+    const propertyValue = element[attributeName];
+    value =
+      isPrimitive(propertyValue) && propertyValue !== '' ? propertyValue : null;
+  }
+  return value;
+};
+
+const readMapping = ({ selector, attributeName, outputKey }) => {
   let element = null;
   try {
     element = window.document.querySelector(selector);
@@ -42,32 +54,56 @@ module.exports = function (settings) {
     turbine.logger.error(
       `HTML Attribute Data Element - Invalid selector "${selector}": ${e.message}`
     );
-    return {};
+    return null;
   }
 
   if (!element) {
     turbine.logger.log(
       `HTML Attribute Data Element - No element found for selector "${selector}".`
     );
-    return {};
+    return null;
   }
 
-  let value = element.getAttribute(attributeName);
-  if (value === null || value === undefined || value === '') {
-    // Fall back to the DOM property (e.g. "value", "title", "href").
-    const propertyValue = element[attributeName];
-    value =
-      isPrimitive(propertyValue) && propertyValue !== '' ? propertyValue : null;
-  }
-
+  const value = readValue(element, attributeName);
   if (value === null) {
     turbine.logger.log(
       `HTML Attribute Data Element - "${attributeName}" not found on "${selector}".`
     );
-    return {};
+    return null;
   }
 
-  const result = { [outputKey]: value };
+  return { [outputKey]: value };
+};
+
+/**
+ * Reads one or more HTML attributes/properties and returns them as a single
+ * JSON object. Each mapping contributes one key/value pair.
+ *
+ * Settings:
+ *  - mappings: [{ selector, attributeName, outputKey }, ...]
+ *
+ * Defaults per mapping: selector "html", attributeName "lang",
+ * outputKey = attributeName.
+ *
+ * Example:
+ *  mappings: [
+ *    { selector: "html", attributeName: "lang", outputKey: "Accept-Language" },
+ *    { selector: "meta[name=countryCodeIso2]", attributeName: "content",
+ *      outputKey: "X-Country" }
+ *  ]
+ *  -> { "Accept-Language": "en-US", "X-Country": "US" }
+ *
+ * Always returns an object (possibly empty) so it is safe to use as Proxy Headers.
+ */
+module.exports = function (settings) {
+  const result = {};
+
+  getMappings(settings).forEach((mapping) => {
+    const entry = readMapping(mapping);
+    if (entry) {
+      Object.assign(result, entry);
+    }
+  });
 
   turbine.logger.log(`HTML Attribute Data Element - ${JSON.stringify(result)}`);
 

@@ -1,7 +1,12 @@
 'use strict';
 
 const window = require('@adobe/reactor-window');
-const { collectObjectIDs, resolveIndexName } = require('./helpers/hitsList');
+const {
+  OBJECT_ID_ATTRIBUTE,
+  collectObjectIDs,
+  objectIDsInList,
+  resolveIndexName
+} = require('./helpers/hitsList');
 
 const DEFAULT_LIST_SELECTOR =
   '.ais-AutocompleteIndexList, .aa-List, .ais-InfiniteHits-list, .ais-Hits-list';
@@ -37,7 +42,10 @@ const parseDebounce = (value) => {
  *                             index/list during this page view
  *
  * Trigger payload: { element, target, objectIDs, indexName, timestamp }.
- * Only newly added hits are reported, plus hits already in the DOM at setup.
+ * Only newly added hits are reported (including reused hit elements whose
+ * objectID attribute changed), plus hits already in the DOM at setup. Hits
+ * removed before the debounce elapses, and lists detached from the document,
+ * are not reported.
  */
 module.exports = function (settings, trigger) {
   const options = settings || {};
@@ -81,12 +89,17 @@ module.exports = function (settings, trigger) {
     timers.delete(list);
     const queued = pending.get(list);
     pending.delete(list);
-    if (!queued || queued.size === 0) {
+    if (!queued || queued.size === 0 || !list.isConnected) {
+      return;
+    }
+
+    const rendered = objectIDsInList(list);
+    let objectIDs = Array.from(queued).filter((id) => rendered.has(id));
+    if (objectIDs.length === 0) {
       return;
     }
 
     const indexName = resolveIndexName(list, indexNameQuerySelector);
-    let objectIDs = Array.from(queued);
 
     if (dedupe) {
       const key = sentKey(list, indexName);
@@ -152,15 +165,35 @@ module.exports = function (settings, trigger) {
     return;
   }
 
+  // A reused hit element (unkeyed re-render) only gets a new attribute value.
+  const scanAttributeChange = (mutation) => {
+    const element = mutation.target;
+    const id = element.getAttribute(OBJECT_ID_ATTRIBUTE);
+    if (!id || id === mutation.oldValue) {
+      return;
+    }
+    const list = element.closest(listSelector);
+    if (list) {
+      enqueue(new Map([[list, [id]]]));
+    }
+  };
+
   const observer = new window.MutationObserver((mutations) => {
     Array.prototype.forEach.call(mutations, (mutation) => {
-      Array.prototype.forEach.call(mutation.addedNodes, scan);
+      if (mutation.type === 'attributes') {
+        scanAttributeChange(mutation);
+      } else {
+        Array.prototype.forEach.call(mutation.addedNodes, scan);
+      }
     });
   });
 
   // Observe the root element: this module can load in <head>, before <body>.
   observer.observe(document.documentElement, {
     childList: true,
-    subtree: true
+    subtree: true,
+    attributes: true,
+    attributeOldValue: true,
+    attributeFilter: [OBJECT_ID_ATTRIBUTE]
   });
 };
