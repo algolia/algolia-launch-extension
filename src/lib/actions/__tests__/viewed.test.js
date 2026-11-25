@@ -1,8 +1,9 @@
 'use strict';
 
 const mockAa = jest.fn();
+const mockWindow = { aa: mockAa };
 
-jest.mock('@adobe/reactor-window', () => ({ aa: mockAa }));
+jest.mock('@adobe/reactor-window', () => mockWindow);
 
 const viewed = require('../viewed');
 
@@ -13,8 +14,10 @@ const baseExtensionSettings = {
 };
 
 beforeEach(() => {
+  mockWindow.aa = mockAa;
   mockAa.mockClear();
   turbine.logger.log.mockClear();
+  turbine.logger.warn.mockClear();
   turbine.getExtensionSettings.mockReset();
   turbine.getExtensionSettings.mockReturnValue(baseExtensionSettings);
 });
@@ -92,5 +95,77 @@ describe('viewed action', () => {
 
     const viewCall = mockAa.mock.calls.find((c) => c[0] === 'viewedObjectIDs');
     expect(viewCall[1].authenticatedUserToken).toBe('auth-token-xyz');
+  });
+
+  describe('batching', () => {
+    const makeIDs = (count) =>
+      Array.from({ length: count }, (_, i) => `obj${i + 1}`);
+    const run = (objectIDs) =>
+      viewed({
+        eventName: 'Viewed',
+        eventDetailsDataElement: {
+          timestamp: 1000,
+          indexName: 'idx',
+          objectIDs
+        }
+      });
+    const viewCalls = () =>
+      mockAa.mock.calls.filter((c) => c[0] === 'viewedObjectIDs');
+
+    it('sends one event for exactly 20 objectIDs', () => {
+      run(makeIDs(20));
+
+      expect(viewCalls()).toHaveLength(1);
+      expect(viewCalls()[0][1].objectIDs).toHaveLength(20);
+    });
+
+    it('splits 21 objectIDs into two events', () => {
+      run(makeIDs(21));
+
+      const calls = viewCalls();
+      expect(calls).toHaveLength(2);
+      expect(calls[0][1].objectIDs).toHaveLength(20);
+      expect(calls[1][1].objectIDs).toEqual(['obj21']);
+    });
+
+    it('splits 45 objectIDs into three events, preserving order and payload', () => {
+      run(makeIDs(45));
+
+      const calls = viewCalls();
+      expect(calls.map((c) => c[1].objectIDs.length)).toEqual([20, 20, 5]);
+      expect(calls.flatMap((c) => c[1].objectIDs)).toEqual(makeIDs(45));
+      calls.forEach((c) => {
+        expect(c[1].eventName).toBe('Viewed');
+        expect(c[1].index).toBe('idx');
+        expect(c[1].timestamp).toBe(1000);
+        expect(c[1].userToken).toBe('user-abc');
+      });
+    });
+  });
+
+  describe('hardening', () => {
+    it('does not throw when eventDetailsDataElement is missing', () => {
+      expect(() => viewed({ eventName: 'Viewed' })).not.toThrow();
+      expect(mockAa).not.toHaveBeenCalled();
+    });
+
+    it('does not throw when eventDetailsDataElement is null', () => {
+      expect(() =>
+        viewed({ eventName: 'Viewed', eventDetailsDataElement: null })
+      ).not.toThrow();
+      expect(mockAa).not.toHaveBeenCalled();
+    });
+
+    it('warns instead of throwing when window.aa is not loaded', () => {
+      delete mockWindow.aa;
+
+      expect(() =>
+        viewed({
+          eventName: 'Viewed',
+          eventDetailsDataElement: { objectIDs: ['o1'] }
+        })
+      ).not.toThrow();
+      expect(turbine.logger.warn).toHaveBeenCalledTimes(1);
+    });
   });
 });

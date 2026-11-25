@@ -16,7 +16,7 @@ const plugins = [];
 
 module.exports = (env) => {
   // Each view becomes its own "app". These are automatically generated based on naming convention.
-  ['configuration', 'action', 'dataElement'].forEach((type) => {
+  ['configuration', 'action', 'event', 'dataElement'].forEach((type) => {
     const typePluralized = type + 's';
     const delegates =
       type === 'configuration'
@@ -167,7 +167,7 @@ module.exports = (env) => {
               loader: 'url-loader',
               options: {
                 limit: 10000,
-                mimetype : 'application/font-woff'
+                mimetype: 'application/font-woff'
               }
             }
           ]
