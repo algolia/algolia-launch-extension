@@ -1,6 +1,6 @@
 'use strict';
 const window = require('@adobe/reactor-window');
-const { chunk } = require('../events/helpers/hitsList');
+const { chunk } = require('../utils/chunk');
 
 // Algolia rejects viewedObjectIDs events with more than 20 objectIDs.
 const MAX_OBJECT_IDS_PER_EVENT = 20;

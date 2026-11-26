@@ -2,7 +2,7 @@
   "displayName": "Algolia Insights",
   "name": "algolia-insights",
   "platform": "web",
-  "version": "3.4.0-beta.4",
+  "version": "3.4.0-beta.6",
   "description": "Send events to Algolia to power AI products (AI Search, Recommend, Dynamic Reranking, Personalization, etc).",
   "author": {
     "name": "Algolia Professional Services",
@@ -170,37 +170,7 @@
       "viewPath": "actions/addedToCart.html"
     }
   ],
-  "events": [
-    {
-      "displayName": "Hits List Changed",
-      "name": "hits-list-changed",
-      "schema": {
-        "$schema": "http://json-schema.org/draft-04/schema#",
-        "type": "object",
-        "properties": {
-          "listSelector": {
-            "type": "string",
-            "default": ".ais-AutocompleteIndexList, .aa-List, .ais-InfiniteHits-list, .ais-Hits-list"
-          },
-          "indexNameQuerySelector": {
-            "type": "string",
-            "default": "[data-indexname], [data-insights-index]"
-          },
-          "debounceMs": {
-            "type": "integer",
-            "minimum": 0,
-            "default": 150
-          },
-          "dedupe": {
-            "type": "boolean",
-            "default": false
-          }
-        }
-      },
-      "libPath": "src/lib/events/hitsListChanged.js",
-      "viewPath": "events/hitsListChanged.html"
-    }
-  ],
+  "events": [],
   "dataElements": [
     {
       "displayName": "DataSet",
@@ -339,17 +309,6 @@
       },
       "libPath": "src/lib/dataElements/htmlAttribute.js",
       "viewPath": "dataElements/htmlAttribute.html"
-    },
-    {
-      "displayName": "Hits List",
-      "name": "hits-list",
-      "schema": {
-        "$schema": "http://json-schema.org/draft-04/schema#",
-        "type": "object",
-        "properties": {}
-      },
-      "libPath": "src/lib/dataElements/hitsList.js",
-      "viewPath": "dataElements/hitsList.html"
     }
   ]
 }
