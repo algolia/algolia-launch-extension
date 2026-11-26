@@ -52,14 +52,14 @@ const readMapping = ({ selector, attributeName, outputKey }) => {
     element = window.document.querySelector(selector);
   } catch (e) {
     turbine.logger.error(
-      `HTML Attribute Data Element - Invalid selector "${selector}": ${e.message}`
+      `Element Attribute Map Data Element - Invalid selector "${selector}": ${e.message}`
     );
     return null;
   }
 
   if (!element) {
     turbine.logger.log(
-      `HTML Attribute Data Element - No element found for selector "${selector}".`
+      `Element Attribute Map Data Element - No element found for selector "${selector}".`
     );
     return null;
   }
@@ -67,7 +67,7 @@ const readMapping = ({ selector, attributeName, outputKey }) => {
   const value = readValue(element, attributeName);
   if (value === null) {
     turbine.logger.log(
-      `HTML Attribute Data Element - "${attributeName}" not found on "${selector}".`
+      `Element Attribute Map Data Element - "${attributeName}" not found on "${selector}".`
     );
     return null;
   }
@@ -76,7 +76,7 @@ const readMapping = ({ selector, attributeName, outputKey }) => {
 };
 
 /**
- * Reads one or more HTML attributes/properties and returns them as a single
+ * Reads one or more element attributes/properties and returns them as a single
  * JSON object. Each mapping contributes one key/value pair.
  *
  * Settings:
@@ -105,7 +105,9 @@ module.exports = function (settings) {
     }
   });
 
-  turbine.logger.log(`HTML Attribute Data Element - ${JSON.stringify(result)}`);
+  turbine.logger.log(
+    `Element Attribute Map Data Element - ${JSON.stringify(result)}`
+  );
 
   return result;
 };

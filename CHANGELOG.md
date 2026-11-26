@@ -2,6 +2,22 @@
 
 All notable changes to the Algolia Launch Extension are documented in this file.
 
+## 3.5.2
+
+### Changed
+
+- Renamed the **HTML Attribute** data element to **Element Attribute Map** (`html-attribute` →
+  `element-attribute-map`). Source and view files were renamed to match. Data elements created against the
+  old module name need to be reselected to the new type after upgrading.
+
+## 3.5.1
+
+- Internal release. Superseded by 3.5.2.
+
+## 3.5.0
+
+- Internal release. Superseded by 3.5.2.
+
 ## 3.4.0
 
 ### Added
@@ -48,6 +64,6 @@ All notable changes to the Algolia Launch Extension are documented in this file.
 After uploading and releasing the package:
 
 1. Update the [Adobe Experience League documentation](https://experienceleague.adobe.com/en/docs/experience-platform/tags/extensions/client/algolia-insights/overview)
-   to describe the HTML Attribute data element.
+   to describe the Element Attribute Map data element.
 2. Update the Adobe Exchange listing version and "What's new" text.
 3. Tag the release commit (`git tag v<version>`) and push the tag.

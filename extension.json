@@ -2,7 +2,7 @@
   "displayName": "Algolia Insights",
   "name": "algolia-insights",
   "platform": "web",
-  "version": "3.4.0",
+  "version": "3.5.2",
   "description": "Send events to Algolia to power AI products (AI Search, Recommend, Dynamic Reranking, Personalization, etc).",
   "author": {
     "name": "Algolia Professional Services",
@@ -266,8 +266,8 @@
       "viewPath": "dataElements/storage.html"
     },
     {
-      "displayName": "HTML Attribute",
-      "name": "html-attribute",
+      "displayName": "Element Attribute Map",
+      "name": "element-attribute-map",
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
@@ -304,8 +304,8 @@
           }
         }
       },
-      "libPath": "src/lib/dataElements/htmlAttribute.js",
-      "viewPath": "dataElements/htmlAttribute.html"
+      "libPath": "src/lib/dataElements/elementAttributeMap.js",
+      "viewPath": "dataElements/elementAttributeMap.html"
     }
   ]
 }

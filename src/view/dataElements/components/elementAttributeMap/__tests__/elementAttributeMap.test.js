@@ -2,7 +2,7 @@ import getInitValues from '../getInitValues';
 import getSettings from '../getSettings';
 import validate from '../validate';
 
-describe('htmlAttribute view helpers', () => {
+describe('elementAttributeMap view helpers', () => {
   describe('getInitValues', () => {
     it('defaults to one html/lang mapping for a new data element', () => {
       expect(getInitValues({})).toEqual({

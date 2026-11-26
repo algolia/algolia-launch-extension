@@ -6,7 +6,7 @@ jest.mock('@adobe/reactor-window', () => ({
   document: { querySelector: (...args) => mockQuerySelector(...args) }
 }));
 
-const htmlAttribute = require('../htmlAttribute');
+const elementAttributeMap = require('../elementAttributeMap');
 
 const makeElement = (attributes = {}, properties = {}) => ({
   getAttribute: (name) =>
@@ -22,11 +22,11 @@ beforeEach(() => {
   turbine.logger.error.mockClear();
 });
 
-describe('htmlAttribute data element', () => {
+describe('elementAttributeMap data element', () => {
   it('defaults to the lang attribute on the html tag', () => {
     mockQuerySelector.mockReturnValue(makeElement({ lang: 'en-US' }));
 
-    const result = htmlAttribute({});
+    const result = elementAttributeMap({});
 
     expect(mockQuerySelector).toHaveBeenCalledWith('html');
     expect(result).toEqual({ lang: 'en-US' });
@@ -35,13 +35,13 @@ describe('htmlAttribute data element', () => {
   it('works when settings are undefined', () => {
     mockQuerySelector.mockReturnValue(makeElement({ lang: 'fr' }));
 
-    expect(htmlAttribute()).toEqual({ lang: 'fr' });
+    expect(elementAttributeMap()).toEqual({ lang: 'fr' });
   });
 
   it('supports legacy single-mapping settings', () => {
     mockQuerySelector.mockReturnValue(makeElement({ lang: 'en-US' }));
 
-    const result = htmlAttribute({ outputKey: 'Accept-Language' });
+    const result = elementAttributeMap({ outputKey: 'Accept-Language' });
 
     expect(result).toEqual({ 'Accept-Language': 'en-US' });
   });
@@ -51,7 +51,7 @@ describe('htmlAttribute data element', () => {
       .mockReturnValueOnce(makeElement({ lang: 'en-US' }))
       .mockReturnValueOnce(makeElement({ content: 'US' }));
 
-    const result = htmlAttribute({
+    const result = elementAttributeMap({
       mappings: [
         {
           selector: 'html',
@@ -82,10 +82,14 @@ describe('htmlAttribute data element', () => {
       .mockReturnValueOnce(null)
       .mockReturnValueOnce(makeElement({ lang: 'en' }));
 
-    const result = htmlAttribute({
+    const result = elementAttributeMap({
       mappings: [
         { selector: '#missing', attributeName: 'lang', outputKey: 'Missing' },
-        { selector: 'html', attributeName: 'lang', outputKey: 'Accept-Language' }
+        {
+          selector: 'html',
+          attributeName: 'lang',
+          outputKey: 'Accept-Language'
+        }
       ]
     });
 
@@ -95,7 +99,7 @@ describe('htmlAttribute data element', () => {
   it('trims whitespace from mapping settings', () => {
     mockQuerySelector.mockReturnValue(makeElement({ lang: 'en' }));
 
-    const result = htmlAttribute({
+    const result = elementAttributeMap({
       mappings: [
         {
           selector: '  html ',
@@ -112,7 +116,7 @@ describe('htmlAttribute data element', () => {
   it('falls back to a DOM property when the attribute is missing', () => {
     mockQuerySelector.mockReturnValue(makeElement({}, { title: 'Hello' }));
 
-    const result = htmlAttribute({
+    const result = elementAttributeMap({
       mappings: [{ attributeName: 'title' }]
     });
 
@@ -123,7 +127,7 @@ describe('htmlAttribute data element', () => {
     mockQuerySelector.mockReturnValue(null);
 
     expect(
-      htmlAttribute({
+      elementAttributeMap({
         mappings: [{ selector: '#missing', attributeName: 'lang' }]
       })
     ).toEqual({});
@@ -135,7 +139,7 @@ describe('htmlAttribute data element', () => {
     });
 
     expect(
-      htmlAttribute({
+      elementAttributeMap({
         mappings: [{ selector: '!!', attributeName: 'lang' }]
       })
     ).toEqual({});
