@@ -1,9 +1,10 @@
 # Algolia Launch Extension
 
-The Algolia Launch Extension wraps the Algolia Insights to send user interaction events to Algolia to enable AI
-feature.
+The Algolia Launch Extension wraps Algolia Insights to send user interaction events to Algolia, enabling AI-powered
+features such as AI Search, Recommend, Dynamic Re-Ranking and Personalization.
 
 **NOTE**
+
 > The connector is provided « as is » and Algolia (a) makes no representation or warranties of any kind, whether
 > express, implied, statutory or otherwise regarding the connector, and (b) disclaims all warranties, including any
 > implied or express warranties (i) of merchantability, satisfactory quality, fitness for a particular purpose,
@@ -20,14 +21,24 @@ feature.
 
 The Algolia Launch extension is documented on [Adobe Doc](https://experienceleague.adobe.com/en/docs/experience-platform/tags/extensions/client/algolia-insights/overview).
 
+Release notes are in [CHANGELOG.md](CHANGELOG.md).
+
 ## Development & Release
 
-For development and release process, you can refer to
+For the development and release process, refer to
 the [Adobe Launch Extension development page](https://experienceleague.adobe.com/docs/experience-platform/tags/extension-dev/submit/develop.html).
+
+### Install
+
+```
+npm install
+```
+
+This also installs the Husky git hooks (pre-commit formatting/linting, pre-push tests).
 
 ### Scaffold
 
-The command provides a way to add actions, data elements, and events assets.
+Adds actions, data elements, and events assets.
 
 ```
 npx @adobe/reactor-scaffold
@@ -35,15 +46,32 @@ npx @adobe/reactor-scaffold
 
 ### Sandbox
 
-The command starts a local development environment for Launch extension development.
+Builds the views in watch mode and starts the local Launch extension sandbox.
 
 ```
-npx @adobe/reactor-sandbox
+npm run sandbox
 ```
 
-### Packager
+### Build
 
-The command packages the Launch extension places the file at the root of the folder.
+Produces the production views in `dist/`.
+
+```
+npm run build
+```
+
+### Test and lint
+
+```
+npm test        # unit tests with coverage (thresholds are enforced) and lint
+npm run test:watch
+npm run lint
+```
+
+### Package
+
+Installs dependencies, builds, and packages the Launch extension. The zip file
+(`package-algolia-insights-<version>.zip`) is placed at the root of the repository.
 
 ```
 npm run package
@@ -73,3 +101,5 @@ Releases the uploaded package so it can be installed:
 ```
 npm run release
 ```
+
+After releasing, follow the release checklist at the end of [CHANGELOG.md](CHANGELOG.md).

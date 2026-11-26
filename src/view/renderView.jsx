@@ -1,4 +1,5 @@
-import 'babel-polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import { defaultTheme, Provider } from '@adobe/react-spectrum';
 import React from 'react';
 import ReactDOM from 'react-dom';

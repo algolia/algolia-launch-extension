@@ -34,12 +34,11 @@ const removeEventFromStore = (recordID) => {
 
 const removeEventsFromStore = (objectIDs) => {
   if (objectIDs) {
-    const algoliaData = getAlgoliaData;
+    const algoliaData = getAlgoliaData();
     if (algoliaData) {
       Object.keys(algoliaData).forEach((recordID) => {
-        console.debug(`${recordID}: ${algoliaData[recordID]}`);
         const item = algoliaData[recordID];
-        if (item.objectIDs.length > 0) {
+        if (item && item.objectIDs && item.objectIDs.length > 0) {
           if (objectIDs.includes(item.objectIDs[0])) {
             removeEventFromStore(recordID);
           }

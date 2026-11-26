@@ -40,5 +40,24 @@ module.exports = {
     '!**/__tests_helpers__/**'
   ],
 
-  coverageReporters: ['lcov', 'text', 'html']
+  coverageReporters: ['lcov', 'text', 'html'],
+
+  // The runtime library is held to a high bar. Files matched by a path
+  // threshold are excluded from "global", so "global" only gates the view layer,
+  // which is mostly React field components exercised in the Tags UI. Its
+  // thresholds are therefore lower; raise them as view tests are added.
+  coverageThreshold: {
+    global: {
+      statements: 45,
+      branches: 70,
+      functions: 25,
+      lines: 45
+    },
+    './src/lib/': {
+      statements: 90,
+      branches: 85,
+      functions: 90,
+      lines: 90
+    }
+  }
 };

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import ErrorBoundary from './errorBoundary';
-// import DisplayFormState from './displayFormState';
 
 function ExtensionView({ getInitialValues, getSettings, validate, render }) {
   const methods = useForm({
@@ -45,10 +44,7 @@ function ExtensionView({ getInitialValues, getSettings, validate, render }) {
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...methods}
       >
-        <Form validationBehavior="native">
-          {render()}
-          {/* <DisplayFormState /> */}
-        </Form>
+        <Form validationBehavior="native">{render()}</Form>
       </FormProvider>
     </ErrorBoundary>
   );
